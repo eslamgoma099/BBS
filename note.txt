@@ -1,0 +1,28 @@
+#UCHE
+1. Installed "laravel/sanctum" package for token management.
+2. created "api_tokens" table to hold generaated tokens
+
+3. Add "features" field to "plans" table
+4. Create a seeder class (PlanSeeder.php) to populate two default plans two plans
+
+5. Add "admin_notifications" field to "users" table for enabling notifications
+6. Create "statuses" table for admin to define lead status
+7. Create "notes" table to add notes to customers/leads
+8. Create "sources" table for admin to define lead sources
+
+9. Create 'watchlist' table to keep track of users currency watchlists
+
+10. Add "extra verification fields" to identities table
+#BOB
+
+
+#SANTOS
+
+1. Added country table and phone_code column to the project.
+
+run -- php artisan db:seed --class=CountriesTableSeeder
+
+php artisan db:seed --class=PlanSeeder
+
+#BEN
+REMOVED laravel/sanctum package
