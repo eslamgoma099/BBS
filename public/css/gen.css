@@ -1,0 +1,112 @@
+/*! CSS Used from: https://finmaxbo.com/templates/Default/css/A.countrySelect.css,,qsfds4+main.css,,qs4,Mcc._NtKjfKxgO.css.pagespeed.cf.TRQs9DX7NU.css */
+a{background-color:transparent;}
+a:active,a:hover{outline:0;}
+img{border:0;}
+@media print{
+    *,:after,:before{color:#000!important;text-shadow:none!important;background:0 0!important;-webkit-box-shadow:none!important;box-shadow:none!important;}
+    a,a:visited{text-decoration:underline;}
+    a[href]:after{content:" (" attr(href) ")";}
+    img{page-break-inside:avoid;}
+    img{max-width:100%!important;}
+    h2{orphans:3;widows:3;}
+    h2{page-break-after:avoid;}
+}
+*,:after,:before{-webkit-box-sizing:border-box;box-sizing:border-box;}
+a{color:#135e9e;text-decoration:none;}
+a:focus,a:hover{color: #f4efef;text-decoration:none;}
+a:focus{outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px;}
+img{vertical-align:middle;}
+h2{font-family:inherit;font-weight:500;line-height:1.1;color:inherit;}
+h2{margin-top:20px;margin-bottom:10px;}
+h2{font-size:30px;}
+ul{margin-top:0;margin-bottom:10px;}
+.row{margin-right:-15px;margin-left:-15px;}
+.col-sm-12{position:relative;min-height:1px;padding-right:15px;padding-left:15px;}
+@media (min-width:768px){
+    .col-sm-12{float:left;}
+    .col-sm-12{width:100%;}
+}
+.btn{display:inline-block;padding:6px 12px;margin-bottom:0;font-size:14px;font-weight:400;line-height:1.42857143;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-image:none;border:1px solid transparent;border-radius:4px;-moz-transition:all .3s ease;-webkit-transition:all .3s ease;-o-transition:all .3s ease;}
+.btn:active:focus,.btn:focus{outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px;}
+.btn:focus,.btn:hover{color:#333;text-decoration:none;}
+.btn:active{background-image:none;outline:0;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125);}
+.btn-success,.btn-success:focus{color:#fff;background-color:#2fbb14;border-color:#2fbb14;}
+.btn-success:active,.btn-success:hover{color:#fff;background-color:#18db61;border-color:#18db61;}
+.btn-success:active:focus,.btn-success:active:hover{color:#fff;background-color:#398439;border-color:#255625;}
+.btn-success:active{background-image:none;}
+.btn-lg{padding:10px 16px;font-size:18px;line-height:1.3333333;}
+.clearfix:after,.clearfix:before,.row:after,.row:before{display:table;content:" ";}
+.clearfix:after,.row:after{clear:both;}
+.fa{display:inline-block;font:14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.fa-check:before{content:"\F00C";}
+a:active,a:focus{outline:none;}
+@media (max-width:991.98px){
+    h2{font-size:3rem;}
+}
+@media (max-width:767.98px){
+    h2{font-size:2.5rem;}
+}
+a:active,a:focus{outline:none;}
+.acc-block{padding:20px;background:#fff;border-radius:4px;-webkit-box-shadow:0 1px 10px 0 rgba(0,0,0,.05);box-shadow:0 1px 10px 0 rgba(0,0,0,.05);font-size:14px;margin:6px 0;-webkit-transition:.3s;transition:.3s;position:relative;}
+.acc-block .corner{position:absolute;top:-6px;right:-7px;}
+.acc-block:hover{-webkit-box-shadow:0 0 50px 0 hsla(0,0%,7%,.9);box-shadow:0 0 50px 0 hsla(0,0%,7%,.9);margin:0 -15px;position:relative;z-index:10;}
+.acc-block h2{font-size:28px;line-height:28px;font-weight:600;color:#000;text-transform:uppercase;margin:0;display:inline-block;vertical-align:top;}
+.acc-block h2 span{display:block;font-size:14px;color:#000e18;text-transform:none;line-height:0;}
+.acc-block .acc-btn-wrap span{font-size:18.5px;color:#1ba101;line-height:40px;}
+.acc-btn-wrap,.acc-type-wrap{overflow:hidden;}
+.acc-btn-wrap a{float:right;margin-right:15px;}
+.acc-price-block{margin:0;padding:0;float:left;width:280px;}
+.acc-price-block img{width:inherit!important;vertical-align:top;margin:0 5px 0 0;display:inline-block;}
+.acc-price-block .acc-type-img{width:120px!important;float:right;}
+.acc-price-block a{text-transform:none;padding:9px 10px;font-size:16px;line-height:20px;}
+.acc-price-block span{color:#343434;font-weight:600;font-size:20px;margin:9px 0 0 5px;}
+.acc-list{text-align:left;margin:0;float:left;margin-left:30px;width:220px;}
+.acc-list li{position:relative;padding:0 0 0 18px;margin:0 0 10px;line-height:16px;}
+.acc-list .fa{position:absolute;left:0;top:2px;color:#2fbb14;font-size:12px;}
+@media (max-width:1200px){
+    .acc-block h2{font-size:24px;line-height:24px;}
+    .acc-list{width:173px;}
+    .acc-block .corner{width:100px;}
+    .acc-block .corner img{width:100%;}
+    .acc-block:hover{-webkit-box-shadow:0 0 25px 0 hsla(0,0%,7%,.9);box-shadow:0 0 25px 0 hsla(0,0%,7%,.9);margin:0 -15px;}
+}
+@media (max-width:992px){
+    .acc-block{width:500px;}
+    .acc-block,.acc-block:hover{margin:6px auto;}
+    .acc-price-block img{display:inline-block;}
+    .acc-price-block{margin:0 auto 25px;float:none;}
+    .acc-list{width:65%;margin:0 auto;float:none;}
+}
+@media (max-width:768px){
+    .acc-block{width:400px;}
+    .acc-block,.acc-block:hover{margin:30px auto;}
+}
+@media (max-width:480px){
+    .acc-block{width:280px;}
+    .acc-price-block{width:250px;}
+    .acc-price-block .acc-type-img{width:90px!important;}
+    .acc-block .acc-btn-wrap span{font-size:17.5px;}
+    .acc-btn-wrap a{margin-right:0;}
+    .acc-list{width:100%;}
+    .acc-block .corner{width:85px;}
+}
+@media print{
+    a[href]:after{content:"";}
+}
+.btn{text-transform:uppercase;}
+ul{padding-left:0;}
+li{list-style-type:none;}
+.btn-lg{margin:0 15px;}
+.content-block #dle-content a:hover{text-decoration:none;}
+.content-block #dle-content img{max-width:100%;}
+.masha_index{display:none!important;}
+.lazyloaded{opacity:1;-webkit-transition:opacity .3s;transition:opacity .3s;}
+@media (max-width:768px){
+    .btn-lg{margin:10px;}
+}
+@media (max-width:480px){
+    .btn-lg{padding:8px 15px;font-size:16px;line-height:24px;}
+}
+/*! CSS Used fontfaces */
+@font-face{font-family:FontAwesome;src:url(https://finmaxbo.com/templates/Default/css/fonts/fontawesome-webfont.eot?v=4.5.0);src:url(https://finmaxbo.com/templates/Default/css/fonts/fontawesome-webfont.eot#iefix&v=4.5.0) format("embedded-opentype") , url(https://finmaxbo.com/templates/Default/css/fonts/fontawesome-webfont.woff2?v=4.5.0) format("woff2") , url(https://finmaxbo.com/templates/Default/css/fonts/fontawesome-webfont.woff?v=4.5.0) format("woff") , url(https://finmaxbo.com/templates/Default/css/fonts/fontawesome-webfont.ttf?v=4.5.0) format("truetype") , url(https://finmaxbo.com/templates/Default/css/fonts/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular) format("svg");font-weight:400;font-style:normal;}
+

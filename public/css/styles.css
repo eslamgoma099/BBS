@@ -1,0 +1,46 @@
+p, h5, h4, h3 {
+    color: #f4f2f1;
+}
+.invest .icon-big{
+    font-size: 2.2em;
+}
+
+.profile .sub-header {
+    border-bottom: 1px solid;
+}
+
+/* .table-responsive {
+
+    overflow-x: hidden;
+} */
+
+.sidebar-menu img{
+    width: 30px !important;
+    display: block;
+    margin: auto;
+}
+
+#tradingview_3c684 {
+    height: 100%;
+}
+p{
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 40px;
+}
+
+.min-padding .col-8, .min-padding .col-2, .min-padding .col-3, .min-padding .col-4, .min-padding .col-6, .min-padding .col-md-1,
+.min-padding .col-md-8, .min-padding .col-md-2, .min-padding .col-md-3, .min-padding .col-md-4, .min-padding .col-md-6 {
+    padding-right: 3px;
+    padding-left: 3px;
+}
+
+.tradingview-widget-copyright {
+    display: none!important;
+}
+
+
+
+
+
+

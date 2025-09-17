@@ -23,7 +23,7 @@ use App\Http\Controllers\DashboardPagesController;
 use App\Http\Controllers\DepositsController;
 use App\Http\Controllers\PlanController;
 // use App\Http\Controllers\certificatesController;
-// use App\Http\Controllers\TradesController;
+use App\Http\Controllers\admin\RolesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WithdrawalController;
 // use App\Http\Controllers\DepositsController;
