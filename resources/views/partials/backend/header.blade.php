@@ -1,274 +1,286 @@
-<div class="header d-flex align-items-center">
-    <!-- Mobile Toggle Button -->
-    <span id="sidebar-mobile-toggle">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M21.25 7.81V16.19C21.25 17.8608 20.7549 19.1045 19.9297 19.9297C19.1045 20.7549 17.8608 21.25 16.19 21.25H9.75V2.75H16.19C17.8608 2.75 19.1045 3.24514 19.9297 4.07033C20.7549 4.89552 21.25 6.13915 21.25 7.81Z" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M9 2V22H7.81C4.17 22 2 19.83 2 16.19V7.81C2 4.17 4.17 2 7.81 2H9Z" fill="currentColor"/>
-        </svg>
-    </span>
-
-    <!-- Logo -->
-    <div class="crypt-logo logo-m">
-        <a href="{{ setting('site_info_url', '/') }}">
-            <img src="{{ setting('logo', '/asset/images/logosm.png') }}" alt="logo">
-        </a>
-    </div>
-
-    <!-- Collapse Button -->
-    <div class="collapse-btn">
-        <span id="sidebar-collapse">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21.25 7.81V16.19C21.25 17.8608 20.7549 19.1045 19.9297 19.9297C19.1045 20.7549 17.8608 21.25 16.19 21.25H9.75V2.75H16.19C17.8608 2.75 19.1045 3.24514 19.9297 4.07033C20.7549 4.89552 21.25 6.13915 21.25 7.81Z" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M9 2V22H7.81C4.17 22 2 19.83 2 16.19V7.81C2 4.17 4.17 2 7.81 2H9Z" fill="currentColor"/>
-            </svg>
-        </span>
-    </div>
-
-    <!-- Search -->
-    <div class="col-md-3">
-        <input type="text" class="search search-input form-control form-control-lg text-sm hidesmscreen circle" placeholder="Search coins, pairs...">
-    </div>
-
-    <div class="user-settings gap-2 gap-sm-3">
-        <!-- Assets Dropdown -->
-        <div class="dropdown profile_menu disable-sm-screen">
-            <a class="nav-link crypto-has-dropdown fw-medium" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Assets
-                <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" version="1.1" viewBox="0 0 29 29" xml:space="preserve">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" d="m20.5 11.5-6 6-6-6"></path>
+<!-- Crypt Header - Exact Match to Original Design -->
+<header class="crypt-header">
+    <div class="header-inner">
+        <!-- Left Section: Logo -->
+        <div class="header-left">
+            <!-- Mobile Sidebar Toggle -->
+            <button class="mobile-toggle d-md-none" id="sidebar-mobile-toggle">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
+            </button>
+            
+            <!-- Logo -->
+            <a href="{{ setting('site_info_url', '/') }}" class="crypt-logo">
+                <img class="logo-light" src="{{ setting('logo', '/asset/images/logosm.png') }}" alt="Crypt Logo">
+                <img class="logo-dark" src="{{ setting('logo_dark', '/asset/images/logosm.png') }}" alt="Crypt Logo Dark">
             </a>
-            <div class="dropdown-menu dropdown-menu-shows">
-                <div class="d-flex flex-column ps-2 pe-1 border-bottom border-success border-opacity-10">
-                    <p class="text-sm fw-bold crypt-grayscale-600 mb-0">Overview</p>
-                    <div class="d-flex col-auto gap-1 p-0">
-                        <div>
-                            <h4 class="fw-bold crypt-grayscale-400 mb-0 encrypted">${{ number_format(auth()->user()->balance, 2) }}</h4>
-                        </div>
-                        <div>
-                            <select class="form-select text-bg-bs2 crypt-grayscale-600">
-                                <option selected>USDT</option>
-                                <option value="1">BTC</option>
-                                <option value="2">ETH</option>
-                                <option value="3">BNB</option>
-                            </select>
-                        </div>
-                    </div>
-                    <h6 class="text-sm crypt-grayscale-600 encrypted">≈ ${{ number_format(auth()->user()->balance, 2) }} USDT</h6>
-                </div>
-                <div>
-                    <a class="dropdown-item text-left" href="{{ route('backend.dashboard') }}">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12ZM11.9999 9L8.99985 12L11.9999 15L14.9999 12L11.9999 9Z" fill="currentColor"/>
-                        </svg>
-                        Overview
-                    </a>
-                </div>
-                @if (setting('trade'))
-                <div>
-                    <a class="dropdown-item" href="{{ route('backend.tradestation') }}"> 
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.99996 20.0302C13.3136 20.0302 15.9999 17.3439 15.9999 14.0302C15.9999 10.7166 13.3136 8.03027 9.99996 8.03027C6.68627 8.03027 4 10.7166 4 14.0302C4 17.3439 6.68627 20.0302 9.99996 20.0302ZM10.0001 12.0303L8.0001 14.0302L10.0001 16.0302L12 14.0302L10.0001 12.0303Z" fill="currentColor"/>
-                            <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd" d="M17.9431 13.0726C19.1897 12.1633 19.9997 10.6914 19.9997 9.03024C19.9997 6.26883 17.7612 4.03027 14.9998 4.03027C13.3386 4.03027 11.8667 4.84034 10.9575 6.08698C14.6102 6.52271 17.5073 9.41976 17.9431 13.0726Z" fill="currentColor"/>
-                        </svg>
-                        Spot Trading
-                    </a>
-                </div>
-                @endif
-                @if (setting('invest'))
-                <div>
-                    <a class="dropdown-item" href="{{ route('backend.investments') }}"> 
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path opacity="0.4" d="M8.24423 19.9962L3 16.5L3.65836 16.1708C4.50294 15.7485 5.49706 15.7485 6.34164 16.1708L8.15542 17.0777C8.71084 17.3554 9.32329 17.5 9.94427 17.5H13L10.9487 16.8162C10.3821 16.6274 10 16.0972 10 15.5H18.1716C18.702 15.5 19.2107 15.7107 19.5858 16.0858L21 17.5L18 21.5L16 20.5H9.90833C9.31605 20.5 8.73703 20.3247 8.24423 19.9962Z" fill="currentColor"/>
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9 14.5C12.3137 14.5 15 11.8137 15 8.5C15 5.18629 12.3137 2.5 9 2.5C5.68629 2.5 3 5.18629 3 8.5C3 11.8137 5.68629 14.5 9 14.5ZM9 6.5L7 8.5L9 10.5L11 8.5L9 6.5Z" fill="currentColor"/>
-                        </svg>
-                        Earn
-                    </a>
-                </div>
-                @endif
+        </div>
+
+        <!-- Center Section: Search -->
+        <div class="header-center">
+            <div class="search-container">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search coins, pairs...">
             </div>
         </div>
 
-        <!-- Orders Dropdown -->
-        <div class="dropdown profile_menu disable-sm-screen">
-            <a class="nav-link crypto-has-dropdown fw-medium" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Orders
-                @php
-                    $openOrdersCount = \App\Models\Trade::whereUserId(auth()->id())->whereStatus(0)->count();
-                @endphp
-                @if($openOrdersCount > 0)
-                    <span class="badge badge-primary">{{ $openOrdersCount }}</span>
-                @endif
-                <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" version="1.1" viewBox="0 0 29 29" xml:space="preserve">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" d="m20.5 11.5-6 6-6-6"></path>
-                </svg>
-            </a>
-            <ul class="profile_menu dropdown-menu dropdown-menu-shows">
-                @if($openOrdersCount > 0)
-                    @php
-                        $recentOrders = \App\Models\Trade::whereUserId(auth()->id())->whereStatus(0)->take(3)->get();
-                    @endphp
-                    @foreach($recentOrders as $order)
-                    <li>
-                        <a class="dropdown-item" href="{{ route('backend.trades.index') }}"> 
-                            {{ $order->pair ?? 'BTC/USDT' }} - {{ $order->type ?? 'BUY' }}
-                        </a>
-                    </li>
-                    @endforeach
-                @else
-                    <li><span class="dropdown-item-text">No open orders</span></li>
-                @endif
-                <li><hr class="dropdown-divider"></li>
-                <li>
-                    <a class="dropdown-item" href="{{ route('backend.trades.index') }}">View All Orders</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="{{ route('backend.transactions') }}">Trade History</a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Admin Panel Buttons -->
-        @auth()
-            @if (check_permission('login-manger'))
-                @if(auth()->user()->canImpersonate())
-                    <a target="_blank" href="https://terminal.wsncapitalltd.com/admin/dashboard"
-                       class="btn btn-warning admin-panel-btn d-none d-md-inline-block">
-                        Admin Panel
-                    </a>
-                @else
-                    <a target="_blank" href="https://crm.lancaster-chamber.org/admin/dashboard"
-                       class="btn btn-warning admin-panel-btn d-none d-md-inline-block">
-                        CRM
-                    </a>
-                @endif
-            @endif
-        @endauth
-
-        <!-- KYC Button -->
-        @if (setting('kyc_verify_button') && auth()->user()->identity->status != 'approved')
-            <a href="{{ route('backend.profile.upload.id') }}"
-                class="btn btn-outline-danger kyc-btn d-none d-md-inline-block">
-                @if(!auth()->user()->identity->front && auth()->user()->identity->status == 'pending')
-                    Verify Account
-                @elseif(auth()->user()->identity->status == 'pending')
-                    Pending
-                @elseif(auth()->user()->identity->status == 'disapproved')
-                    DISAPPROVED
-                @endif
-            </a>
-        @endif
-
-        <!-- Account Officer -->
-        @if (setting('autotrader'))
-            @if (auth()->user()->trader_request == 'accepted' && auth()->user()->manager_id)
-                <a href="{{ route('backend.profile.view', auth()->user()->manager_id) }}"
-                    class="btn btn-primary account-officer-btn d-none d-md-inline-block">
-                    {{ auth()->user()->account_officer }}
-                </a>
-            @endif
-        @endif
-
-        <!-- User Profile -->
-        <div class="profile_menu d-flex align-items-center">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle no-active d-flex align-items-center" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                    <img alt="{{ auth()->user()->first_name }}" src="{{ auth()->user()->avatar ?? '/images/default-avatar.png' }}">
+        <!-- Right Section: User Controls -->
+        <div class="header-right">
+            <!-- Assets Dropdown -->
+            <div class="header-dropdown">
+                <button class="header-nav-btn" data-dropdown="assets">
+                    Assets
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </button>
-                <ul class="dropdown-menu">
-                    <li class="wallet align-items-center">
-                        <img alt="{{ auth()->user()->first_name }}" src="{{ auth()->user()->avatar ?? '/images/default-avatar.png' }}">
-                        <div class="d-grid">
-                            <h6 class="fw-bold crypt-grayscale-100 mb-0">{{ substr(auth()->user()->email, 0, 2) }}***@{{ substr(strstr(auth()->user()->email, '@'), 1) }}</h6>
-                            <a class="d-flex gap-2 mb-2 verified mt-2" href="#!">
-                                <p class="crypt-grayscale-600 mb-0">UID:</p>
-                                <p class="crypt-grayscale-100 mb-0">{{ auth()->user()->id }}</p>
-                                <div class="crypt-grayscale-500" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy" onclick="copyToClipboard('{{ auth()->user()->id }}')">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.15556 5C6.8605 5 5 6.8605 5 9.15556V12.48C5 14.5149 6.46269 16.2083 8.39406 16.566C8.75174 18.4974 10.4451 19.96 12.48 19.96H15.8044C18.0995 19.96 19.96 18.0995 19.96 15.8044V12.48C19.96 10.4451 18.4974 8.75174 16.566 8.39406C16.2083 6.46269 14.5149 5 12.48 5H9.15556ZM14.8315 8.32444C14.4892 7.35604 13.5657 6.66222 12.48 6.66222H9.15556C7.77853 6.66222 6.66222 7.77853 6.66222 9.15556V12.48C6.66222 13.5657 7.35603 14.4892 8.32444 14.8315V12.48C8.32444 10.1849 10.1849 8.32444 12.48 8.32444H14.8315ZM9.98667 12.48C9.98667 11.103 11.103 9.98667 12.48 9.98667H15.8044C17.1814 9.98667 18.2978 11.103 18.2978 12.48V15.8044C18.2978 17.1814 17.1814 18.2978 15.8044 18.2978H12.48C11.103 18.2978 9.98667 17.1814 9.98667 15.8044V12.48Z" fill="currentColor"/>
-                                    </svg>
-                                </div>
-                            </a>
+                <div class="dropdown-menu" id="assets-dropdown">
+                    <div class="dropdown-header">
+                        <div class="balance-overview">
+                            <div class="balance-amount encrypted">
+                                ${{ number_format(auth()->user()->balance, 2) }}
+                            </div>
+                            <div class="balance-currency">
+                                <select class="currency-select">
+                                    <option selected>USDT</option>
+                                    <option value="BTC">BTC</option>
+                                    <option value="ETH">ETH</option>
+                                    <option value="BNB">BNB</option>
+                                </select>
+                            </div>
                         </div>
-                    </li>
-                    <li class="mt-2">
-                        <a class="dropdown-item" href="{{ route('backend.dashboard') }}">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path opacity="0.4" d="M18.6699 2H16.7699C14.5899 2 13.4399 3.15 13.4399 5.33V7.23C13.4399 9.41 14.5899 10.56 16.7699 10.56H18.6699C20.8499 10.56 21.9999 9.41 21.9999 7.23V5.33C21.9999 3.15 20.8499 2 18.6699 2Z" fill="currentColor"/>
-                                <path d="M6.29 10.58C8.6593 10.58 10.58 8.6593 10.58 6.29C10.58 3.9207 8.6593 2 6.29 2C3.9207 2 2 3.9207 2 6.29C2 8.6593 3.9207 10.58 6.29 10.58Z" fill="currentColor"/>
+                        <div class="balance-usd encrypted">≈ ${{ number_format(auth()->user()->balance, 2) }} USDT</div>
+                    </div>
+                    <div class="dropdown-links">
+                        <a href="{{ route('backend.dashboard') }}" class="dropdown-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
+                            </svg>
+                            Overview
+                        </a>
+                        @if (setting('trade'))
+                        <a href="{{ route('backend.tradestation') }}" class="dropdown-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16 6L18.29 8.29L13.41 13.17L9.41 9.17L2 16.59L3.41 18L9.41 12L13.41 16L19.71 9.71L22 12V6H16Z"/>
+                            </svg>
+                            Spot Trading
+                        </a>
+                        @endif
+                        @if (setting('invest'))
+                        <a href="{{ route('backend.investments') }}" class="dropdown-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L15.09 8.26L22 9L15.09 9.74L12 16L8.91 9.74L2 9L8.91 8.26L12 2Z"/>
+                            </svg>
+                            Earn
+                        </a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Dropdown -->
+            <div class="header-dropdown">
+                <button class="header-nav-btn" data-dropdown="orders">
+                    Orders
+                    @php
+                        $openOrdersCount = \App\Models\Trade::whereUserId(auth()->id())->whereStatus(0)->count();
+                    @endphp
+                    @if($openOrdersCount > 0)
+                        <span class="notification-badge">{{ $openOrdersCount }}</span>
+                    @endif
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="dropdown-menu" id="orders-dropdown">
+                    <div class="dropdown-links">
+                        @if($openOrdersCount > 0)
+                            @php
+                                $recentOrders = \App\Models\Trade::whereUserId(auth()->id())->whereStatus(0)->take(3)->get();
+                            @endphp
+                            @foreach($recentOrders as $order)
+                            <a href="{{ route('backend.trades.index') }}" class="dropdown-link">
+                                {{ $order->pair ?? 'BTC/USDT' }} - {{ $order->type ?? 'BUY' }}
+                            </a>
+                            @endforeach
+                            <div class="dropdown-divider"></div>
+                        @else
+                            <div class="dropdown-text">No open orders</div>
+                        @endif
+                        <a href="{{ route('backend.trades.index') }}" class="dropdown-link">View All Orders</a>
+                        <a href="{{ route('backend.transactions') }}" class="dropdown-link">Trade History</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications -->
+            <div class="notifications-btn">
+                <button class="header-icon-btn" data-dropdown="notifications">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 8A6 6 0 0 0 6 8C6 15 3 17 3 17H21C21 17 18 15 18 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13.73 21C13.5542 21.3031 13.3019 21.5547 12.9982 21.7295C12.6946 21.9044 12.3504 21.9965 12 21.9965C11.6496 21.9965 11.3054 21.9044 11.0018 21.7295C10.6982 21.5547 10.4458 21.3031 10.27 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="notification-badge">3</span>
+                </button>
+            </div>
+
+            <!-- Theme Toggle -->
+            <div class="theme-toggle">
+                <button class="header-icon-btn theme-toggle-btn" id="themeToggle">
+                    <!-- Sun Icon (Light Mode) -->
+                    <svg class="theme-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 1V3M12 21V23M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M1 12H3M21 12H23M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <!-- Moon Icon (Dark Mode) -->
+                    <svg class="theme-icon moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3A7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Add Funds Button -->
+            <div class="add-funds-btn">
+                <button class="crypt-btn crypt-btn-primary" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">
+                    Add Funds
+                </button>
+            </div>
+
+            <!-- User Profile -->
+            <div class="user-profile">
+                <button class="user-avatar" data-dropdown="user">
+                    <img src="{{ auth()->user()->avatar ?? '/asset/images/user.png' }}" alt="{{ auth()->user()->first_name }}">
+                </button>
+                
+                <!-- User Dropdown Menu -->
+                <div class="dropdown-menu user-dropdown-menu" id="user-dropdown">
+                    <!-- User Summary -->
+                    <div class="user-summary">
+                        <img src="{{ auth()->user()->avatar ?? '/asset/images/user.png' }}" alt="Avatar" class="user-avatar-large">
+                        <div class="user-info">
+                            <div class="user-email">{{ substr(auth()->user()->email, 0, 2) }}***@{{ substr(strstr(auth()->user()->email, '@'), 1) }}</div>
+                            <div class="user-uid">
+                                <span>UID: {{ auth()->user()->id }}</span>
+                                <button class="copy-uid" onclick="copyToClipboard('{{ auth()->user()->id }}')">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn-add-funds-small" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">
+                            Add Funds
+                        </button>
+                    </div>
+                    
+                    <!-- Navigation Links -->
+                    <div class="user-nav-links">
+                        <a href="{{ route('backend.dashboard') }}" class="user-nav-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 13H11V3H3V13ZM3 21H11V15H3V21ZM13 21H21V11H13V21ZM13 3V9H21V3H13Z"/>
                             </svg>
                             Dashboard
                         </a>
-                        <a class="dropdown-item" href="{{ route('backend.profile.edit') }}">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="currentColor"/>
+                        <a href="{{ route('backend.profile.edit') }}" class="user-nav-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 12C14.21 12 16 10.21 16 8S14.21 4 12 4 8 5.79 8 8 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"/>
                             </svg>
-                            My Profile
+                            My Asset
                         </a>
-                        <a class="dropdown-item" href="{{ route('backend.transactions') }}">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path opacity="0.4" d="M6.73049 19.7C7.55049 18.82 8.80049 18.89 9.52049 19.85L10.5305 21.2C11.3405 22.27 12.6505 22.27 13.4605 21.2L14.4705 19.85C15.1905 18.89 16.4405 18.82 17.2605 19.7C19.0405 21.6 20.4905 20.97 20.4905 18.31V7.04C20.5005 3.01 19.5605 2 15.7805 2H8.22049C4.44049 2 3.50049 3.01 3.50049 7.04V18.3C3.50049 20.97 4.96049 21.59 6.73049 19.7Z" fill="currentColor"/>
+                        <a href="{{ route('backend.transactions') }}" class="user-nav-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.89 22 5.99 22H18C19.1 22 20 21.1 20 20V8L14 2ZM18 20H6V4H13V9H18V20Z"/>
                             </svg>
                             My Orders
                         </a>
-                        <a class="dropdown-item" href="{{ route('backend.account.security') }}">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path opacity="0.4" d="M20.91 11.12C20.91 16.01 17.36 20.59 12.51 21.93C12.18 22.02 11.82 22.02 11.49 21.93C6.63996 20.59 3.08997 16.01 3.08997 11.12V6.73006C3.08997 5.91006 3.70998 4.98007 4.47998 4.67007L10.05 2.39007C11.3 1.88007 12.71 1.88007 13.96 2.39007L19.53 4.67007C20.29 4.98007 20.92 5.91006 20.92 6.73006L20.91 11.12Z" fill="currentColor"/>
+                        <a href="{{ route('backend.transactions') }}" class="user-nav-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM9 17H7V10H9V17ZM13 17H11V7H13V17ZM17 17H15V13H17V17Z"/>
+                            </svg>
+                            Export History
+                        </a>
+                        
+                        <!-- Identity Verification -->
+                        <a href="{{ route('backend.profile.upload.id') }}" class="user-nav-link verification-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z"/>
+                            </svg>
+                            Identity Verification
+                            <span class="verification-badge {{ auth()->user()->identity->status === 'approved' ? 'verified' : 'pending' }}">
+                                {{ auth()->user()->identity->status === 'approved' ? 'Verified' : 'Pending' }}
+                            </span>
+                        </a>
+                        
+                        <!-- Divider -->
+                        <div class="dropdown-divider"></div>
+                        
+                        <!-- Settings Links -->
+                        <a href="{{ route('backend.profile.edit') }}" class="user-nav-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19.14 12.94C19.18 12.64 19.2 12.33 19.2 12S19.18 11.36 19.14 11.06L21.16 9.48C21.34 9.34 21.39 9.07 21.28 8.87L19.36 5.55C19.24 5.33 18.99 5.26 18.77 5.33L16.38 6.29C15.88 5.91 15.35 5.59 14.76 5.35L14.4 2.81C14.36 2.57 14.16 2.4 13.91 2.4H10.09C9.84 2.4 9.64 2.57 9.6 2.81L9.24 5.35C8.65 5.59 8.12 5.92 7.62 6.29L5.23 5.33C5.01 5.26 4.76 5.33 4.64 5.55L2.72 8.87C2.61 9.07 2.66 9.34 2.84 9.48L4.86 11.06C4.82 11.36 4.8 11.69 4.8 12S4.82 12.64 4.86 12.94L2.84 14.52C2.66 14.66 2.61 14.93 2.72 15.13L4.64 18.45C4.76 18.67 5.01 18.74 5.23 18.67L7.62 17.71C8.12 18.09 8.65 18.41 9.24 18.65L9.6 21.19C9.64 21.43 9.84 21.6 10.09 21.6H13.91C14.16 21.6 14.36 21.43 14.4 21.19L14.76 18.65C15.35 18.41 15.88 18.09 16.38 17.71L18.77 18.67C18.99 18.74 19.24 18.67 19.36 18.45L21.28 15.13C21.39 14.93 21.34 14.66 21.16 14.52L19.14 12.94ZM12 15.6C10.02 15.6 8.4 13.98 8.4 12S10.02 8.4 12 8.4S15.6 10.02 15.6 12S13.98 15.6 12 15.6Z"/>
+                            </svg>
+                            Account Settings
+                        </a>
+                        <a href="{{ route('backend.account.security') }}" class="user-nav-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 7C13.1 7 14 7.9 14 9S13.1 11 12 11 10 10.1 10 9 10.9 7 12 7ZM12 19C10.31 19 8.77 18.1 7.89 16.64C8.1 15.69 10.98 15.2 12 15.2S15.9 15.69 16.11 16.64C15.23 18.1 13.69 19 12 19Z"/>
                             </svg>
                             Security
                         </a>
-                        <a class="dropdown-item" href="{{ route('backend.profile.upload.id') }}">
-                            <div class="d-flex flex-row align-items-center gap-1">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M18 13C17.06 13 16.19 13.33 15.5 13.88C14.58 14.61 14 15.74 14 17C14 17.75 14.21 18.46 14.58 19.06C15.27 20.22 16.54 21 18 21C19.01 21 19.93 20.63 20.63 20C20.94 19.74 21.21 19.42 21.42 19.06C21.79 18.46 22 17.75 22 17C22 14.79 20.21 13 18 13ZM20.07 16.57L17.94 18.54C17.8 18.67 17.61 18.74 17.43 18.74C17.24 18.74 17.05 18.67 16.9 18.52L15.91 17.53C15.62 17.24 15.62 16.76 15.91 16.47C16.2 16.18 16.68 16.18 16.97 16.47L17.45 16.95L19.05 15.47C19.35 15.19 19.83 15.21 20.11 15.51C20.39 15.81 20.37 16.28 20.07 16.57Z" fill="currentColor"/>
-                                </svg>
-                                Identity Verification
-                                <span class="verified alert align-items-center d-flex mb-0 {{ auth()->user()->identity->status === 'approved' ? 'text-success' : 'text-warning' }}">
-                                    {{ auth()->user()->identity->status === 'approved' ? 'Verified' : 'Pending' }}
-                                </span>
-                            </div>
-                        </a>
-                        <a class="dropdown-item" href="#!" data-bs-toggle="modal" data-bs-target="#update_bassword_model">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14.5 10.5C14.5 9.12 13.38 8 12 8C10.62 8 9.5 9.12 9.5 10.5C9.5 11.62 10.24 12.55 11.25 12.87V15.5C11.25 15.91 11.59 16.25 12 16.25C12.41 16.25 12.75 15.91 12.75 15.5V12.87C13.76 12.55 14.5 11.62 14.5 10.5Z" fill="currentColor"/>
+                        <a href="#" class="user-nav-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9.4 16.6L4.8 12L3.4 13.4L9.4 19.4L20.6 8.2L19.2 6.8L9.4 16.6Z"/>
                             </svg>
-                            Change Password
+                            API Management
                         </a>
-                        <a class="dropdown-item text-danger" href="#!" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12.28 14.72C11.99 14.43 11.51 14.43 11.22 14.72L10.5 15.44V11.25C10.5 10.84 10.16 10.5 9.75 10.5C9.34 10.5 9 10.84 9 11.25V15.44L8.28 14.72C7.99 14.43 7.51 14.43 7.22 14.72C6.93 15.01 6.93 15.49 7.22 15.78L9.22 17.78C9.23 17.79 9.24 17.79 9.24 17.8C9.3 17.86 9.38 17.91 9.46 17.95C9.56 17.98 9.65 18 9.75 18C9.85 18 9.94 17.98 10.03 17.94C10.12 17.9 10.2 17.85 10.28 17.78L12.28 15.78C12.57 15.49 12.57 15.01 12.28 14.72Z" fill="currentColor"/>
+                        <a href="#" class="user-nav-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
                             </svg>
-                            Logout
+                            Reward Hub
                         </a>
-                    </li>
-                </ul>
+                        
+                        <!-- Logout -->
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="user-nav-link logout-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17 7L15.59 8.41L18.17 11H8V13H18.17L15.59 15.59L17 17L22 12L17 7ZM4 5H12V3H4C2.9 3 2 3.9 2 5V19C2 20.1 2.9 21 4 21H12V19H4V5Z"/>
+                            </svg>
+                            Log Out
+                        </a>
+                    </div>
+                    
+                    <!-- CTA Sections -->
+                    <div class="user-cta-section">
+                        <div class="cta-item">
+                            <span>Invite Friends — 20% commissions</span>
+                            <button class="cta-btn">Invite</button>
+                        </div>
+                        <div class="cta-item">
+                            <span>Crypt Affiliate Programs — up to 60%</span>
+                            <button class="cta-btn">Apply now</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Notifications -->
+                    <div class="user-notifications">
+                        <div class="notifications-header">
+                            <span>Notifications</span>
+                            <span class="notification-count">3</span>
+                        </div>
+                        <div class="notification-item">
+                            <span class="notification-text">Account Login — You have logged in your account from Windows Chrome 130.</span>
+                            <span class="notification-time">2 hours ago</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-
-
-        <!-- Dark/Light Mode Toggle -->
-        <div class="theme-toggle disable-sm-screen">
-            <button class="btn btn-link theme-toggle-btn" id="themeToggle" aria-label="Toggle Dark/Light Mode">
-                <!-- Sun Icon (Light Mode) -->
-                <svg class="theme-icon sun-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 3V4M12 20V21M4 12H3M6.31412 6.31412L5.5 5.5M17.6859 6.31412L18.5 5.5M6.31412 17.69L5.5 18.5M17.6859 17.69L18.5 18.5M21 12H20M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <!-- Moon Icon (Dark Mode) -->
-                <svg class="theme-icon moon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 3C12.5523 3 13 3.44772 13 4V5C13 5.55228 12.5523 6 12 6C11.4477 6 11 5.55228 11 5V4C11 3.44772 11.4477 3 12 3Z" fill="currentColor"/>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0672 11.8568L20.4253 11.1162C20.0648 10.7556 19.4842 10.7556 19.1237 11.1162L18.4828 11.7571C18.1223 12.1176 18.1223 12.6982 18.4828 13.0587L19.1237 13.6996C19.4842 14.0601 20.0648 14.0601 20.4253 13.6996L21.0672 13.0587C21.4277 12.6982 21.4277 12.1176 21.0672 11.8568Z" fill="currentColor"/>
-                    <path d="M21.5002 12C21.5002 12.8284 20.8286 13.5 20.0002 13.5H19.0002C18.1718 13.5 17.5002 12.8284 17.5002 12C17.5002 11.1716 18.1718 10.5 19.0002 10.5H20.0002C20.8286 10.5 21.5002 11.1716 21.5002 12Z" fill="currentColor"/>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Call to Action -->
-        <div class="flex disable-sm-screen">
-            <a class="btn btn-editor btn-primary" href="#!" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">Add Funds</a>
-        </div>
     </div>
-</div>
+</header>
 
 <!-- Logout Form -->
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

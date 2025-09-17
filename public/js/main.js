@@ -412,12 +412,106 @@
                 html.classList.remove('crypt-dark');
                 html.classList.add('crypt-light');
             }
+        },
+
+        // Header Dropdown Functions
+        initHeaderDropdowns: function() {
+            // Handle dropdown triggers
+            document.querySelectorAll('[data-dropdown]').forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const dropdownId = trigger.getAttribute('data-dropdown') + '-dropdown';
+                    const dropdown = document.getElementById(dropdownId);
+                    
+                    if (dropdown) {
+                        // Close other dropdowns
+                        document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                            if (menu !== dropdown) {
+                                menu.classList.remove('show');
+                            }
+                        });
+                        
+                        // Toggle current dropdown
+                        dropdown.classList.toggle('show');
+                    }
+                });
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.header-dropdown') && !e.target.closest('.user-profile')) {
+                    document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                        menu.classList.remove('show');
+                    });
+                }
+            });
+
+            // Handle user avatar dropdown
+            const userAvatar = document.querySelector('.user-avatar');
+            const userDropdown = document.getElementById('user-dropdown');
+            
+            if (userAvatar && userDropdown) {
+                userAvatar.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    
+                    // Close other dropdowns
+                    document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                        if (menu !== userDropdown) {
+                            menu.classList.remove('show');
+                        }
+                    });
+                    
+                    // Toggle user dropdown
+                    userDropdown.classList.toggle('show');
+                });
+            }
+        },
+
+        // Copy to clipboard function
+        copyToClipboard: function(text) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    this.showNotification('Copied to clipboard!', 'success');
+                }).catch(() => {
+                    this.fallbackCopyToClipboard(text);
+                });
+            } else {
+                this.fallbackCopyToClipboard(text);
+            }
+        },
+
+        // Fallback copy function for older browsers
+        fallbackCopyToClipboard: function(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                this.showNotification('Copied to clipboard!', 'success');
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                this.showNotification('Failed to copy', 'error');
+            }
+            
+            document.body.removeChild(textArea);
         }
     };
 
-    // Initialize theme toggle on page load
+    // Initialize all header functionality on page load
     document.addEventListener('DOMContentLoaded', function() {
         window.CryptTheme.initThemeToggle();
+        window.CryptTheme.initHeaderDropdowns();
+        
+        // Make copy function globally available
+        window.copyToClipboard = function(text) {
+            window.CryptTheme.copyToClipboard(text);
+        };
     });
 
 })();
