@@ -370,7 +370,54 @@
                 detail: { message, type } 
             });
             document.dispatchEvent(event);
+        },
+
+        // Theme Toggle Functions
+        initThemeToggle: function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (!themeToggle) return;
+            
+            // Get saved theme from localStorage or default to dark
+            const savedTheme = localStorage.getItem('crypt-theme') || 'dark';
+            
+            // Apply saved theme
+            this.applyTheme(savedTheme);
+            
+            // Theme toggle click handler
+            themeToggle.addEventListener('click', () => {
+                const body = document.body;
+                const currentTheme = body.classList.contains('crypt-dark') ? 'dark' : 'light';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                this.applyTheme(newTheme);
+                localStorage.setItem('crypt-theme', newTheme);
+                
+                console.log('Theme switched to:', newTheme);
+            });
+        },
+
+        // Apply theme to body and html elements
+        applyTheme: function(theme) {
+            const body = document.body;
+            const html = document.documentElement;
+            
+            if (theme === 'dark') {
+                body.classList.remove('crypt-light');
+                body.classList.add('crypt-dark');
+                html.classList.remove('crypt-light');
+                html.classList.add('crypt-dark');
+            } else {
+                body.classList.remove('crypt-dark');
+                body.classList.add('crypt-light');
+                html.classList.remove('crypt-dark');
+                html.classList.add('crypt-light');
+            }
         }
     };
+
+    // Initialize theme toggle on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        window.CryptTheme.initThemeToggle();
+    });
 
 })();

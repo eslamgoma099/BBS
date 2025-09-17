@@ -3,23 +3,13 @@
     <div class="d-flex align-items-center justify-content-between">
         <div class="justify-content-between disable-sm-screen mt-3">
             <!-- Logo -->
-            <div class="crypt-logo dark">
-                <a href="{{ setting('site_info_url', '/') }}">
-                    <img src="{{ setting('logo', '/asset/images/logosm.png') }}" alt="logo">
-                </a>
-            </div>
-            <div class="crypt-logo light">
+            <div class="crypt-logo">
                 <a href="{{ setting('site_info_url', '/') }}">
                     <img src="{{ setting('logo', '/asset/images/logosm.png') }}" alt="logo">
                 </a>
             </div>
             <!-- Logo sm -->
-            <div class="crypt-logo logo-sm dark">
-                <a href="{{ setting('site_info_url', '/') }}">
-                    <img src="{{ setting('logo', '/asset/images/logosm.png') }}" alt="logo">
-                </a>
-            </div>
-            <div class="crypt-logo logo-sm light">
+            <div class="crypt-logo logo-sm">
                 <a href="{{ setting('site_info_url', '/') }}">
                     <img src="{{ setting('logo', '/asset/images/logosm.png') }}" alt="logo">
                 </a>
