@@ -39,6 +39,9 @@
 </head>
 
 <body class="crypt-dark">
+    <!-- Header -->
+    @include('partials.backend.header')
+    
     <section class="container-fluid d-sm-flex flex-row fixed-sidebar">
         
         <!-- Sidebar -->
@@ -46,8 +49,6 @@
         
         <!-- Main Content -->
         <div class="wrapper pb-2">
-            <!-- Header -->
-            @include('partials.backend.header')
             
             <!-- Page Content -->
             @yield('content')
