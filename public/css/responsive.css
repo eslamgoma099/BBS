@@ -1,225 +1,254 @@
-/* Large Version */
+/* Responsive Styles for Crypt Theme */
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .welcome-content h2 {
-        font-size: 42px;
-    }
-    .timelineBody {
-        max-height: 545px;
-    }
-    .team-member-thumb {
-        width: 150px;
-    }
-    .post-meta p a {
-        margin-right: 15px;
-    }
-    .post-title h4 {
-        font-size: 20px;
-    }
-    .single-team-member {
-        padding: 20px;
-    }
-    .cd-intro.default-title > h2 {
-        font-size: 42px;
+/* Extra Large Devices (1200px and up) */
+@media (min-width: 1200px) {
+    .container-fluid {
+        padding-left: 0;
+        padding-right: 0;
     }
 }
 
-@media(min-width: 1200px){
-    .hidden-lg{
-        display: none;
-    }
-}
-@media(max-width: 992px){
-    .hidden-md{
-        display: none;
-    }
-}
-@media(max-width: 767px){
-    .hidden-sm{
-        display: none;
-    }
-}
-@media(max-width: 480px){
-    .hidden-xs{
-        display: none;
-    }
-}
-/* Medium Version */
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    .welcome_area {
-        height: 700px !important;
-    }
-    .welcome_single_slider.height-900 {
-        height: 700px;
-    }
-    .welcome-content h2 {
-        font-size: 30px;
-    }
-    .cta-content h2 {
-        font-size: 30px;
-    }
-    .timelineBody {
-        max-height: 640px;
-    }
-    .price_table_text > h1 {
-        font-size: 36px;
-    }
-    .price_table_text > p,
-    .table_text_details > p {
-        font-size: 13px;
-    }
-    .login-btn {
-        margin: 30px;
-    }
-    .cd-intro.default-title > h2 {
-        font-size: 36px;
-    }
-}
-
-/* Mobile Version */
-
-@media only screen and (max-width: 767px) {
-    .login-btn {
-        margin: 30px;
-    }
-    .welcome-content h2 {
-        font-size: 24px;
-    }
-    .welcome-content p {
-        font-size: 14px;
-    }
-    .dream-btn {
-        min-width: 130px;
-        padding: 0 20px;
-        font-size: 10px;
-    }
-    .single_cool_fact {
-        margin-bottom: 50px;
-    }
-    .classy-navbar {
-        height: 60px;
-    }
-    .who-we-contant h4 {
-        font-size: 24px;
-    }
-    .sonar {
-        -webkit-transform: scale(0.5);
-        transform: scale(0.5);
-    }
-    .cta-content h2 {
-        font-size: 24px;
-    }
-    .cta-content p {
-        font-size: 14px;
-    }
-    .timelineBox {
-        margin-top: 100px;
-    }
-    .our-mission-area {
-        height: 1000px !important;
-    }
-    .section-heading h2 {
-        font-size: 24px;
-    }
-    .post-meta p a {
-        margin-right: 15px;
-    }
-    .post-title h4 {
-        font-size: 20px;
-    }
-    .footer-side-thumbnail {
-        width: 100%;
-    }
-    .welcome_single_slider.height-900 {
-        height: 600px;
-    }
-    .welcome_area.sliders {
-        height: 600px !important;
-    }
-    .cd-intro.default-title > h2 {
-        font-size: 24px;
-    }
-    .welcome_area.animated-headline {
-        height: 600px !important;
-    }
-    .welcome_area.animated-headline {
-        height: 600px !important;
-    }
-    .dream-btn.video-btn {
-        min-width: 70px;
-        padding: 0;
-        font-size: 20px;
-    }
-    #scrollUp {
-        bottom: 100px;
-        right: 0;
-    }
-    .welcome-video-area {
-        margin-top: 0;
-    }
-    .timelineBody .timeline {
-        padding: 1em;
-    }
-    .timelineBody .timeline .timelineDate {
-        -webkit-box-flex: 0;
-            -ms-flex: 0 0 50px;
-                flex: 0 0 50px;
-        padding: 0;
-    }
-    .footer-copywrite-info {
-        text-align: left;
-    }
-    .breadcumb--con {
-        padding-top: 60px;
-    }
-    .welcome-content {
-        margin-top: 130px;
-    }
-    .sidebar-area {
-        margin-top: 100px;
-    }
-}
-
-@media only screen and (max-width: 767px) {
-    .welcome_area {
-        height: 1100px !important;
-    }
-    .welcome_area.none{
-        height: 100vh !important;
-    }
-    .sonar {
-        -webkit-transform: scale(1);
-        transform: scale(1);
+/* Large Devices (992px and up) */
+@media (min-width: 992px) {
+    .sidebar {
+        width: 280px;
     }
     
-    .welcome-content h2 {
-        font-size: 30px;
+    .wrapper {
+        margin-left: 280px;
     }
-    .dream-btn {
-        min-width: 160px;
-        padding: 0 20px;
-        font-size: 12px;
+    
+    .crypt-logo.logo-sm {
+        display: none;
     }
-    .single-team-member:after {
-        width: 50%;
+    
+    .crypt-logo:not(.logo-sm) {
+        display: block;
     }
-   
 }
 
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-    .welcome-content h2 {
-        font-size: 36px;
+/* Medium Devices (768px and up) */
+@media (min-width: 768px) {
+    .disable-sm-screen {
+        display: block !important;
     }
-    .dream-btn {
-        min-width: 160px;
-        padding: 0 20px;
+    
+    .hidesmscreen {
+        display: block;
+    }
+    
+    .header .col-md-3 {
+        max-width: 300px;
+    }
+}
+
+/* Small Devices (576px and up) */
+@media (min-width: 576px) {
+    .d-sm-flex {
+        display: flex !important;
+    }
+    
+    .d-sm-inline {
+        display: inline !important;
+    }
+}
+
+/* Extra Small Devices (less than 576px) */
+@media (max-width: 575.98px) {
+    .sidebar {
+        width: 100%;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1050;
+    }
+    
+    .sidebar.show {
+        transform: translateX(0);
+    }
+    
+    .wrapper {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .header {
+        padding: 0 15px;
+    }
+    
+    .user-settings {
+        gap: 8px !important;
+    }
+    
+    .disable-sm-screen {
+        display: none !important;
+    }
+    
+    .hidesmscreen {
+        display: none !important;
+    }
+    
+    .profile_menu img {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .btn-editor {
+        padding: 6px 12px;
         font-size: 12px;
     }
-    .cd-intro.default-title > h2 {
-        font-size: 30px;
+    
+    .side-menu .sidebar-link {
+        padding: 10px 15px;
     }
-    .single-team-member:after {
-        width: 80%;
+    
+    .side-title {
+        padding: 0 15px;
+    }
+    
+    .nav-divider {
+        margin: 15px;
+    }
+    
+    /* Mobile Header Adjustments */
+    .header .col-md-3 {
+        display: none;
+    }
+    
+    .crypt-logo.logo-m {
+        display: block;
+    }
+    
+    /* Mobile Dropdown Adjustments */
+    .dropdown-menu {
+        max-width: calc(100vw - 30px);
+        left: 15px !important;
+        right: 15px !important;
+        transform: none !important;
+    }
+}
+
+/* Tablet Portrait (768px and down) */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 260px;
+    }
+    
+    .wrapper.sidebar-collapsed {
+        margin-left: 60px;
+    }
+    
+    .sidebar.collapsed {
+        width: 60px;
+    }
+    
+    .sidebar.collapsed .side-title,
+    .sidebar.collapsed .sidebar-link span {
+        display: none;
+    }
+    
+    .sidebar.collapsed .crypt-logo:not(.logo-sm) {
+        display: none;
+    }
+    
+    .sidebar.collapsed .crypt-logo.logo-sm {
+        display: block;
+    }
+    
+    .sidebar.collapsed .sidebar-link {
+        justify-content: center;
+        padding: 12px 8px;
+    }
+    
+    .sidebar.collapsed .sidebar-link svg {
+        margin-right: 0;
+    }
+    
+    .user-settings .disable-sm-screen {
+        display: none !important;
+    }
+}
+
+/* Mobile Landscape (up to 991px) */
+@media (max-width: 991px) {
+    .header .user-settings {
+        gap: 10px;
+    }
+    
+    .admin-panel-btn,
+    .kyc-btn,
+    .account-officer-btn {
+        display: none !important;
+    }
+}
+
+/* Touch Device Adjustments */
+@media (hover: none) and (pointer: coarse) {
+    .sidebar-link:hover {
+        background: transparent;
+    }
+    
+    .sidebar-link:active {
+        background: rgba(243, 156, 18, 0.1);
+        color: var(--bs-primary);
+    }
+    
+    .dropdown-item:hover {
+        background: transparent;
+    }
+    
+    .dropdown-item:active {
+        background: rgba(243, 156, 18, 0.1);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .sidebar,
+    .header {
+        display: none;
+    }
+    
+    .wrapper {
+        margin-left: 0;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .crypt-logo img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Dark Mode Adjustments for System Preferences */
+@media (prefers-color-scheme: dark) {
+    /* Additional dark mode specific responsive adjustments if needed */
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .sidebar,
+    .dropdown-menu,
+    .sidebar-link,
+    .dropdown-item,
+    #sidebar-collapse,
+    #sidebar-mobile-toggle {
+        transition: none;
+    }
+}
+
+/* Focus Visible for Accessibility */
+@media (prefers-reduced-motion: no-preference) {
+    .sidebar-link:focus-visible,
+    .dropdown-item:focus-visible,
+    .btn:focus-visible {
+        outline: 2px solid var(--bs-primary);
+        outline-offset: 2px;
     }
 }
