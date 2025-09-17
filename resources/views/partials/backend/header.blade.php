@@ -8,12 +8,7 @@
     </span>
 
     <!-- Logo -->
-    <div class="crypt-logo logo-m dark">
-        <a href="{{ setting('site_info_url', '/') }}">
-            <img src="{{ setting('logo', '/asset/images/logosm.png') }}" alt="logo">
-        </a>
-    </div>
-    <div class="crypt-logo logo-m light">
+    <div class="crypt-logo logo-m">
         <a href="{{ setting('site_info_url', '/') }}">
             <img src="{{ setting('logo', '/asset/images/logosm.png') }}" alt="logo">
         </a>
@@ -251,6 +246,22 @@
         </div>
 
 
+
+        <!-- Dark/Light Mode Toggle -->
+        <div class="theme-toggle disable-sm-screen">
+            <button class="btn btn-link theme-toggle-btn" id="themeToggle" aria-label="Toggle Dark/Light Mode">
+                <!-- Sun Icon (Light Mode) -->
+                <svg class="theme-icon sun-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 3V4M12 20V21M4 12H3M6.31412 6.31412L5.5 5.5M17.6859 6.31412L18.5 5.5M6.31412 17.69L5.5 18.5M17.6859 17.69L18.5 18.5M21 12H20M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <!-- Moon Icon (Dark Mode) -->
+                <svg class="theme-icon moon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 3C12.5523 3 13 3.44772 13 4V5C13 5.55228 12.5523 6 12 6C11.4477 6 11 5.55228 11 5V4C11 3.44772 11.4477 3 12 3Z" fill="currentColor"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0672 11.8568L20.4253 11.1162C20.0648 10.7556 19.4842 10.7556 19.1237 11.1162L18.4828 11.7571C18.1223 12.1176 18.1223 12.6982 18.4828 13.0587L19.1237 13.6996C19.4842 14.0601 20.0648 14.0601 20.4253 13.6996L21.0672 13.0587C21.4277 12.6982 21.4277 12.1176 21.0672 11.8568Z" fill="currentColor"/>
+                    <path d="M21.5002 12C21.5002 12.8284 20.8286 13.5 20.0002 13.5H19.0002C18.1718 13.5 17.5002 12.8284 17.5002 12C17.5002 11.1716 18.1718 10.5 19.0002 10.5H20.0002C20.8286 10.5 21.5002 11.1716 21.5002 12Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
 
         <!-- Call to Action -->
         <div class="flex disable-sm-screen">

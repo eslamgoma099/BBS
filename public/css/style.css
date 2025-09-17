@@ -199,6 +199,85 @@ body.crypt-dark {
     object-fit: cover;
 }
 
+/* Theme Toggle Button */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.theme-toggle-btn {
+    background: transparent !important;
+    border: 2px solid var(--crypt-border) !important;
+    border-radius: 50% !important;
+    width: 44px !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    color: var(--crypt-text) !important;
+    padding: 0 !important;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--crypt-dark-card) !important;
+    border-color: var(--crypt-primary) !important;
+    color: var(--crypt-primary) !important;
+}
+
+.theme-icon {
+    width: 20px !important;
+    height: 20px !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Show/Hide icons based on theme */
+.crypt-dark .sun-icon {
+    display: none;
+}
+
+.crypt-dark .moon-icon {
+    display: block;
+}
+
+.crypt-light .sun-icon {
+    display: block;
+}
+
+.crypt-light .moon-icon {
+    display: none;
+}
+
+/* Light theme variables */
+.crypt-light {
+    --crypt-dark-bg: #ffffff;
+    --crypt-dark-card: #f8f9fa;
+    --crypt-text: #212529;
+    --crypt-text-muted: #6c757d;
+    --crypt-border: #dee2e6;
+    --crypt-shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Logo display logic */
+.crypt-logo.dark {
+    display: none;
+}
+
+.crypt-logo.light {
+    display: block;
+}
+
+.crypt-dark .crypt-logo.dark {
+    display: block;
+}
+
+.crypt-dark .crypt-logo.light {
+    display: none;
+}
+}
+
 /* Navigation Divider */
 .nav-divider {
     height: 1px;
