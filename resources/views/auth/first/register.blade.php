@@ -87,123 +87,182 @@
     </header>
 
     <!-- Signup Form -->
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="crypt-login-form mt-5" style="max-width:720px;">
-                <div class="d-flex mb-4">
-                    <h3 class="fw-bold">Create Account</h3>
+    <div class="container-fluid d-flex align-items-center justify-content-center min-vh-100 py-5">
+        <div class="card border-0 shadow-lg" style="max-width: 950px; border-radius: 12px; overflow: hidden;">
+            <div class="row g-0">
+                <!-- Left Column - Welcome Section -->
+                <div class="col-lg-5 d-flex flex-column align-items-center justify-content-center p-4 p-lg-5 bg-light" style="min-height: 600px;">
+                    <div class="text-center">
+                        <div class="mb-4">
+                            <div class="card text-bg-light p-4 border-0 d-inline-block" style="border-radius: 8px;">
+                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-3">Join Crypt</h4>
+                        <p class="fw-medium text-muted mb-4">
+                            Create your account to start trading and managing your cryptocurrency portfolio.
+                        </p>
+                        <div class="d-flex flex-row gap-2 justify-content-center">
+                            <p class="text-muted mb-0">Already have an account?</p>
+                            <a href="{{ route('login') }}" class="link-primary fw-bold text-decoration-none">Sign in</a>
+                        </div>
+                    </div>
                 </div>
+                
+                <!-- Right Column - Registration Form -->
+                <div class="col-lg-7 p-4 p-lg-5">
+                    <div class="mb-4">
+                        <h3 class="fw-bold mb-0">Create Account</h3>
+                    </div>
 
-                {{-- Errors --}}
-                @if ($errors->any())
-                    <ul class="alert alert-danger">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                @endif
+                    {{-- Errors --}}
+                    @if ($errors->any())
+                        <div class="alert alert-danger py-2" role="alert">
+                            <ul class="mb-0 small">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-                <form class="needs-validation" action="{{ route('register') }}" name="password_strength" id="pass_form" method="POST" novalidate>
-                    @csrf
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label for="first_name" class="form-label text-light">First Name <span class="crypt-grayscale-600">*</span></label>
-                            <input required type="text" name="first_name" value="{{ old('first_name') }}" class="form-control py-2" id="first_name" placeholder="Your First Name">
-                            <div class="invalid-feedback mt-0">This field is required.</div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="last_name" class="form-label text-light">Last Name <span class="crypt-grayscale-600">*</span></label>
-                            <input required type="text" name="last_name" value="{{ old('last_name') }}" class="form-control py-2" id="last_name" placeholder="Your Last Name">
-                            <div class="invalid-feedback mt-0">This field is required.</div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="email" class="form-label text-light">Email <span class="crypt-grayscale-600">*</span></label>
-                            <input required type="email" name="email" value="{{ old('email') }}" class="form-control py-2" id="email" placeholder="name@example.com">
-                            <div class="invalid-feedback mt-0">This field is required.</div>
-                        </div>
+                    <form class="needs-validation" action="{{ route('register') }}" name="password_strength" id="pass_form" method="POST" novalidate>
+                        @csrf
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="first_name" class="form-label">First Name <span class="text-danger">*</span></label>
+                                <input required type="text" name="first_name" value="{{ old('first_name') }}" class="form-control py-2" id="first_name" placeholder="Enter your first name" style="border-radius: 8px;">
+                                <div class="invalid-feedback">This field is required.</div>
+                                @error('first_name')
+                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <label for="last_name" class="form-label">Last Name <span class="text-danger">*</span></label>
+                                <input required type="text" name="last_name" value="{{ old('last_name') }}" class="form-control py-2" id="last_name" placeholder="Enter your last name" style="border-radius: 8px;">
+                                <div class="invalid-feedback">This field is required.</div>
+                                @error('last_name')
+                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                <input required type="email" name="email" value="{{ old('email') }}" class="form-control py-2" id="email" placeholder="Enter your email address" style="border-radius: 8px;">
+                                <div class="invalid-feedback">This field is required.</div>
+                                @error('email')
+                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                        <div class="col-md-6">
-                            <label for="country" class="form-label text-light">Country <span class="crypt-grayscale-600">*</span></label>
-                            <div class="input-group">
-                                <select required onchange="endpoint('{{ route('get-country-info','') }}',this.value)" name="country" id="country" class="form-select">
-                                    <option value=" " selected>Country</option>
-                                    @foreach($countries as $country)
-                                        <option value="{{ $country->nicename ?? '' }}" id="{{ $country->phonecode }}">{{ $country->nicename ?? '' }}</option>
+                            <div class="col-md-6">
+                                <label for="country" class="form-label">Country <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <select required onchange="endpoint('{{ route('get-country-info','') }}',this.value)" name="country" id="country" class="form-select" style="border-radius: 8px 0 0 8px;">
+                                        <option value=" " selected>Select Country</option>
+                                        @foreach($countries as $country)
+                                            <option value="{{ $country->nicename ?? '' }}" id="{{ $country->phonecode }}">{{ $country->nicename ?? '' }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="input-group-text bg-white p-0" style="width:58px; border-radius: 0 8px 8px 0;">
+                                        <img id="flag-icon" src="{{ asset('assets/images/flags/dd.png') }}" alt="flag" style="height: 100%; width: 100%; padding:5px; object-fit:cover;"/>
+                                    </span>
+                                </div>
+                                @error('country')
+                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input id="phone_code" type="text" name='phone_code' class="form-control" placeholder="code" readonly style="border-radius: 8px 0 0 8px; max-width: 80px;">
+                                    <input required id="phone" name="phone" type="text" value="{{ old('phone') }}" class="form-control" placeholder="Enter phone number" style="border-radius: 0 8px 8px 0;">
+                                </div>
+                                <div class="invalid-feedback">This field is required.</div>
+                                @error('phone')
+                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                                <div class="position-relative">
+                                    <input required name="password" type="password" class="form-control py-2" id="password" placeholder="Create your password" autocomplete="off" style="border-radius: 8px; padding-right: 45px;">
+                                    <button class="btn btn-link position-absolute top-50 end-0 translate-middle-y me-2 p-0 text-muted" type="button" id="togglePassword" aria-label="Show password"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                                </div>
+                                <span id="passstrength" class="text-sm"></span>
+                                <div class="form-text text-muted small mt-1">Use 8 or more characters with a mix of letters, numbers & symbols.</div>
+                                @error('password')
+                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <label for="cPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
+                                <div class="position-relative">
+                                    <input required name="password_confirmation" type="password" class="form-control py-2" id="cPassword" placeholder="Confirm your password" style="border-radius: 8px; padding-right: 45px;">
+                                    <button class="btn btn-link position-absolute top-50 end-0 translate-middle-y me-2 p-0 text-muted" type="button" id="toggleCPassword" aria-label="Show password"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                                </div>
+                                @error('password_confirmation')
+                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-12">
+                                <label for="cur" class="form-label">Currency</label>
+                                <select name="cur" id="cur" class="form-select py-2" style="border-radius: 8px;">
+                                    @foreach(\App\Models\Currency::all() as $item)
+                                        <option value="{{ $item->code }}">{{ $item->name }} ({{ $item->sign }})</option>
                                     @endforeach
                                 </select>
-                                <span class="input-group-text bg-white p-0" style="width:58px;">
-                                    <img id="flag-icon" src="{{ asset('assets/images/flags/dd.png') }}" alt="flag" style="height: 100%; width: 100%; padding:5px; object-fit:cover;"/>
-                                </span>
+                                @error('cur')
+                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" required type="checkbox" value="1" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        I confirm that I am 18 years old or older and accept all the <a href="{{ route('terms') ?? '#' }}" class="link-primary text-decoration-none" target="_blank">terms and conditions</a>.
+                                    </label>
+                                    <div class="invalid-feedback">You must agree before submitting.</div>
+                                    @error('terms')
+                                        <div class="text-danger small mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-2 mt-3 btnReg" type="submit" style="border-radius: 8px;">Create Account</button>
                             </div>
                         </div>
+                    </form>
 
-                        <div class="col-md-6">
-                            <label for="phone" class="form-label text-light">Phone <span class="crypt-grayscale-600">*</span></label>
-                            <div class="input-group">
-                                <input id="phone_code" type="text" name='phone_code' class="form-control" placeholder="code" readonly>
-                                <input required id="phone" name="phone" type="text" value="{{ old('phone') }}" class="form-control" placeholder="Phone Number">
-                            </div>
-                            <div class="invalid-feedback mt-0">This field is required.</div>
-                        </div>
-
-                        <div class="col-md-6"></div>
-
-                        <div class="col-md-6">
-                            <label for="password" class="form-label text-light">Password <span class="crypt-grayscale-600">*</span></label>
-                            <div class="input-group position-relative">
-                                <input required name="password" type="password" class="form-control py-2" id="password" placeholder="Enter a password" autocomplete="off">
-                                <button class="btn btn-outline-secondary position-absolute end-0 top-50 translate-middle-y me-2" type="button" id="togglePassword" aria-label="Show password"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                            </div>
-                            <span id="passstrength" class="text-sm"></span>
-                            <div class="text-muted crypt-grayscale-600 text-sm">Use 8 or more characters with a mix of letters, numbers & symbols.</div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="cPassword" class="form-label text-light">Confirm Password <span class="crypt-grayscale-600">*</span></label>
-                            <div class="input-group position-relative">
-                                <input required name="password_confirmation" type="password" class="form-control py-2" id="cPassword" placeholder="Confirm Password">
-                                <button class="btn btn-outline-secondary position-absolute end-0 top-50 translate-middle-y me-2" type="button" id="toggleCPassword" aria-label="Show password"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="cur" class="form-label text-light">Currency</label>
-                            <select name="cur" id="cur" class="form-select">
-                                @foreach(\App\Models\Currency::all() as $item)
-                                    <option value="{{ $item->code }}">{{ $item->name }} ({{ $item->sign }})</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="form-check">
-                                <input class="form-check-input" required type="checkbox" value="1" id="defaultCheck1">
-                                <label class="form-check-label text-secondary" for="defaultCheck1">
-                                    I confirm that I am 18 years old or older and accept all the terms and conditions.
-                                </label>
-                                <div class="invalid-feedback mt-0"> You must agree before submitting.</div>
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <button class="btn btn-primary rounded-pill text-center mt-2 w-100 btnReg" type="submit">Create Account</button>
+                    <div class="text-center my-3">
+                        <div class="d-flex align-items-center">
+                            <hr class="flex-grow-1">
+                            <span class="px-3 text-muted">or</span>
+                            <hr class="flex-grow-1">
                         </div>
                     </div>
-                </form>
 
-                <div class="d-flex flex-column mt-3">
-                    <div class="divider" role="separator">
-                        <span class="crypt-grayscale-500 p-2">or</span>
+                    <div class="d-grid gap-2">
+                        <a href="#" class="btn btn-outline-secondary d-flex align-items-center justify-content-center py-2" style="border-radius: 8px;">
+                            <img alt="Google" width="20" height="20" src="{{ asset('assets/images/icon/google.svg') }}" class="me-2">
+                            Sign up with Google
+                        </a>
+                        <a href="#" class="btn btn-outline-dark d-flex align-items-center justify-content-center py-2" style="border-radius: 8px;">
+                            <img alt="Apple" width="20" height="20" src="{{ asset('assets/images/icon/apple.svg') }}" class="me-2">
+                            Sign up with Apple
+                        </a>
                     </div>
-                    <a href="#" class="d-flex justify-content-between align-items-center button btn btn-outline-secondary" data-bs-toggle="button">Sign in with Google
-                        <img alt="" width="32" src="{{ asset('assets/images/icon/google.svg') }}">
-                    </a>
-                    <a href="#" class="d-flex justify-content-between align-items-center button btn btn-outline-secondary mt-3" data-bs-toggle="button">Sign in with Apple
-                        <img alt="" width="32" src="{{ asset('assets/images/icon/apple.svg') }}">
-                    </a>
-                </div>
-                <div class="d-flex flex-row gap-2 mt-4 justify-content-center">
-                    <p class="crypt-grayscale-500">Already have an account?</p>
-                    <a href="{{ route('login') }}" class="link-primary fw-bold">Login</a>
+
+                    <div class="text-center mt-4">
+                        <p class="mb-0">Already have an account? <a href="{{ route('login') }}" class="link-primary fw-bold text-decoration-none">Sign in</a></p>
+                    </div>
                 </div>
             </div>
         </div>
