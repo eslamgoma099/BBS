@@ -2203,3 +2203,6 @@ Test the theme at: http://0.0.0.0:8070/updated-theme-demo.html
 18/Sep/2025 07:48:27 - "GET /asset/images/logosm.png HTTP/1.1" 404 -
 18/Sep/2025 07:48:27 - code 404, message File not found
 18/Sep/2025 07:48:27 - "GET /asset/images/logosm.png HTTP/1.1" 404 -
+Server running at http://0.0.0.0:8070/
+Serving files from: /home/user/webapp
+Test the theme at: http://0.0.0.0:8070/updated-theme-demo.html
