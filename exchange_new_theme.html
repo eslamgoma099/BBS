@@ -60,7 +60,7 @@
             --text-secondary: #333333;
             --text-muted: #666666;
             --border-color: #dee2e6;
-            --accent-yellow: #ffc107;
+            --accent-yellow: #ffd700;
             --accent-green: #28a745;
             --accent-red: #dc3545;
             --hover-bg: rgba(0, 0, 0, 0.05);
@@ -169,10 +169,10 @@
         .search-input-new {
             width: 100%;
             padding: 8px 40px 8px 40px;
-            background-color: #2a2a2a;
-            border: 1px solid #444444;
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
             border-radius: 20px;
-            color: #ffffff;
+            color: var(--text-primary);
             font-size: 14px;
             outline: none;
             transition: all 0.2s ease;
@@ -184,7 +184,7 @@
         }
 
         .search-input-new::placeholder {
-            color: #888888;
+            color: var(--text-muted);
         }
 
         .search-icon-new {
@@ -192,47 +192,47 @@
             left: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: #888888;
+            color: var(--text-muted);
             font-size: 14px;
             pointer-events: none;
         }
 
-        /* Center Section: Navigation */
+        /* Center Section: Navigation Buttons - Matching Reference Design */
         .header-nav-new {
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 0px;
         }
 
-        .nav-dropdown-toggle-new {
-            display: flex;
-            align-items: center;
-            padding: 8px 12px;
-            color: #ffffff;
-            text-decoration: none;
+        .nav-button-new {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: none;
+            padding: 8px 20px;
             font-size: 14px;
             font-weight: 500;
-            border-radius: 6px;
+            cursor: pointer;
             transition: all 0.2s ease;
             position: relative;
+            border-radius: 0;
         }
 
-        .nav-dropdown-toggle-new:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--accent-yellow);
+        .nav-button-new:hover {
+            background-color: var(--hover-bg);
         }
 
-        .nav-dropdown-icon-new {
-            margin-left: 8px;
-            font-size: 10px;
+        .nav-button-active {
+            background-color: var(--accent-yellow) !important;
+            color: #000000 !important;
+            border-radius: 6px !important;
         }
 
-        .nav-badge-new {
+        .orders-counter {
             position: absolute;
             top: -5px;
             right: -5px;
-            background-color: var(--accent-yellow);
-            color: #000000;
+            background-color: #ff4444;
+            color: #ffffff;
             border-radius: 50%;
             width: 16px;
             height: 16px;
@@ -241,6 +241,59 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
+        }
+
+        /* Asset Selector Buttons - Matching Reference Design */
+        .asset-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 20px 0;
+        }
+
+        .asset-btn {
+            background-color: var(--bg-tertiary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .asset-btn:hover {
+            background-color: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .asset-btn.active {
+            background-color: var(--accent-yellow) !important;
+            color: #000000 !important;
+            border-color: var(--accent-yellow) !important;
+        }
+
+        /* Search Coin Input */
+        .search-coin {
+            width: 100%;
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px 16px;
+            color: var(--text-primary);
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        .search-coin::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-coin:focus {
+            outline: none;
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
         }
 
         /* Right Section: Actions */
@@ -487,6 +540,66 @@
             font-weight: 600;
         }
 
+        /* Form Controls Theme Support */
+        .form-control {
+            background-color: var(--bg-tertiary) !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+
+        .form-control:focus {
+            background-color: var(--bg-tertiary) !important;
+            border-color: var(--accent-yellow) !important;
+            color: var(--text-primary) !important;
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2) !important;
+        }
+
+        .form-control::placeholder {
+            color: var(--text-muted) !important;
+        }
+
+        /* Table Theme Support */
+        .table-dark {
+            --bs-table-bg: var(--bg-secondary);
+            --bs-table-color: var(--text-primary);
+            --bs-table-border-color: var(--border-color);
+        }
+
+        /* Light mode table fixes */
+        body.crypt-light .table-dark {
+            --bs-table-bg: var(--bg-secondary);
+            --bs-table-color: var(--text-primary);
+            --bs-table-border-color: var(--border-color);
+        }
+
+        /* Button improvements for better theme matching */
+        .btn-success {
+            background-color: var(--accent-green) !important;
+            border-color: var(--accent-green) !important;
+            color: #000000 !important;
+        }
+
+        .btn-warning {
+            background-color: var(--accent-yellow) !important;
+            border-color: var(--accent-yellow) !important;
+            color: #000000 !important;
+        }
+
+        .orders-tab {
+            padding: 10px 15px;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            background-color: transparent;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .orders-tab:hover {
+            color: var(--text-primary);
+        }
+
         /* Responsive Design */
         @media (max-width: 991px) {
             .header-search-new {
@@ -708,80 +821,16 @@
                     </div>
                 </div>
 
-                <!-- CENTER SECTION: Navigation Links -->
+                <!-- CENTER SECTION: Navigation Buttons - Matching Reference Design 100% -->
                 <nav class="header-nav-new d-none d-lg-flex">
-                    <!-- Assets Dropdown -->
-                    <div class="nav-dropdown">
-                        <a href="#" class="nav-dropdown-toggle-new" data-bs-toggle="dropdown" aria-expanded="false">
-                            Assets
-                            <i class="fas fa-chevron-down nav-dropdown-icon-new"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-dark">
-                            <div class="dropdown-header px-3 py-2 border-bottom border-secondary">
-                                <p class="text-muted mb-1 small">Overview</p>
-                                <div class="d-flex align-items-center gap-2">
-                                    <h6 class="mb-0 fw-bold">0.00000</h6>
-                                    <select class="form-select form-select-sm bg-dark border-secondary text-white" style="width: auto; font-size: 12px;">
-                                        <option selected>BTC</option>
-                                        <option value="1">ETH</option>
-                                        <option value="2">BNB</option>
-                                        <option value="3">USDT</option>
-                                    </select>
-                                </div>
-                                <p class="text-muted mb-0 small">≈ $0.00 USDT</p>
-                            </div>
-                            <a class="dropdown-item d-flex align-items-center py-2" href="my-asset.html">
-                                <i class="fas fa-chart-pie me-2"></i>
-                                Overview
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center py-2" href="spot.html">
-                                <i class="fas fa-exchange-alt me-2"></i>
-                                Spot
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center py-2" href="margin.html">
-                                <i class="fas fa-chart-line me-2"></i>
-                                Margin
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center py-2" href="futures.html">
-                                <i class="fas fa-chart-area me-2"></i>
-                                Futures
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Orders Dropdown -->
-                    <div class="nav-dropdown">
-                        <a href="#" class="nav-dropdown-toggle-new position-relative" data-bs-toggle="dropdown" aria-expanded="false">
-                            Orders
-                            <span class="nav-badge-new">3</span>
-                            <i class="fas fa-chevron-down nav-dropdown-icon-new"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-dark">
-                            <div class="dropdown-header">Recent Orders</div>
-                            <a href="#" class="dropdown-item py-2">
-                                <div class="d-flex justify-content-between">
-                                    <span>BTC/USDT</span>
-                                    <span class="badge bg-success">BUY</span>
-                                </div>
-                            </a>
-                            <a href="#" class="dropdown-item py-2">
-                                <div class="d-flex justify-content-between">
-                                    <span>ETH/USDT</span>
-                                    <span class="badge bg-danger">SELL</span>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="order-history.html" class="dropdown-item py-2">
-                                <i class="fas fa-list me-2"></i>Spot Orders
-                            </a>
-                            <a href="order-history.html" class="dropdown-item py-2">
-                                <i class="fas fa-chart-line me-2"></i>Margin Orders
-                            </a>
-                            <a href="order-history.html" class="dropdown-item py-2">
-                                <i class="fas fa-history me-2"></i>Trade History
-                            </a>
-                        </div>
-                    </div>
+                    <!-- Assets Button -->
+                    <button class="nav-button-new">Assets</button>
+                    
+                    <!-- Orders Button -->
+                    <button class="nav-button-new nav-button-active">
+                        Orders
+                        <span class="orders-counter">3</span>
+                    </button>
                 </nav>
 
                 <!-- RIGHT SECTION: Action Items -->
@@ -902,6 +951,28 @@
 
             <!-- Content Area - Exchange Interface -->
             <div class="crypt-content">
+                <!-- Assets Section - Matching Reference Design 100% -->
+                <div class="assets-header-section">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 style="color: var(--text-primary); margin: 0;">Assets</h4>
+                        <div class="d-flex gap-2">
+                            <button class="nav-button-new nav-button-active">Orders</button>
+                            <button class="btn-add-funds-new">Add Funds</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Asset Selector Buttons -->
+                    <div class="asset-selector">
+                        <button class="asset-btn active">BTC</button>
+                        <button class="asset-btn">ETH</button>
+                        <button class="asset-btn">USDT</button>
+                        <button class="asset-btn">XRP</button>
+                    </div>
+                    
+                    <!-- Search Coin Input -->
+                    <input type="text" class="search-coin" placeholder="Search coin">
+                </div>
+
                 <!-- Trading Chart -->
                 <div class="chart-container">
                     <div class="chart-placeholder">
@@ -1264,31 +1335,45 @@
                 });
             }
 
-            // Theme toggle
+            // Theme toggle - Fixed for proper light/dark switching
             const themeToggle = document.getElementById('theme-toggle-btn');
             const themeIcon = document.getElementById('theme-icon');
             
+            function updateTheme(theme) {
+                // Remove existing theme classes
+                document.body.classList.remove('crypt-dark', 'crypt-light');
+                // Add new theme class
+                document.body.classList.add(`crypt-${theme}`);
+                document.documentElement.setAttribute('data-bs-theme', theme);
+                
+                if (themeIcon) {
+                    themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+                }
+                localStorage.setItem('theme', theme);
+                
+                console.log(`Theme switched to: ${theme}`);
+            }
+            
             if (themeToggle) {
                 themeToggle.addEventListener('click', function() {
-                    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
-                    const bodyClass = document.body.classList.contains('crypt-dark') ? 'dark' : 'light';
-                    const newTheme = bodyClass === 'dark' ? 'light' : 'dark';
-                    
-                    document.documentElement.setAttribute('data-bs-theme', newTheme);
-                    document.body.className = `crypt-${newTheme}`;
-                    themeIcon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
-                    
-                    localStorage.setItem('theme', newTheme);
+                    const currentTheme = document.body.classList.contains('crypt-dark') ? 'dark' : 'light';
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    updateTheme(newTheme);
                 });
             }
 
             // Initialize theme from localStorage
             const savedTheme = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-bs-theme', savedTheme);
-            document.body.className = `crypt-${savedTheme}`;
-            if (themeIcon) {
-                themeIcon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
-            }
+            updateTheme(savedTheme);
+
+            // Asset buttons functionality
+            const assetBtns = document.querySelectorAll('.asset-btn');
+            assetBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    assetBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
 
             // Orders tabs functionality
             const ordersTabs = document.querySelectorAll('.orders-tab');
