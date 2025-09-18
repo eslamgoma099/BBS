@@ -39,111 +39,359 @@
     <!-- Legacy CSS for compatibility -->
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
-    <!-- Custom Styles for Backend -->
+    <!-- Unified Layout Styles -->
     <style>
         :root {
-            --sidebar-width: 220px;
+            --sidebar-width: 200px;
+            --header-height: 60px;
         }
 
-        /* Header fixes */
-        .crypt-header {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Dark Theme Variables */
+        body.crypt-dark {
+            --bg-primary: #000000;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #888888;
+            --border-color: #333333;
+            --accent-yellow: #ffd700;
+            --accent-green: #00d4aa;
+            --accent-red: #ff6b6b;
+            --hover-bg: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Light Theme Variables */
+        body.crypt-light {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #e9ecef;
+            --text-primary: #000000;
+            --text-secondary: #333333;
+            --text-muted: #666666;
+            --border-color: #dee2e6;
+            --accent-yellow: #ffc107;
+            --accent-green: #28a745;
+            --accent-red: #dc3545;
+            --hover-bg: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Main Container */
+        .crypt-layout {
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--bg-primary);
+        }
+
+        /* Sidebar */
+        .crypt-sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            z-index: 1030;
-            background: var(--card-color);
-            border-bottom: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-        }
-
-        /* Adjust body padding for fixed header */
-        body {
-            padding-top: 70px;
-        }
-
-        /* Sidebar improvements */
-        .sidebar {
-            position: fixed;
-            top: 70px;
-            left: 0;
-            bottom: 0;
-            width: var(--sidebar-width);
-            background: var(--card-color);
-            border-right: 1px solid var(--border-color);
+            height: 100vh;
             overflow-y: auto;
-            z-index: 1020;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
-        /* Main content area */
-        .wrapper {
+        /* Main Content Wrapper */
+        .crypt-main {
             margin-left: var(--sidebar-width);
-            min-height: calc(100vh - 70px);
+            width: calc(100% - var(--sidebar-width));
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        /* Header */
+        .crypt-header {
+            height: var(--header-height);
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        /* Content Area */
+        .crypt-content {
+            flex: 1;
+            background-color: var(--bg-primary);
             padding: 20px;
-            background: var(--color-bg);
+            min-height: calc(100vh - var(--header-height));
         }
 
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 50px;
-            }
-            .wrapper {
-                margin-left: 50px;
-            }
-            .sidebar-link span {
-                display: none;
-            }
+        /* Sidebar Styles */
+        .sidebar-brand {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        /* Card styling */
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            background: none;
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background-color: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .sidebar-link svg,
+        .sidebar-link i {
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        /* Header Styles */
+        .header-search {
+            flex: 1;
+            max-width: 400px;
+            margin-right: 20px;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px 40px 8px 15px;
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-right: 20px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-toggle {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-dropdown-toggle:hover {
+            background-color: var(--hover-bg);
+            color: var(--accent-yellow);
+        }
+
+        .nav-dropdown-icon {
+            margin-left: 8px;
+            font-size: 10px;
+        }
+
+        .btn-add-funds {
+            background-color: var(--accent-yellow);
+            color: #000000;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-add-funds:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .header-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .header-icon:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .icon-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background-color: var(--accent-yellow);
+            color: #000000;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .profile-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            object-fit: cover;
+        }
+
+        /* Card Styles */
         .card {
-            background: var(--card-color);
+            background-color: var(--bg-secondary);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Table styling */
+        /* Table Styles */
+        .table {
+            color: var(--text-primary);
+        }
+
         .table-dark {
-            --bs-table-bg: var(--card-color);
-            --bs-table-color: var(--color-primary-300);
+            --bs-table-bg: var(--bg-secondary);
+            --bs-table-color: var(--text-primary);
         }
 
-        /* Form styling */
+        /* Form Styles */
         .form-control {
-            background-color: var(--color-input-field);
+            background-color: var(--bg-tertiary);
             border: 1px solid var(--border-color);
-            color: var(--color-primary-100);
+            color: var(--text-primary);
         }
 
         .form-control:focus {
-            background-color: var(--color-input-field);
-            border-color: var(--brand-color);
-            color: var(--color-primary-100);
-            box-shadow: 0 0 0 0.2rem rgba(250, 204, 21, 0.25);
+            background-color: var(--bg-tertiary);
+            border-color: var(--accent-yellow);
+            color: var(--text-primary);
+            box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
         }
 
-        /* Button improvements */
+        /* Button Styles */
         .btn-primary {
-            background-color: var(--brand-color);
-            border-color: var(--brand-color);
-            color: var(--color-dark);
+            background-color: var(--accent-yellow);
+            border-color: var(--accent-yellow);
+            color: #000000;
+            font-weight: 600;
         }
 
         .btn-primary:hover {
-            background-color: var(--brand-hover-color);
-            border-color: var(--brand-hover-color);
+            background-color: #ffed4a;
+            border-color: #ffed4a;
+            color: #000000;
         }
 
-        /* Alert styling */
-        .alert {
-            border-radius: 8px;
+        .btn-success {
+            background-color: var(--accent-green);
+            border-color: var(--accent-green);
+        }
+
+        .btn-danger {
+            background-color: var(--accent-red);
+            border-color: var(--accent-red);
+        }
+
+        /* Dropdown Styles */
+        .dropdown-menu {
+            background-color: var(--bg-secondary);
             border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* Modal styling */
+        .dropdown-item {
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--hover-bg);
+            color: var(--accent-yellow);
+        }
+
+        .dropdown-divider {
+            border-color: var(--border-color);
+        }
+
+        .dropdown-header {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Modal Styles */
         .modal-content {
-            background: var(--card-color);
+            background-color: var(--bg-secondary);
             border: 1px solid var(--border-color);
         }
 
@@ -154,6 +402,210 @@
         .modal-footer {
             border-top: 1px solid var(--border-color);
         }
+
+        /* Alert Styles */
+        .alert {
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .crypt-sidebar {
+                transform: translateX(-100%);
+                box-shadow: none;
+            }
+            
+            .crypt-sidebar.show {
+                transform: translateX(0);
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+            }
+            
+            .crypt-main {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .header-nav {
+                display: none;
+            }
+            
+            .header-search {
+                max-width: 150px;
+                margin-right: 8px;
+            }
+            
+            .search-input {
+                font-size: 13px;
+                padding: 6px 32px 6px 12px;
+            }
+            
+            .header-actions {
+                gap: 8px;
+            }
+            
+            .btn-add-funds {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+            
+            .header-icon {
+                width: 32px;
+                height: 32px;
+            }
+            
+            /* Mobile dropdown improvements */
+            .dropdown-menu {
+                min-width: 250px;
+                margin-top: 8px;
+            }
+        }
+        
+        /* Tablet Responsiveness */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .header-search {
+                max-width: 300px;
+            }
+            
+            .header-nav {
+                gap: 20px;
+            }
+        }
+
+        /* Sidebar collapsed state */
+        .sidebar-collapsed .crypt-sidebar {
+            width: 60px;
+        }
+        
+        .sidebar-collapsed .crypt-main {
+            margin-left: 60px;
+            width: calc(100% - 60px);
+        }
+        
+        .sidebar-collapsed .sidebar-link span {
+            display: none;
+        }
+        
+        .sidebar-collapsed .sidebar-brand {
+            padding: 20px 10px;
+            text-align: center;
+        }
+
+        /* Smooth transitions for theme switching */
+        *,
+        *::before,
+        *::after {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        /* Remove transitions from interactive elements for better UX */
+        .sidebar-link,
+        .header-icon,
+        .btn,
+        button {
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        /* Enhanced scrollbar for all elements */
+        .crypt-sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .crypt-content::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        .crypt-content::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        
+        .crypt-content::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+        
+        .crypt-content::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        .crypt-sidebar::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        .crypt-sidebar::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 2px;
+        }
+
+        .crypt-sidebar::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+        
+        /* Theme transition improvements */
+        .theme-transitioning {
+            pointer-events: none;
+        }
+        
+        .theme-transitioning * {
+            transition-duration: 0.1s !important;
+        }
+        
+        /* Loading states */
+        .loading-theme .header-icon {
+            opacity: 0.6;
+            transform: scale(0.95);
+        }
+        
+        /* Focus improvements for accessibility */
+        .sidebar-link:focus,
+        .header-icon:focus,
+        .search-input:focus {
+            outline: 2px solid var(--accent-yellow);
+            outline-offset: 2px;
+        }
+        
+        /* Print styles */
+        @media print {
+            .crypt-sidebar,
+            .crypt-header {
+                display: none !important;
+            }
+            
+            .crypt-main {
+                margin-left: 0 !important;
+                width: 100% !important;
+            }
+            
+            .crypt-content {
+                padding: 0 !important;
+            }
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --border-color: #ffffff;
+                --text-muted: #cccccc;
+            }
+            
+            .sidebar-link:hover,
+            .header-icon:hover {
+                outline: 2px solid var(--accent-yellow);
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 
     @yield('styles')
@@ -163,22 +615,29 @@
     <!-- Canvas for particle effects -->
     <canvas id="particleCanvas"></canvas>
     
-    <!-- Header -->
-    @include('partials.backend.header')
-    
-    <section class="d-flex">
+    <!-- Main Layout Container -->
+    <div class="crypt-layout">
         <!-- Sidebar -->
-        @include('partials.backend.sidebar')
+        <nav class="crypt-sidebar" id="sidebar">
+            @include('partials.backend.sidebar')
+        </nav>
         
-        <!-- Main Content -->
-        <div class="wrapper">
-            <!-- Page Content -->
-            @yield('content')
+        <!-- Main Content Area -->
+        <div class="crypt-main">
+            <!-- Header -->
+            <header class="crypt-header">
+                @include('partials.backend.header')
+            </header>
             
-            <!-- Modals -->
-            @include('backend.inc.modals')
+            <!-- Content -->
+            <main class="crypt-content">
+                @yield('content')
+            </main>
         </div>
-    </section>
+    </div>
+    
+    <!-- Modals -->
+    @include('backend.inc.modals')
 
     <!-- Password Change Modal -->
     <div class="modal fade" id="update_bassword_model" tabindex="-1" role="dialog">
@@ -223,7 +682,7 @@
     </div>
 
     <!-- Back to top -->
-    <a href="#" class="scrollup text-center position-fixed" style="bottom: 20px; right: 20px; z-index: 1000;">
+    <a href="#" class="scrollup text-center position-fixed" style="bottom: 20px; right: 20px; z-index: 1000; width: 40px; height: 40px; background-color: var(--accent-yellow); color: #000000; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none;">
         <i class="fas fa-arrow-up"></i>
     </a>
 
@@ -250,51 +709,235 @@
     <script src="{{ asset('dist/vendors/toastr/toastr.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>
 
-    <!-- Theme Toggle Script -->
+    <!-- Main Layout Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize theme
+            // Theme initialization with smooth loading
             const savedTheme = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-bs-theme', savedTheme);
-            document.body.className = savedTheme === 'dark' ? 'crypt-dark' : 'crypt-light';
-
-            // Theme toggle functionality
-            const toggleTheme = () => {
-                const currentTheme = document.documentElement.getAttribute('data-bs-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            // Apply theme immediately to prevent flashing
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-bs-theme', theme);
+                document.body.className = theme === 'dark' ? 'crypt-dark' : 'crypt-light';
                 
-                document.documentElement.setAttribute('data-bs-theme', newTheme);
-                document.body.className = newTheme === 'dark' ? 'crypt-dark' : 'crypt-light';
-                localStorage.setItem('theme', newTheme);
-            };
+                // Update theme icon
+                const themeIcon = document.querySelector('#theme-icon');
+                if (themeIcon) {
+                    themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+                }
+                
+                // Update any dynamic theme-dependent elements
+                updateThemeDependentElements(theme);
+            }
+            
+            // Function to update elements that depend on theme
+            function updateThemeDependentElements(theme) {
+                // Update DataTables if present
+                if (typeof $.fn.DataTable !== 'undefined') {
+                    $('.dataTable').each(function() {
+                        const table = $(this).DataTable();
+                        if (table) {
+                            // Force redraw to apply new theme colors
+                            table.draw(false);
+                        }
+                    });
+                }
+                
+                // Update charts if present
+                if (typeof Chart !== 'undefined' && Chart.instances) {
+                    Chart.instances.forEach(chart => {
+                        if (chart.options && chart.options.plugins) {
+                            chart.update('none');
+                        }
+                    });
+                }
+                
+                // Update custom elements
+                const customElements = document.querySelectorAll('.theme-dependent');
+                customElements.forEach(el => {
+                    el.setAttribute('data-theme', theme);
+                });
+                
+                console.log('Theme applied successfully:', theme);
+            }
+            
+            // Initialize theme
+            applyTheme(savedTheme);
 
-            // Add event listener to theme toggle button if it exists
-            const themeToggleBtn = document.querySelector('.controller');
+            // Theme toggle functionality with improved UX
+            const themeToggleBtn = document.querySelector('#theme-toggle-btn');
             if (themeToggleBtn) {
-                themeToggleBtn.addEventListener('click', toggleTheme);
+                themeToggleBtn.addEventListener('click', function() {
+                    // Add loading state
+                    this.style.opacity = '0.7';
+                    this.style.pointerEvents = 'none';
+                    
+                    const currentTheme = localStorage.getItem('theme') || 'dark';
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    
+                    // Apply theme with small delay for smooth transition
+                    setTimeout(() => {
+                        applyTheme(newTheme);
+                        localStorage.setItem('theme', newTheme);
+                        
+                        // Remove loading state
+                        this.style.opacity = '';
+                        this.style.pointerEvents = '';
+                        
+                        // Dispatch custom event for other components
+                        window.dispatchEvent(new CustomEvent('themeChanged', {
+                            detail: { theme: newTheme }
+                        }));
+                    }, 50);
+                });
             }
 
-            // Initialize particle canvas if available
+            // Mobile sidebar toggle with improved UX
+            const sidebarToggle = document.querySelector('#sidebar-toggle');
+            const sidebar = document.querySelector('#sidebar');
+            
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    sidebar.classList.toggle('show');
+                    
+                    // Add overlay for mobile
+                    let overlay = document.querySelector('.sidebar-overlay');
+                    if (sidebar.classList.contains('show')) {
+                        if (!overlay) {
+                            overlay = document.createElement('div');
+                            overlay.className = 'sidebar-overlay';
+                            overlay.style.cssText = `
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                background-color: rgba(0, 0, 0, 0.5);
+                                z-index: 999;
+                                display: block;
+                            `;
+                            document.body.appendChild(overlay);
+                            
+                            overlay.addEventListener('click', () => {
+                                sidebar.classList.remove('show');
+                                overlay.remove();
+                            });
+                        }
+                    } else if (overlay) {
+                        overlay.remove();
+                    }
+                });
+            }
+
+            // Sidebar collapse with animation
+            const collapseToggle = document.querySelector('#sidebar-collapse');
+            if (collapseToggle) {
+                collapseToggle.addEventListener('click', function() {
+                    document.body.classList.toggle('sidebar-collapsed');
+                    
+                    // Save collapse state
+                    const isCollapsed = document.body.classList.contains('sidebar-collapsed');
+                    localStorage.setItem('sidebar-collapsed', isCollapsed);
+                    
+                    // Animate icon rotation
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        icon.style.transform = isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)';
+                    }
+                });
+                
+                // Restore collapse state
+                const savedCollapseState = localStorage.getItem('sidebar-collapsed');
+                if (savedCollapseState === 'true') {
+                    document.body.classList.add('sidebar-collapsed');
+                    const icon = collapseToggle.querySelector('i');
+                    if (icon) {
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                }
+            }
+
+            // Initialize particle canvas with theme awareness
             if (typeof initParticleCanvas === 'function') {
                 initParticleCanvas();
-            }
-
-            // Sidebar collapse functionality
-            const sidebarToggle = document.querySelector('#sidebar-collapse');
-            if (sidebarToggle) {
-                sidebarToggle.addEventListener('click', function() {
-                    document.body.classList.toggle('sidebar-close');
+                
+                // Listen for theme changes to update particle colors
+                window.addEventListener('themeChanged', function(e) {
+                    if (typeof updateParticleTheme === 'function') {
+                        updateParticleTheme(e.detail.theme);
+                    }
                 });
             }
 
-            // Mobile sidebar toggle
-            const mobileSidebarToggle = document.querySelector('#sidebar-mobile-toggle');
-            if (mobileSidebarToggle) {
-                mobileSidebarToggle.addEventListener('click', function() {
-                    document.body.classList.toggle('sidebar-mobile-close');
-                });
-            }
+            // Enhanced dropdown initialization
+            const dropdowns = document.querySelectorAll('[data-bs-toggle="dropdown"]');
+            dropdowns.forEach(dropdown => {
+                new bootstrap.Dropdown(dropdown);
+            });
+            
+            // Close mobile sidebar when clicking outside
+            document.addEventListener('click', function(e) {
+                const sidebar = document.querySelector('#sidebar');
+                const sidebarToggle = document.querySelector('#sidebar-toggle');
+                
+                if (window.innerWidth <= 768 && sidebar && sidebar.classList.contains('show')) {
+                    if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+                        sidebar.classList.remove('show');
+                        const overlay = document.querySelector('.sidebar-overlay');
+                        if (overlay) {
+                            overlay.remove();
+                        }
+                    }
+                }
+            });
+            
+            // Handle window resize for responsive behavior
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    const sidebar = document.querySelector('#sidebar');
+                    const overlay = document.querySelector('.sidebar-overlay');
+                    
+                    if (sidebar) {
+                        sidebar.classList.remove('show');
+                    }
+                    if (overlay) {
+                        overlay.remove();
+                    }
+                }
+            });
+
+            console.log('Crypt layout initialized successfully with enhanced theme support');
         });
+
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                if (typeof toastr !== 'undefined') {
+                    toastr.success('UID copied to clipboard!');
+                } else {
+                    const notification = document.createElement('div');
+                    notification.textContent = 'UID copied to clipboard!';
+                    notification.style.cssText = `
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background: var(--accent-green);
+                        color: white;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        z-index: 9999;
+                        font-size: 14px;
+                    `;
+                    document.body.appendChild(notification);
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 3000);
+                }
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
     </script>
 
     {!! setting('twak_io') !!}
