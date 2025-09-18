@@ -2,462 +2,238 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>{{ setting('site_name') }} | Register</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="icon" type="image/svg+xml" href="{{ setting('favicon', asset('assets/images/favicon.svg')) }}">
+  <title>{{ setting('site_name', 'Crypt') }} | Register</title>
+  <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/button.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/svg" href="{{ asset('images/favicon.svg') }}">
 
-  <style>
-    :root {
-      --crypt-primary: {{ setting('primary_color', '#6366f1') }};
-      --crypt-primary-hover: {{ setting('primary_color_hover', '#5855eb') }};
-      --crypt-bg: #0f172a;
-      --crypt-card-bg: #1e293b;
-      --crypt-text: #f8fafc;
-      --crypt-text-muted: #94a3b8;
-      --crypt-border: #334155;
-      --crypt-input-bg: #334155;
-      --crypt-success: #10b981;
-      --crypt-warning: #f59e0b;
-      --crypt-danger: #ef4444;
-      --crypt-radius: 12px;
-      --crypt-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.3);
-    }
-    
-    * {
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(135deg, var(--crypt-bg) 0%, #1e293b 100%);
-      color: var(--crypt-text);
-      min-height: 100vh;
-      margin: 0;
-    }
-    
-    .auth-container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1rem;
-    }
-    
-    .auth-card {
-      background: var(--crypt-card-bg);
-      border-radius: var(--crypt-radius);
-      box-shadow: var(--crypt-shadow);
-      overflow: hidden;
-      width: 100%;
-      max-width: 1000px;
-      border: 1px solid var(--crypt-border);
-    }
-    
-    .auth-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }
-    
-    .auth-brand img {
-      height: 32px;
-      width: auto;
-    }
-    
-    .auth-left {
-      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-      color: white;
-      padding: 3rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      min-height: 600px;
-    }
-    
-    .welcome-icon {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: var(--crypt-radius);
-      padding: 2rem;
-      margin-bottom: 2rem;
-      backdrop-filter: blur(10px);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .auth-right {
-      padding: 3rem;
-      background: var(--crypt-card-bg);
-    }
-    
-    .form-label {
-      color: var(--crypt-text);
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-    
-    .form-control, .form-select {
-      background: var(--crypt-input-bg);
-      border: 1px solid var(--crypt-border);
-      color: var(--crypt-text);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      font-size: 0.875rem;
-      transition: all 0.2s ease;
-    }
-    
-    .form-control:focus, .form-select:focus {
-      background: var(--crypt-input-bg);
-      border-color: var(--crypt-primary);
-      color: var(--crypt-text);
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-    }
-    
-    .form-control::placeholder {
-      color: var(--crypt-text-muted);
-    }
-    
-    .input-group-text {
-      background: var(--crypt-input-bg);
-      border: 1px solid var(--crypt-border);
-      color: var(--crypt-text);
-    }
-    
-    .btn-primary {
-      background: var(--crypt-primary);
-      border-color: var(--crypt-primary);
-      font-weight: 600;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-    }
-    
-    .btn-primary:hover {
-      background: var(--crypt-primary-hover);
-      border-color: var(--crypt-primary-hover);
-      transform: translateY(-1px);
-    }
-    
-    .btn-social {
-      background: transparent;
-      border: 1px solid var(--crypt-border);
-      color: var(--crypt-text);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      transition: all 0.2s ease;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-    }
-    
-    .btn-social:hover {
-      background: rgba(99, 102, 241, 0.1);
-      border-color: var(--crypt-primary);
-      color: var(--crypt-text);
-      text-decoration: none;
-    }
-    
-    .divider {
-      position: relative;
-      margin: 1.5rem 0;
-      text-align: center;
-    }
-    
-    .divider::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: var(--crypt-border);
-    }
-    
-    .divider span {
-      background: var(--crypt-card-bg);
-      color: var(--crypt-text-muted);
-      padding: 0 1rem;
-      font-size: 0.875rem;
-    }
-    
-    .link-primary {
-      color: var(--crypt-primary);
-      text-decoration: none;
-    }
-    
-    .link-primary:hover {
-      color: var(--crypt-primary-hover);
-      text-decoration: underline;
-    }
-    
-    .form-check-input:checked {
-      background-color: var(--crypt-primary);
-      border-color: var(--crypt-primary);
-    }
-    
-    .form-check-label {
-      color: var(--crypt-text-muted);
-    }
-    
-    .password-toggle {
-      background: none;
-      border: none;
-      color: var(--crypt-text-muted);
-      position: absolute;
-      right: 0.75rem;
-      top: 50%;
-      transform: translateY(-50%);
-      padding: 0;
-      width: 1.5rem;
-      height: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 10;
-    }
-    
-    .password-toggle:hover {
-      color: var(--crypt-text);
-    }
-    
-    .alert-danger {
-      background: rgba(239, 68, 68, 0.1);
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      color: var(--crypt-danger);
-      border-radius: 8px;
-    }
-    
-    .form-text {
-      color: var(--crypt-text-muted);
-      font-size: 0.75rem;
-    }
-    
-    @media (max-width: 768px) {
-      .auth-left {
-        padding: 2rem;
-        min-height: auto;
-      }
-      
-      .auth-right {
-        padding: 2rem;
-      }
-      
-      .welcome-icon {
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-      }
-    }
-  </style>
 </head>
 
-<body>
+<body class="crypt-dark">
 
-    <div class="auth-container">
-        <div class="auth-card">
-            <div class="row g-0">
-                <!-- Left Column - Welcome Section -->
-                <div class="col-lg-5">
-                    <div class="auth-left">
-                        <div class="auth-brand">
-                            @if(function_exists('setting') && setting('logo'))
-                                <img src="{{ setting('logo') }}" alt="{{ setting('site_name', 'Crypt') }}">
-                            @else
-                                <img src="{{ asset('assets/images/logo.svg') }}" alt="Crypt">
-                            @endif
-                            <h4 class="mb-0 fw-bold">{{ setting('site_name', 'Crypt') }}</h4>
-                        </div>
-                        
-                        <div class="welcome-icon">
-                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        
-                        <h4 class="fw-bold mb-3">Join the Future</h4>
-                        <p class="mb-4 opacity-90">
-                            Create your account and start trading cryptocurrencies with confidence. Join thousands of traders worldwide.
-                        </p>
-                        
-                        <div class="d-flex align-items-center gap-2">
-                            <span class="opacity-75">Already have an account?</span>
-                            <a href="{{ route('login') }}" class="text-white fw-semibold text-decoration-none">
-                                Sign in →
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Right Column - Registration Form -->
-                <div class="col-lg-7">
-                    <div class="auth-right">
-                        <div class="mb-4">
-                            <h2 class="fw-bold mb-2">Create Account</h2>
-                            <p class="text-muted mb-0">Get started with your free account</p>
-                        </div>
+    <!-- Header -->
+    <header class="crypt-header blur-header align-items-center fixed-top z-3">
+        <div class="row align-items-center justify-content-between">
 
-                        {{-- Errors --}}
-                        @if ($errors->any())
-                            <div class="alert alert-danger mb-4" role="alert">
-                                <ul class="mb-0 small">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
+            <!-- main menu -->
+            <div class="col-auto d-flex flex-row align-items-center">
+
+                <!-- Logo -->
+                <div class="crypt-logo dark">
+                    <a href="{{ url('/') }}">
+                        @if(setting('logo_dark'))
+                            <img src="{{ setting('logo_dark') }}" alt="logo-dark">
+                        @else
+                            <img src="{{ asset('images/logo-dark.svg') }}" alt="logo-dark">
                         @endif
+                    </a>
+                </div>
+                <div class="crypt-logo light">
+                    <a href="{{ url('/') }}">
+                        @if(setting('logo'))
+                            <img src="{{ setting('logo') }}" alt="logo-light">
+                        @else
+                            <img src="{{ asset('images/logo.svg') }}" alt="logo-light">
+                        @endif
+                    </a>
+                </div>
 
-                        <form class="needs-validation" action="{{ route('register') }}" name="password_strength" id="pass_form" method="POST" novalidate>
-                            @csrf
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="first_name" class="form-label">First Name <span style="color: var(--crypt-danger);">*</span></label>
-                                    <input required type="text" name="first_name" value="{{ old('first_name') }}" class="form-control" id="first_name" placeholder="Enter your first name">
-                                    <div class="invalid-feedback">This field is required.</div>
-                                    @error('first_name')
-                                        <div class="text-danger small mt-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="last_name" class="form-label">Last Name <span style="color: var(--crypt-danger);">*</span></label>
-                                    <input required type="text" name="last_name" value="{{ old('last_name') }}" class="form-control" id="last_name" placeholder="Enter your last name">
-                                    <div class="invalid-feedback">This field is required.</div>
-                                    @error('last_name')
-                                        <div class="text-danger small mt-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="email" class="form-label">Email <span style="color: var(--crypt-danger);">*</span></label>
-                                    <input required type="email" name="email" value="{{ old('email') }}" class="form-control" id="email" placeholder="Enter your email address">
-                                    <div class="invalid-feedback">This field is required.</div>
-                                    @error('email')
-                                        <div class="text-danger small mt-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
+            </div>
 
-                                <div class="col-md-6">
-                                    <label for="country" class="form-label">Country <span style="color: var(--crypt-danger);">*</span></label>
-                                    <div class="input-group">
-                                        <select required onchange="endpoint('{{ route('get-country-info','') }}',this.value)" name="country" id="country" class="form-select">
-                                            <option value=" " selected>Select Country</option>
-                                            @foreach($countries as $country)
-                                                <option value="{{ $country->nicename ?? '' }}" id="{{ $country->phonecode }}">{{ $country->nicename ?? '' }}</option>
-                                            @endforeach
-                                        </select>
-                                        <span class="input-group-text p-0" style="width:58px;">
-                                            <img id="flag-icon" src="{{ asset('assets/images/flags/dd.png') }}" alt="flag" style="height: 100%; width: 100%; padding:5px; object-fit:cover;"/>
-                                        </span>
-                                    </div>
-                                    @error('country')
-                                        <div class="text-danger small mt-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
+            <!-- secondary menu -->
+            <div class="col-auto d-flex flex-row align-items-center">
+                <div class="user-settings gap-2 gap-sm-3 d-flex align-items-center">
 
-                                <div class="col-md-6">
-                                    <label for="phone" class="form-label">Phone <span style="color: var(--crypt-danger);">*</span></label>
-                                    <div class="input-group">
-                                        <input id="phone_code" type="text" name='phone_code' class="form-control" placeholder="code" readonly style="max-width: 80px;">
-                                        <input required id="phone" name="phone" type="text" value="{{ old('phone') }}" class="form-control" placeholder="Enter phone number">
-                                    </div>
-                                    <div class="invalid-feedback">This field is required.</div>
-                                    @error('phone')
-                                        <div class="text-danger small mt-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                
-                                <div class="col-md-6">
-                                    <label for="cur" class="form-label">Currency</label>
-                                    <select name="cur" id="cur" class="form-select">
-                                        @foreach(\App\Models\Currency::all() as $item)
-                                            <option value="{{ $item->code }}">{{ $item->name }} ({{ $item->sign }})</option>
-                                        @endforeach
-                                    </select>
-                                    @error('cur')
-                                        <div class="text-danger small mt-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="password" class="form-label">Password <span style="color: var(--crypt-danger);">*</span></label>
-                                    <div class="position-relative">
-                                        <input required name="password" type="password" class="form-control" id="password" placeholder="Create your password" autocomplete="off" style="padding-right: 3rem;">
-                                        <button type="button" class="password-toggle" id="togglePassword" aria-label="Show password">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                    </div>
-                                    <span id="passstrength" class="text-sm"></span>
-                                    <div class="form-text mt-1">Use 8 or more characters with a mix of letters, numbers & symbols.</div>
-                                    @error('password')
-                                        <div class="text-danger small mt-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="cPassword" class="form-label">Confirm Password <span style="color: var(--crypt-danger);">*</span></label>
-                                    <div class="position-relative">
-                                        <input required name="password_confirmation" type="password" class="form-control" id="cPassword" placeholder="Confirm your password" style="padding-right: 3rem;">
-                                        <button type="button" class="password-toggle" id="toggleCPassword" aria-label="Show password">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                    </div>
-                                    @error('password_confirmation')
-                                        <div class="text-danger small mt-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" required type="checkbox" value="1" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            I confirm that I am 18 years old or older and accept all the <a href="{{ route('terms') ?? '#' }}" class="link-primary" target="_blank">terms and conditions</a>.
-                                        </label>
-                                        <div class="invalid-feedback">You must agree before submitting.</div>
-                                        @error('terms')
-                                            <div class="text-danger small mt-1">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <button class="btn btn-primary w-100 mt-3 btnReg" type="submit">Create Account</button>
-                                </div>
-                            </div>
-                        </form>
-
-                        <div class="divider">
-                            <span>or continue with</span>
-                        </div>
-
-                        <div class="d-grid gap-3">
-                            <a href="#" class="btn-social">
-                                <img src="{{ asset('assets/images/icon/google.svg') }}" alt="Google" width="20" height="20">
-                                <span>Continue with Google</span>
-                            </a>
-                            <a href="#" class="btn-social">
-                                <img src="{{ asset('assets/images/icon/apple.svg') }}" alt="Apple" width="20" height="20">
-                                <span>Continue with Apple</span>
-                            </a>
-                        </div>
-
-                        <div class="text-center mt-4">
-                            <span class="text-muted">Already have an account? </span>
-                            <a href="{{ route('login') }}" class="link-primary fw-semibold">Sign in</a>
-                        </div>
+                    <!-- dark/light mode -->
+                    <div class="mode">
+                        <button class="controller m-auto" id="darkMode" type="button" aria-label="Toggle theme">
+                            <span class="dark-logo">
+                                <svg viewBox="0 0 512 512" width="20" fill="currentColor"><path d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg>
+                            </span>
+                            <span class="light-logo">
+                                <svg viewBox="0 0 512 512" width="20" fill="currentColor"><path d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"/></svg>
+                            </span>
+                        </button>
                     </div>
+
                 </div>
             </div>
+
         </div>
+    </header>
+
+    <div class="page-wrapper">
+        <main class="login-main" role="main">
+            <div class="signup-card">
+                <!-- Left column: Welcome / Illustration -->
+                <aside class="signup-card__visual">
+                    <img class="signup-icon" src="{{ asset('images/features/security.svg') }}" alt="Security illustration">
+                    <h3 class="visual__title">Join the Future</h3>
+                    <p class="visual__desc">Create your account and start trading cryptocurrencies with confidence. Join thousands of traders worldwide.</p>
+
+                    <p class="has-account">
+                        Already have an account?
+                        <a class="link-signin" href="{{ route('login') }}">Sign in</a>
+                    </p>
+                </aside>
+
+                <!-- Right column: Form -->
+                <section class="signup-card__form">
+                    <h1 class="site-title">Create Account</h1>
+                    
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                <div class="field-help error">{{ $error }}</div>
+                            @endforeach
+                        </div>
+                    @endif
+                    
+                    <form class="form-signup" action="{{ route('register') }}" name="password_strength" id="pass_form" method="POST" novalidate>
+                        @csrf
+                        <div class="form-row form-row--split">
+                            <div class="form-col">
+                                <label for="first_name" class="form-label">First Name <span class="required">*</span></label>
+                                <input required type="text" name="first_name" value="{{ old('first_name') }}" class="input @error('first_name') is-invalid @enderror" id="first_name" placeholder="Enter your first name" aria-required="true">
+                                <div class="field-help">This field is required.</div>
+                                @error('first_name')
+                                    <div class="field-help error">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-col">
+                                <label for="last_name" class="form-label">Last Name <span class="required">*</span></label>
+                                <input required type="text" name="last_name" value="{{ old('last_name') }}" class="input @error('last_name') is-invalid @enderror" id="last_name" placeholder="Enter your last name" aria-required="true">
+                                <div class="field-help">This field is required.</div>
+                                @error('last_name')
+                                    <div class="field-help error">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label for="email" class="form-label">Email <span class="required">*</span></label>
+                            <input required type="email" name="email" value="{{ old('email') }}" class="input @error('email') is-invalid @enderror" id="email" placeholder="Enter your email address" aria-required="true">
+                            <div class="field-help">This field is required.</div>
+                            @error('email')
+                                <div class="field-help error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-row">
+                            <label for="country" class="form-label">Country <span class="required">*</span></label>
+                            <div class="input-group">
+                                <select required onchange="endpoint('{{ route('get-country-info','') }}',this.value)" name="country" id="country" class="input select-input">
+                                    <option value=" " selected>Select Country</option>
+                                    @foreach($countries as $country)
+                                        <option value="{{ $country->nicename ?? '' }}" id="{{ $country->phonecode }}">{{ $country->nicename ?? '' }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="flag-container">
+                                    <img id="flag-icon" src="{{ asset('assets/images/flags/dd.png') }}" alt="flag" class="flag-img"/>
+                                </div>
+                            </div>
+                            <div class="field-help">This field is required.</div>
+                            @error('country')
+                                <div class="field-help error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-row form-row--split">
+                            <div class="form-col">
+                                <label for="phone" class="form-label">Phone <span class="required">*</span></label>
+                                <div class="input-group">
+                                    <input id="phone_code" type="text" name='phone_code' class="input phone-code" placeholder="+1" readonly>
+                                    <input required id="phone" name="phone" type="text" value="{{ old('phone') }}" class="input phone-number @error('phone') is-invalid @enderror" placeholder="Enter phone number" aria-required="true">
+                                </div>
+                                <div class="field-help">This field is required.</div>
+                                @error('phone')
+                                    <div class="field-help error">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-col">
+                                <label for="cur" class="form-label">Currency</label>
+                                <select name="cur" id="cur" class="input select-input">
+                                    @foreach(\App\Models\Currency::all() as $item)
+                                        <option value="{{ $item->code }}">{{ $item->name }} ({{ $item->sign }})</option>
+                                    @endforeach
+                                </select>
+                                @error('cur')
+                                    <div class="field-help error">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-row form-row--split">
+                            <div class="form-col">
+                                <label for="password" class="form-label">Password <span class="required">*</span></label>
+                                <div class="password-input">
+                                    <input required name="password" type="password" class="input @error('password') is-invalid @enderror" id="password" placeholder="Create your password" autocomplete="off" aria-required="true">
+                                    <button type="button" class="password-toggle" id="togglePassword" aria-label="Show password">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                </div>
+                                <span id="passstrength" class="field-help"></span>
+                                <div class="field-help">Use 8 or more characters with a mix of letters, numbers & symbols.</div>
+                                @error('password')
+                                    <div class="field-help error">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-col">
+                                <label for="cPassword" class="form-label">Confirm Password <span class="required">*</span></label>
+                                <div class="password-input">
+                                    <input required name="password_confirmation" type="password" class="input @error('password_confirmation') is-invalid @enderror" id="cPassword" placeholder="Confirm your password" aria-required="true">
+                                    <button type="button" class="password-toggle" id="toggleCPassword" aria-label="Show password">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                </div>
+                                @error('password_confirmation')
+                                    <div class="field-help error">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <label class="checkbox">
+                                <input required type="checkbox" value="1" id="defaultCheck1" name="terms">
+                                <span class="checkbox__label">
+                                    I confirm that I am 18 years old or older and accept all the <a href="{{ route('terms') ?? '#' }}" class="link-signup" target="_blank">terms and conditions</a>.
+                                </span>
+                            </label>
+                            <div class="field-help">You must agree before submitting.</div>
+                            @error('terms')
+                                <div class="field-help error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-row form-row--actions">
+                            <button type="submit" class="btn btn--primary btnReg">Create Account</button>
+                        </div>
+                    </form>
+
+                    <div class="or-separator"><span>or</span></div>
+
+                    <div class="social-buttons">
+                        <a class="btn btn--social btn--google" href="#!" aria-label="Sign up with Google">
+                            <img class="btn-icon" src="{{ asset('images/icon/google.svg') }}" alt="">
+                            <span>Sign up with Google</span>
+                        </a>
+
+                        <a class="btn btn--social btn--apple" href="#!" aria-label="Sign up with Apple">
+                            <img class="btn-icon" src="{{ asset('images/icon/apple.svg') }}" alt="">
+                            <span>Sign up with Apple</span>
+                        </a>
+                    </div>
+
+                    <div class="signin-cta">
+                        <span>Already have an account?</span>
+                        <a class="link-signin" href="{{ route('login') }}">Sign in</a>
+                    </div>
+                </section>
+            </div>
+        </main>
     </div>
 
 
@@ -467,18 +243,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js"></script>
 
     <script>
-        // Bootstrap form validation
-        (function() {
-            'use strict';
-            const forms = document.querySelectorAll('.needs-validation');
-            Array.from(forms).forEach(function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
+        // Theme toggle functionality
+        (function () {
+            const html = document.documentElement;
+            const body = document.body;
+            const key = 'crypt-theme';
+            const btn = document.getElementById('darkMode');
+            const apply = (mode) => {
+                if (mode === 'light') {
+                    body.classList.remove('crypt-dark');
+                    body.classList.add('crypt-light');
+                    html.dataset.theme = 'light';
+                } else {
+                    body.classList.add('crypt-dark');
+                    body.classList.remove('crypt-light');
+                    html.dataset.theme = 'dark';
+                }
+            };
+            apply(localStorage.getItem(key) || 'dark');
+            btn?.addEventListener('click', () => {
+                const next = (html.dataset.theme === 'dark') ? 'light' : 'dark';
+                localStorage.setItem(key, next);
+                apply(next);
             });
         })();
 
@@ -535,7 +321,7 @@
         }
 
         // Enhanced form interactions
-        document.querySelectorAll('.form-control, .form-select').forEach(function(input) {
+        document.querySelectorAll('.input').forEach(function(input) {
             input.addEventListener('focus', function() {
                 this.parentNode.classList.add('focused');
             });
@@ -566,36 +352,345 @@
                 case 0:
                 case 1:
                     strengthText = 'Very weak';
-                    strengthColor = 'var(--crypt-danger)';
+                    strengthColor = '#dc2626';
                     break;
                 case 2:
                     strengthText = 'Weak';
-                    strengthColor = 'var(--crypt-warning)';
+                    strengthColor = '#f59e0b';
                     break;
                 case 3:
                     strengthText = 'Fair';
-                    strengthColor = 'var(--crypt-warning)';
+                    strengthColor = '#f59e0b';
                     break;
                 case 4:
                     strengthText = 'Good';
-                    strengthColor = 'var(--crypt-success)';
+                    strengthColor = '#10b981';
                     break;
                 case 5:
                     strengthText = 'Strong';
-                    strengthColor = 'var(--crypt-success)';
+                    strengthColor = '#10b981';
                     break;
             }
             
             if (password.length > 0) {
-                strengthIndicator.textContent = strengthText;
+                strengthIndicator.textContent = 'Strength: ' + strengthText;
                 strengthIndicator.style.color = strengthColor;
-                strengthIndicator.style.fontSize = '0.75rem';
-                strengthIndicator.style.marginTop = '0.25rem';
             } else {
                 strengthIndicator.textContent = '';
             }
         });
     </script>
+
+    <style>
+    :root{
+      --bg: #f7f8fb;
+      --card-bg: #ffffff;
+      --muted: #6b7280;
+      --text: #111827;
+      --accent: #2563eb;
+      --accent-dark: #1e40af;
+      --border: #e6e9ef;
+      --radius: 10px;
+      --gap: 18px;
+      --input-height: 44px;
+      --font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--font-family);
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+    }
+
+    .site-title{
+      margin:0 0 20px;
+      font-size:20px;
+      font-weight:600;
+      color:var(--text);
+    }
+
+    /* Main layout */
+    .login-main{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 20px;
+    }
+
+    /* Signup Card */
+    .signup-card{
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      box-shadow:0 6px 20px rgba(16,24,40,0.06);
+      display:grid;
+      grid-template-columns: 400px 520px;
+      gap:24px;
+      overflow:hidden;
+      width:100%;
+      max-width:960px;
+      padding:26px;
+    }
+
+    /* Visual (left) */
+    .signup-card__visual{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:32px 24px;
+      border-radius:8px;
+      background:linear-gradient(180deg, rgba(246,248,252,1) 0%, rgba(255,255,255,1) 100%);
+      text-align:center;
+      gap:18px;
+    }
+    .signup-icon{
+      width:140px;
+      height:auto;
+      display:block;
+      margin-bottom:8px;
+    }
+    .visual__title{
+      margin:0 0 8px;
+      font-size:22px;
+      font-weight:700;
+      color:var(--text);
+    }
+    .visual__desc{
+      color:var(--muted);
+      font-size:14px;
+      margin:0;
+      line-height:1.5;
+    }
+    .has-account{
+      margin-top:14px;
+      font-size:14px;
+      color:var(--muted);
+    }
+    .link-signin{
+      margin-left:6px;
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:600;
+    }
+    .link-signin:hover{color:var(--accent-dark)}
+
+    /* Form column */
+    .signup-card__form{
+      padding:6px 8px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .form-signup{
+      width:100%;
+      max-width:480px;
+    }
+
+    /* Form rows */
+    .form-row{margin-bottom:16px}
+    .form-row--split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-bottom:16px;
+    }
+    .form-col{
+      display:flex;
+      flex-direction:column;
+    }
+    .form-row--actions{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      justify-content:flex-start;
+      margin-top:8px;
+    }
+    .form-label{
+      display:block;
+      color:var(--muted);
+      font-size:14px;
+      margin-bottom:8px;
+      font-weight:500;
+    }
+
+    .input, .select-input{
+      width:100%;
+      height:var(--input-height);
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid var(--border);
+      background:#fff;
+      font-size:15px;
+      color:var(--text);
+    }
+    .input:focus, .select-input:focus{
+      outline:none;
+      border-color:var(--accent);
+      box-shadow:0 0 0 4px rgba(37,99,235,0.08);
+    }
+
+    /* Input groups */
+    .input-group{
+      display:flex;
+      align-items:stretch;
+      position:relative;
+    }
+    .phone-code{
+      flex:0 0 80px;
+      border-top-right-radius:0;
+      border-bottom-right-radius:0;
+      border-right:none;
+    }
+    .phone-number{
+      flex:1;
+      border-top-left-radius:0;
+      border-bottom-left-radius:0;
+    }
+    .flag-container{
+      position:absolute;
+      right:8px;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:5;
+    }
+    .flag-img{
+      width:24px;
+      height:16px;
+      object-fit:cover;
+      border-radius:2px;
+    }
+
+    /* Password input */
+    .password-input{
+      position:relative;
+    }
+    .password-toggle{
+      position:absolute;
+      right:12px;
+      top:50%;
+      transform:translateY(-50%);
+      background:none;
+      border:none;
+      color:var(--muted);
+      cursor:pointer;
+      padding:4px;
+      z-index:10;
+    }
+    .password-toggle:hover{color:var(--text)}
+
+    /* required / field help */
+    .field-help{font-size:12px;color:var(--muted);margin-top:6px}
+    .field-help.error{color:#dc2626}
+    .required{color:#dc2626}
+
+    /* Checkbox */
+    .checkbox{display:flex;align-items:flex-start;gap:8px;margin-top:4px}
+    .checkbox input{width:16px;height:16px;margin-top:2px;flex-shrink:0}
+    .checkbox__label{font-size:14px;color:var(--muted);line-height:1.4}
+    .link-signup{color:var(--accent);text-decoration:none;font-weight:600}
+    .link-signup:hover{color:var(--accent-dark)}
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border:0;
+      cursor:pointer;
+      border-radius:8px;
+      padding:10px 16px;
+      font-weight:600;
+      font-size:14px;
+      text-decoration:none;
+    }
+    .btn--primary{
+      background:var(--accent);
+      color:#fff;
+      min-width:140px;
+    }
+    .btn--primary:hover{background:var(--accent-dark)}
+    .btn--social{
+      width:100%;
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--text);
+      padding:10px 12px;
+      justify-content:flex-start;
+    }
+    .btn-icon{width:18px;height:18px;display:inline-block}
+
+    /* Social button spacing */
+    .social-buttons{
+      display:flex;
+      gap:10px;
+      margin-top:12px;
+      flex-direction:column;
+    }
+
+    /* OR separator */
+    .or-separator{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:16px;
+      margin-bottom:8px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .or-separator::before,
+    .or-separator::after{
+      content:"";
+      display:block;
+      height:1px;
+      background:var(--border);
+      width:36%;
+      margin:0 10px;
+    }
+
+    /* signin CTA at bottom */
+    .signin-cta{
+      margin-top:16px;
+      font-size:14px;
+      color:var(--muted);
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    /* Responsive */
+    @media (max-width:960px){
+      .signup-card{
+        grid-template-columns: 1fr;
+        padding:20px;
+        max-width:600px;
+      }
+      .signup-card__visual{
+        order:0;
+        padding:24px;
+      }
+      .signup-card__form{
+        order:1;
+        padding:8px;
+      }
+      .form-row--split{
+        grid-template-columns:1fr;
+        gap:16px;
+      }
+      .social-buttons{flex-direction:row}
+    }
+    @media (max-width:640px){
+      .form-row--split{grid-template-columns:1fr}
+      .social-buttons{flex-direction:column}
+    }
+    </style>
 
 </body>
 </html>
