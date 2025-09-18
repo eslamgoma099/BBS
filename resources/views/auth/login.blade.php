@@ -1,372 +1,410 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>{{ setting('site_name', 'Crypt') }} - Log in</title>
-
-  {{-- Bootstrap 5.3.3 & Styles --}}
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Crypt</title>
+  <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('css/button.css') }}">
   <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
-
-  {{-- Font Awesome 6 --}}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  {{-- Google Fonts --}}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  {{-- Favicon --}}
-  <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.svg') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/svg" href="{{ asset('images/favicon.svg') }}">
 </head>
 
-<body class="bg-dark text-white">
-    {{-- Modern Header --}}
-    <header class="navbar navbar-expand-lg bg-dark border-bottom border-secondary fixed-top">
-        <div class="container-fluid px-4">
-            {{-- Logo --}}
-            <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                <img src="{{ setting('logo', asset('images/logo.png')) }}" alt="{{ setting('site_name', 'Crypt') }}" height="32" class="me-2">
-                <span class="fw-bold text-warning">{{ setting('site_name', 'Crypt') }}</span>
-            </a>
-            
-            {{-- Right Side --}}
-            <div class="d-flex align-items-center gap-3">
-                {{-- Theme Toggle --}}
-                <button class="btn btn-outline-secondary btn-sm" type="button" id="themeToggle" title="Toggle theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-                
-                {{-- Help Link --}}
-                <a href="#" class="btn btn-outline-secondary btn-sm">
-                    <i class="fas fa-question-circle"></i>
-                    Help
-                </a>
+<body class="crypt-dark">
+
+    <!-- Header -->
+    <header class="crypt-header blur-header align-items-center fixed-top z-3">
+        <div class="row align-items-center justify-content-between">
+
+            <!-- main menu -->
+            <div class="col-auto d-flex flex-row align-items-center">
+
+                <!-- Logo -->
+                <div class="crypt-logo dark">
+                    <a href="{{ url('/') }}">
+                        @if(setting('logo_dark'))
+                            <img src="{{ setting('logo_dark') }}" alt="logo-dark">
+                        @else
+                            <img src="{{ asset('images/logo-dark.svg') }}" alt="logo-dark">
+                        @endif
+                    </a>
+                </div>
+                <div class="crypt-logo light">
+                    <a href="{{ url('/') }}">
+                        @if(setting('logo'))
+                            <img src="{{ setting('logo') }}" alt="logo-light">
+                        @else
+                            <img src="{{ asset('images/logo.svg') }}" alt="logo-light">
+                        @endif
+                    </a>
+                </div>
+
             </div>
+
+            <!-- secondary menu -->
+            <div class="col-auto d-flex flex-row align-items-center">
+                <div class="user-settings gap-2 gap-sm-3 d-flex align-items-center">
+
+                    <!-- dark/light mode -->
+                    <div class="mode">
+                        <button class="controller m-auto" id="darkMode" type="button" aria-label="Toggle theme">
+                            <span class="dark-logo">
+                                <svg viewBox="0 0 512 512" width="20" fill="currentColor"><path d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/></svg>
+                            </span>
+                            <span class="light-logo">
+                                <svg viewBox="0 0 512 512" width="20" fill="currentColor"><path d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"/></svg>
+                            </span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     </header>
 
-    {{-- Main Content --}}
-    <div class="container-fluid bg-dark" style="min-height: 100vh; padding-top: 80px;">
-        <div class="row justify-content-center align-items-center min-vh-100">
-            {{-- Left Column - QR Code Section --}}
-            <div class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center">
-                <div class="text-center">
-                    <div class="card bg-secondary bg-opacity-10 border-secondary p-4 mb-4" style="max-width: 320px;">
-                        <div class="card-body text-center">
-                            <div class="bg-white p-3 rounded mb-3">
-                                <img src="{{ asset('images/features/qr.svg') }}" alt="QR Code" class="img-fluid" style="max-width: 200px;">
-                            </div>
-                            <h6 class="text-muted">Scan QR code to login</h6>
-                            <p class="text-muted small">Or open {{ setting('site_name','Crypt') }} app</p>
+    <div class="page-wrapper">
+        <main class="login-main" role="main">
+            <div class="login-card">
+                <!-- Left column: QR / Illustration -->
+                <aside class="login-card__visual">
+                    <img class="qr-icon" src="{{ asset('images/features/qr.svg') }}" alt="QR code illustration">
+                    <p class="visual__desc">Scan the QR code to log in or Open Crypt app.</p>
+
+                    <p class="no-account">
+                        Don't have an account?
+                        <a class="link-signup" href="{{ route('register') }}">Sign up</a>
+                    </p>
+                </aside>
+
+                <!-- Right column: Form -->
+                <section class="login-card__form">
+                    <h1 class="site-title">Log in</h1>
+                    
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                <div class="field-help error">{{ $error }}</div>
+                            @endforeach
                         </div>
-                    </div>
-                    <div class="text-center">
-                        <span class="text-muted">Don't have an account? </span>
-                        <a href="{{ route('register') }}" class="text-warning text-decoration-none fw-semibold">Sign up</a>
-                    </div>
-                </div>
-            </div>
-            
-            {{-- Right Column - Login Form --}}
-            <div class="col-lg-6 col-xl-5">
-                <div class="card bg-dark border-secondary shadow-lg" style="max-width: 480px; margin: 0 auto;">
-                    <div class="card-body p-4 p-md-5">
-                        {{-- Header --}}
-                        <div class="text-center mb-4">
-                            <h2 class="fw-bold text-white">Log in</h2>
-                            <p class="text-muted">Welcome back! Please enter your details</p>
-                        </div>
-
-                        {{-- Status Messages --}}
-                        @if (session('status'))
-                            <div class="alert alert-info border-0 bg-info bg-opacity-10 text-info">
-                                <i class="fas fa-info-circle me-2"></i>{{ session('status') }}
-                            </div>
-                        @endif
-
-                        {{-- Login Form --}}
-                        <form action="{{ route('login') }}" method="POST" class="needs-validation" novalidate>
-                            @csrf
-                            
-                            {{-- Email/Phone Field --}}
-                            <div class="mb-3">
-                                <label for="email" class="form-label text-white fw-medium">
-                                    Email/Phone Number <span class="text-danger">*</span>
-                                </label>
-                                <input
-                                    type="email"
-                                    class="form-control form-control-lg bg-dark border-secondary text-white @error('email') is-invalid @enderror"
-                                    name="email"
-                                    id="email"
-                                    value="{{ old('email') }}"
-                                    placeholder="Enter your email or phone number"
-                                    required
-                                    autocomplete="email">
-                                @error('email')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @else
-                                    <div class="invalid-feedback">This field is required.</div>
-                                @enderror
-                            </div>
-
-                            {{-- Password Field --}}
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <label for="password" class="form-label text-white fw-medium mb-0">
-                                        Password <span class="text-danger">*</span>
-                                    </label>
-                                    <a href="{{ route('password.request') }}" class="text-warning text-decoration-none small">
-                                        Forgot password?
-                                    </a>
-                                </div>
-                                <div class="position-relative">
-                                    <input
-                                        type="password"
-                                        class="form-control form-control-lg bg-dark border-secondary text-white pe-5 @error('password') is-invalid @enderror"
-                                        name="password"
-                                        id="password"
-                                        placeholder="Enter your password"
-                                        required
-                                        autocomplete="current-password">
-                                    <button type="button" class="btn btn-link position-absolute end-0 top-50 translate-middle-y text-muted px-3"
-                                            onclick="togglePassword()" aria-label="Show/Hide password">
-                                        <i class="fas fa-eye" id="eyeIcon"></i>
-                                    </button>
-                                    @error('password')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @else
-                                        <div class="invalid-feedback">This field is required.</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            {{-- Remember Me --}}
-                            <div class="d-flex justify-content-between align-items-center mb-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="1" name="remember" id="remember"
-                                           {{ old('remember') ? 'checked' : '' }}>
-                                    <label class="form-check-label text-muted" for="remember">
-                                        Remember me
-                                    </label>
-                                </div>
-                            </div>
-
-                            {{-- Submit Button --}}
-                            <button type="submit" class="btn btn-warning btn-lg w-100 fw-semibold mb-4">
-                                Continue
-                            </button>
-                        </form>
-
-                        {{-- Divider --}}
-                        <div class="d-flex align-items-center my-4">
-                            <hr class="flex-grow-1 border-secondary">
-                            <span class="px-3 text-muted small">or</span>
-                            <hr class="flex-grow-1 border-secondary">
+                    @endif
+                    
+                    <form class="form-signin" action="{{ route('login') }}" method="post" novalidate>
+                        @csrf
+                        <div class="form-row">
+                            <label for="email" class="form-label">Email/Phone Number <span class="required">*</span></label>
+                            <input id="email" name="email" type="text" class="input @error('email') is-invalid @enderror" placeholder="Email or phone number" value="{{ old('email') }}" required aria-required="true">
+                            <div class="field-help">This field is required.</div>
                         </div>
 
-                        {{-- Social Login Buttons --}}
-                        <div class="d-grid gap-2 mb-4">
-                            <button type="button" class="btn btn-outline-secondary btn-lg d-flex justify-content-center align-items-center">
-                                <img src="{{ asset('images/icon/google.svg') }}" alt="Google" width="20" height="20" class="me-3">
-                                Sign in with Google
-                            </button>
-                            <button type="button" class="btn btn-outline-secondary btn-lg d-flex justify-content-center align-items-center">
-                                <img src="{{ asset('images/icon/apple.svg') }}" alt="Apple" width="20" height="20" class="me-3">
-                                Sign in with Apple
-                            </button>
+                        <div class="form-row">
+                            <label for="password" class="form-label">Password <span class="required">*</span>
+                                <a class="forgot-link" href="{{ route('password.request') }}" aria-label="Forgot password?">Forgot password?</a>
+                            </label>
+                            <input id="password" name="password" type="password" class="input @error('password') is-invalid @enderror" placeholder="Password" required aria-required="true">
+                            <div class="field-help">This field is required.</div>
                         </div>
 
-                        {{-- Sign Up Link --}}
-                        <div class="text-center">
-                            <span class="text-muted">Don't have an account? </span>
-                            <a href="{{ route('register') }}" class="text-warning text-decoration-none fw-semibold">Sign up</a>
+                        <div class="form-row form-row--actions">
+                            <label class="checkbox">
+                                <input type="checkbox" name="remember" value="1" {{ old('remember') ? 'checked' : '' }}>
+                                <span class="checkbox__label">Remember me</span>
+                            </label>
+
+                            <button type="submit" class="btn btn--primary">Sign in</button>
                         </div>
-                        
-                        {{-- Mobile QR Code Link --}}
-                        <div class="d-lg-none text-center mt-4">
-                            <a href="#qrModal" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal">
-                                <i class="fas fa-qrcode me-2"></i>
-                                Scan QR Code
+
+                        <div class="or-separator"><span>or</span></div>
+
+                        <div class="social-buttons">
+                            <a class="btn btn--social btn--google" href="#!" aria-label="Sign in with Google">
+                                <img class="btn-icon" src="{{ asset('images/icon/google.svg') }}" alt="">
+                                <span>Sign in with Google</span>
+                            </a>
+
+                            <a class="btn btn--social btn--apple" href="#!" aria-label="Sign in with Apple">
+                                <img class="btn-icon" src="{{ asset('images/icon/apple.svg') }}" alt="">
+                                <span>Sign in with Apple</span>
                             </a>
                         </div>
-                    </div>
-                </div>
+
+                        <div class="signup-cta">
+                            <span>Don't have an account?</span>
+                            <a class="link-signup" href="{{ route('register') }}">Sign up</a>
+                        </div>
+                    </form>
+                </section>
             </div>
-        </div>
+        </main>
     </div>
 
-    {{-- QR Code Modal for Mobile --}}
-    <div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark border-secondary">
-                <div class="modal-header border-secondary">
-                    <h5 class="modal-title text-white" id="qrModalLabel">QR Code Login</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <div class="bg-white p-3 rounded mb-3 d-inline-block">
-                        <img src="{{ asset('images/features/qr.svg') }}" alt="QR Code" class="img-fluid" style="max-width: 200px;">
-                    </div>
-                    <h6 class="text-muted">Scan QR code to login</h6>
-                    <p class="text-muted small">Or open {{ setting('site_name','Crypt') }} app</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    {{-- Footer --}}
-    <footer class="bg-dark border-top border-secondary py-4 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="d-flex flex-wrap justify-content-center gap-4 text-center">
-                        <a href="{{ setting('docs_url', '#') }}" class="text-muted text-decoration-none small">Documentation</a>
-                        <a href="{{ setting('cookies_url', '#') }}" class="text-muted text-decoration-none small">Cookies Policy</a>
-                        <a href="{{ setting('terms', '#') }}" class="text-muted text-decoration-none small">Terms of Service</a>
-                        <a href="{{ setting('privacy_policy', '#') }}" class="text-muted text-decoration-none small">Privacy Policy</a>
-                        <a href="#" class="text-muted text-decoration-none small">Support</a>
-                    </div>
-                    <div class="text-center mt-3">
-                        <p class="text-muted small mb-0">
-                            &copy; {{ date('Y') }} {{ setting('site_name', 'Crypt') }}. All rights reserved.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
 
-    {{-- Scripts --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+    <script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 
     <script>
-        // Password Toggle
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const eyeIcon = document.getElementById('eyeIcon');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.classList.remove('fa-eye');
-                eyeIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.classList.remove('fa-eye-slash');
-                eyeIcon.classList.add('fa-eye');
-            }
-        }
-
-        // Theme Toggle
-        document.getElementById('themeToggle')?.addEventListener('click', function() {
+        // Theme toggle functionality
+        (function () {
             const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-bs-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-bs-theme', newTheme);
-            
-            const icon = this.querySelector('i');
-            if (newTheme === 'dark') {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            } else {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            }
-        });
-
-        // Form Validation
-        document.addEventListener('DOMContentLoaded', function() {
-            const forms = document.querySelectorAll('.needs-validation');
-            
-            Array.from(forms).forEach(function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                });
+            const body = document.body;
+            const key = 'crypt-theme';
+            const btn = document.getElementById('darkMode');
+            const apply = (mode) => {
+                if (mode === 'light') {
+                    body.classList.remove('crypt-dark');
+                    body.classList.add('crypt-light');
+                    html.dataset.theme = 'light';
+                } else {
+                    body.classList.add('crypt-dark');
+                    body.classList.remove('crypt-light');
+                    html.dataset.theme = 'dark';
+                }
+            };
+            apply(localStorage.getItem(key) || 'dark');
+            btn?.addEventListener('click', () => {
+                const next = (html.dataset.theme === 'dark') ? 'light' : 'dark';
+                localStorage.setItem(key, next);
+                apply(next);
             });
-        });
-
-        // Auto-hide alerts
-        document.addEventListener('DOMContentLoaded', function() {
-            const alerts = document.querySelectorAll('.alert');
-            alerts.forEach(function(alert) {
-                setTimeout(function() {
-                    const bsAlert = new bootstrap.Alert(alert);
-                    bsAlert.close();
-                }, 5000);
-            });
-        });
+        })();
     </script>
 
-    {{-- Custom Styles --}}
     <style>
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-        }
-        
-        .form-control:focus {
-            border-color: #ffc107;
-            box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
-        }
-        
-        .btn-warning {
-            background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
-            border: none;
-            color: #000;
-        }
-        
-        .btn-warning:hover {
-            background: linear-gradient(135deg, #ffb300 0%, #ff8f00 100%);
-            color: #000;
-        }
-        
-        .card {
-            backdrop-filter: blur(10px);
-            background: rgba(33, 37, 41, 0.95) !important;
-        }
-        
-        .navbar {
-            backdrop-filter: blur(10px);
-            background: rgba(33, 37, 41, 0.95) !important;
-        }
-        
-        @media (max-width: 991.98px) {
-            .min-vh-100 {
-                padding-top: 2rem;
-                padding-bottom: 2rem;
-            }
-        }
-        
-        .invalid-feedback {
-            color: #dc3545;
-            font-size: 0.875rem;
-        }
-        
-        .form-check-input:checked {
-            background-color: #ffc107;
-            border-color: #ffc107;
-        }
-        
-        .btn-outline-secondary {
-            border-color: #6c757d;
-            color: #6c757d;
-        }
-        
-        .btn-outline-secondary:hover {
-            background-color: #6c757d;
-            border-color: #6c757d;
-            color: #fff;
-        }
+    :root{
+      --bg: #f7f8fb;
+      --card-bg: #ffffff;
+      --muted: #6b7280;
+      --text: #111827;
+      --accent: #2563eb;
+      --accent-dark: #1e40af;
+      --border: #e6e9ef;
+      --radius: 10px;
+      --gap: 18px;
+      --input-height: 44px;
+      --font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--font-family);
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+    }
+
+    .site-title{
+      margin:0 0 20px;
+      font-size:20px;
+      font-weight:600;
+      color:var(--text);
+    }
+
+    /* Main layout */
+    .login-main{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 20px;
+    }
+
+    /* Card */
+    .login-card{
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      box-shadow:0 6px 20px rgba(16,24,40,0.06);
+      display:grid;
+      grid-template-columns: 360px 420px;
+      gap:24px;
+      overflow:hidden;
+      width:100%;
+      max-width:820px;
+      padding:26px;
+    }
+
+    /* Visual (left) */
+    .login-card__visual{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      border-radius:8px;
+      background:linear-gradient(180deg, rgba(246,248,252,1) 0%, rgba(255,255,255,1) 100%);
+      text-align:center;
+      gap:18px;
+    }
+    .qr-icon{
+      width:120px;
+      height:auto;
+      display:block;
+      margin-bottom:8px;
+    }
+    .visual__desc{
+      color:var(--muted);
+      font-size:14px;
+      margin:0;
+    }
+    .no-account{
+      margin-top:14px;
+      font-size:14px;
+      color:var(--muted);
+    }
+    .link-signup{
+      margin-left:6px;
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:600;
+    }
+    .link-signup:hover{color:var(--accent-dark)}
+
+    /* Form column */
+    .login-card__form{
+      padding:6px 8px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .form-signin{
+      width:100%;
+      max-width:380px;
+    }
+
+    /* Form rows */
+    .form-row{margin-bottom:14px}
+    .form-row--actions{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      justify-content:space-between;
+      margin-top:6px;
+    }
+    .form-label{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
+      color:var(--muted);
+      font-size:14px;
+      margin-bottom:8px;
+    }
+    .forgot-link{
+      font-size:13px;
+      color:var(--accent);
+      text-decoration:none;
+    }
+    .forgot-link:hover{color:var(--accent-dark)}
+
+    .input{
+      width:100%;
+      height:var(--input-height);
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid var(--border);
+      background:#fff;
+      font-size:15px;
+      color:var(--text);
+    }
+    .input:focus{
+      outline:none;
+      border-color:var(--accent);
+      box-shadow:0 0 0 4px rgba(37,99,235,0.08);
+    }
+
+    /* required / field help */
+    .field-help{font-size:12px;color:var(--muted);margin-top:6px}
+    .required{color:#dc2626}
+
+    /* Checkbox */
+    .checkbox{display:flex;align-items:center;gap:8px}
+    .checkbox input{width:16px;height:16px}
+    .checkbox__label{font-size:14px;color:var(--muted)}
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border:0;
+      cursor:pointer;
+      border-radius:8px;
+      padding:10px 14px;
+      font-weight:600;
+      font-size:14px;
+      text-decoration:none;
+    }
+    .btn--primary{
+      background:var(--accent);
+      color:#fff;
+      min-width:120px;
+    }
+    .btn--primary:hover{background:var(--accent-dark)}
+    .btn--social{
+      width:100%;
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--text);
+      padding:10px 12px;
+      justify-content:flex-start;
+    }
+    .btn-icon{width:18px;height:18px;display:inline-block}
+
+    /* Social button spacing */
+    .social-buttons{
+      display:flex;
+      gap:10px;
+      margin-top:12px;
+      flex-direction:column;
+    }
+
+    /* OR separator */
+    .or-separator{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:14px;
+      margin-bottom:6px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .or-separator::before,
+    .or-separator::after{
+      content:"";
+      display:block;
+      height:1px;
+      background:var(--border);
+      width:36%;
+      margin:0 10px;
+    }
+
+    /* signup CTA at bottom */
+    .signup-cta{
+      margin-top:16px;
+      font-size:14px;
+      color:var(--muted);
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    /* Responsive */
+    @media (max-width:860px){
+      .login-card{grid-template-columns: 1fr; padding:20px;}
+      .login-card__visual{order:0;padding:20px}
+      .login-card__form{order:1;padding:8px}
+      .social-buttons{flex-direction:row}
+    }
     </style>
 </body>
 </html>
