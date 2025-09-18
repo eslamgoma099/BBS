@@ -193,10 +193,10 @@
         .search-input-new {
             width: 100%;
             padding: 8px 40px 8px 40px;
-            background-color: #2a2a2a;
-            border: 1px solid #444444;
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
             border-radius: 20px;
-            color: #ffffff;
+            color: var(--text-primary);
             font-size: 14px;
             outline: none;
             transition: all 0.2s ease;
@@ -208,7 +208,7 @@
         }
 
         .search-input-new::placeholder {
-            color: #888888;
+            color: var(--text-muted);
         }
 
         .search-icon-new {
@@ -216,7 +216,7 @@
             left: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: #888888;
+            color: var(--text-muted);
             font-size: 14px;
             pointer-events: none;
         }
@@ -232,7 +232,7 @@
             display: flex;
             align-items: center;
             padding: 8px 12px;
-            color: #ffffff;
+            color: var(--text-primary);
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
@@ -242,7 +242,7 @@
         }
 
         .nav-dropdown-toggle-new:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: var(--hover-bg);
             color: var(--accent-yellow);
         }
 
@@ -298,14 +298,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #ffffff;
+            color: var(--text-primary);
             cursor: pointer;
             transition: all 0.2s ease;
             position: relative;
         }
 
         .header-icon-new:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: var(--hover-bg);
         }
 
         .header-icon-badge-new {
@@ -831,6 +831,387 @@
                 scroll-behavior: auto !important;
             }
         }
+
+        /* ========== COMPREHENSIVE THEME SUPPORT FOR ALL CONTENT ========== */
+        
+        /* All content containers */
+        .container,
+        .container-fluid,
+        .row,
+        .col,
+        [class*="col-"] {
+            color: var(--text-primary);
+        }
+        
+        /* Ensure all main content backgrounds use theme */
+        main,
+        .main-content,
+        .content,
+        .crypt-content,
+        .page-content {
+            background-color: var(--bg-primary) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        /* All headings */
+        h1, h2, h3, h4, h5, h6,
+        .h1, .h2, .h3, .h4, .h5, .h6 {
+            color: var(--text-primary) !important;
+        }
+        
+        /* All paragraphs and text elements */
+        p, span, div, label, 
+        .text-dark, .text-primary {
+            color: var(--text-primary) !important;
+        }
+        
+        .text-muted, .text-secondary {
+            color: var(--text-muted) !important;
+        }
+        
+        /* All cards and panels */
+        .card,
+        .panel,
+        .widget,
+        .box {
+            background-color: var(--bg-secondary) !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        .card-header,
+        .card-body,
+        .card-footer,
+        .panel-header,
+        .panel-body {
+            background-color: var(--bg-secondary) !important;
+            border-color: var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        /* All tables */
+        .table,
+        table {
+            background-color: var(--bg-secondary) !important;
+            color: var(--text-primary) !important;
+            border-color: var(--border-color) !important;
+        }
+        
+        .table th,
+        .table td,
+        table th,
+        table td {
+            background-color: var(--bg-secondary) !important;
+            color: var(--text-primary) !important;
+            border-color: var(--border-color) !important;
+        }
+        
+        .table-striped > tbody > tr:nth-child(odd) > td {
+            background-color: var(--bg-tertiary) !important;
+        }
+        
+        .table-hover > tbody > tr:hover > td {
+            background-color: var(--hover-bg) !important;
+        }
+        
+        /* DataTables specific */
+        .dataTables_wrapper {
+            background-color: var(--bg-primary) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        .dataTables_info,
+        .dataTables_paginate,
+        .dataTables_length,
+        .dataTables_filter {
+            color: var(--text-primary) !important;
+        }
+        
+        .dataTables_filter input {
+            background-color: var(--bg-tertiary) !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        /* All form elements */
+        .form-control,
+        .form-select,
+        input,
+        textarea,
+        select {
+            background-color: var(--bg-tertiary) !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        .form-control:focus,
+        .form-select:focus,
+        input:focus,
+        textarea:focus,
+        select:focus {
+            background-color: var(--bg-tertiary) !important;
+            border-color: var(--accent-yellow) !important;
+            color: var(--text-primary) !important;
+            box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25) !important;
+        }
+        
+        .form-control::placeholder,
+        input::placeholder,
+        textarea::placeholder {
+            color: var(--text-muted) !important;
+        }
+        
+        .form-label,
+        .control-label,
+        label {
+            color: var(--text-primary) !important;
+        }
+        
+        /* All buttons - preserve styling but ensure text visibility */
+        .btn-light {
+            background-color: var(--bg-tertiary) !important;
+            border-color: var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        .btn-light:hover {
+            background-color: var(--hover-bg) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        .btn-outline-light {
+            border-color: var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        .btn-outline-light:hover {
+            background-color: var(--bg-tertiary) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        /* Alerts */
+        .alert {
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        .alert-light {
+            background-color: var(--bg-secondary) !important;
+            border-color: var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        /* List groups */
+        .list-group {
+            background-color: var(--bg-secondary) !important;
+        }
+        
+        .list-group-item {
+            background-color: var(--bg-secondary) !important;
+            border-color: var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        .list-group-item:hover {
+            background-color: var(--hover-bg) !important;
+        }
+        
+        /* Navigation tabs and pills */
+        .nav-tabs .nav-link {
+            color: var(--text-secondary) !important;
+            border-color: var(--border-color) !important;
+        }
+        
+        .nav-tabs .nav-link.active {
+            background-color: var(--bg-secondary) !important;
+            border-color: var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        .nav-pills .nav-link {
+            color: var(--text-secondary) !important;
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: var(--accent-yellow) !important;
+            color: #000000 !important;
+        }
+        
+        /* Progress bars */
+        .progress {
+            background-color: var(--bg-tertiary) !important;
+        }
+        
+        /* Breadcrumbs */
+        .breadcrumb {
+            background-color: var(--bg-secondary) !important;
+        }
+        
+        .breadcrumb-item {
+            color: var(--text-secondary) !important;
+        }
+        
+        .breadcrumb-item.active {
+            color: var(--text-primary) !important;
+        }
+        
+        /* Badges */
+        .badge-light,
+        .badge.bg-light {
+            background-color: var(--bg-tertiary) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        /* Wells and jumbotrons */
+        .well,
+        .jumbotron {
+            background-color: var(--bg-secondary) !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        /* Custom content sections */
+        .content-section,
+        .dashboard-content,
+        .main-panel,
+        .content-wrapper {
+            background-color: var(--bg-primary) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        /* Override any remaining white backgrounds */
+        [class*="bg-white"],
+        .bg-light {
+            background-color: var(--bg-secondary) !important;
+        }
+        
+        /* Override dark text on light backgrounds */
+        .text-dark {
+            color: var(--text-primary) !important;
+        }
+        
+        /* Search and filter elements */
+        .search-box,
+        .filter-box {
+            background-color: var(--bg-secondary) !important;
+            border: 1px solid var(--border-color) !important;
+        }
+        
+        /* Pagination */
+        .pagination .page-link {
+            background-color: var(--bg-secondary) !important;
+            border-color: var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        .pagination .page-link:hover {
+            background-color: var(--hover-bg) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        .pagination .page-item.active .page-link {
+            background-color: var(--accent-yellow) !important;
+            border-color: var(--accent-yellow) !important;
+            color: #000000 !important;
+        }
+        
+        /* Tooltips and popovers */
+        .tooltip-inner {
+            background-color: var(--bg-secondary) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        .popover {
+            background-color: var(--bg-secondary) !important;
+            border-color: var(--border-color) !important;
+        }
+        
+        .popover-body {
+            color: var(--text-primary) !important;
+        }
+        
+        /* Chart containers and legends */
+        .chart-container,
+        .chart-legend,
+        .chart-wrapper {
+            background-color: var(--bg-secondary) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        /* Statistics cards */
+        .stat-card,
+        .metric-card,
+        .info-box {
+            background-color: var(--bg-secondary) !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        /* Input groups */
+        .input-group-text {
+            background-color: var(--bg-tertiary) !important;
+            border-color: var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+        
+        /* Pre and code elements */
+        pre, code {
+            background-color: var(--bg-tertiary) !important;
+            color: var(--text-primary) !important;
+            border: 1px solid var(--border-color) !important;
+        }
+        
+        /* Blockquotes */
+        blockquote {
+            border-left: 4px solid var(--accent-yellow) !important;
+            color: var(--text-secondary) !important;
+        }
+        
+        /* Links */
+        a {
+            color: var(--accent-yellow) !important;
+        }
+        
+        a:hover {
+            color: #ffed4a !important;
+        }
+        
+        /* Special theme enforcement for stubborn elements */
+        body.crypt-light * {
+            --bs-body-bg: var(--bg-primary) !important;
+            --bs-body-color: var(--text-primary) !important;
+        }
+        
+        body.crypt-dark * {
+            --bs-body-bg: var(--bg-primary) !important;
+            --bs-body-color: var(--text-primary) !important;
+        }
+        
+        /* Force theme on Bootstrap components */
+        .btn-close {
+            filter: invert(1) grayscale(100%) brightness(200%);
+        }
+        
+        body.crypt-light .btn-close {
+            filter: invert(0) grayscale(0%) brightness(100%);
+        }
+        
+        /* Ensure scrollbars match theme */
+        * {
+            scrollbar-color: var(--border-color) var(--bg-primary);
+        }
+        
+        *::-webkit-scrollbar {
+            background-color: var(--bg-primary);
+        }
+        
+        *::-webkit-scrollbar-thumb {
+            background-color: var(--border-color);
+        }
+        
+        *::-webkit-scrollbar-track {
+            background-color: var(--bg-secondary);
+        }
     </style>
 
     @yield('styles')
@@ -1016,8 +1397,16 @@
             
             // Apply theme immediately to prevent flashing
             function applyTheme(theme) {
+                // Remove existing theme classes
+                document.body.classList.remove('crypt-dark', 'crypt-light');
+                
+                // Apply new theme
                 document.documentElement.setAttribute('data-bs-theme', theme);
-                document.body.className = theme === 'dark' ? 'crypt-dark' : 'crypt-light';
+                document.body.classList.add(`crypt-${theme}`);
+                
+                // Force update body background
+                document.body.style.backgroundColor = theme === 'dark' ? '#000000' : '#ffffff';
+                document.body.style.color = theme === 'dark' ? '#ffffff' : '#000000';
                 
                 // Update theme icon
                 const themeIcon = document.querySelector('#theme-icon');
@@ -1025,8 +1414,66 @@
                     themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
                 }
                 
+                // Force update all elements that might not be using CSS variables
+                forceThemeUpdate(theme);
+                
                 // Update any dynamic theme-dependent elements
                 updateThemeDependentElements(theme);
+            }
+            
+            // Force theme update on all elements
+            function forceThemeUpdate(theme) {
+                // Update main containers
+                const containers = document.querySelectorAll('main, .main-content, .content, .crypt-content, .page-content');
+                containers.forEach(el => {
+                    el.style.backgroundColor = theme === 'dark' ? '#000000' : '#ffffff';
+                    el.style.color = theme === 'dark' ? '#ffffff' : '#000000';
+                });
+                
+                // Update all cards and panels
+                const cards = document.querySelectorAll('.card, .panel, .widget, .box');
+                cards.forEach(el => {
+                    el.style.backgroundColor = theme === 'dark' ? '#1a1a1a' : '#f8f9fa';
+                    el.style.borderColor = theme === 'dark' ? '#333333' : '#dee2e6';
+                    el.style.color = theme === 'dark' ? '#ffffff' : '#000000';
+                });
+                
+                // Update all tables
+                const tables = document.querySelectorAll('.table, table');
+                tables.forEach(el => {
+                    el.style.backgroundColor = theme === 'dark' ? '#1a1a1a' : '#f8f9fa';
+                    el.style.color = theme === 'dark' ? '#ffffff' : '#000000';
+                });
+                
+                // Update table cells
+                const tableCells = document.querySelectorAll('th, td');
+                tableCells.forEach(el => {
+                    el.style.backgroundColor = theme === 'dark' ? '#1a1a1a' : '#f8f9fa';
+                    el.style.color = theme === 'dark' ? '#ffffff' : '#000000';
+                    el.style.borderColor = theme === 'dark' ? '#333333' : '#dee2e6';
+                });
+                
+                // Update form elements
+                const formElements = document.querySelectorAll('.form-control, input, textarea, select');
+                formElements.forEach(el => {
+                    el.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#ffffff';
+                    el.style.borderColor = theme === 'dark' ? '#333333' : '#dee2e6';
+                    el.style.color = theme === 'dark' ? '#ffffff' : '#000000';
+                });
+                
+                // Update headings and text
+                const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, div, label');
+                headings.forEach(el => {
+                    // Only update if it doesn't have specific color classes
+                    if (!el.classList.contains('text-success') && 
+                        !el.classList.contains('text-danger') && 
+                        !el.classList.contains('text-warning') &&
+                        !el.classList.contains('text-info')) {
+                        el.style.color = theme === 'dark' ? '#ffffff' : '#000000';
+                    }
+                });
+                
+                console.log(`Force theme update applied: ${theme}`);
             }
             
             // Function to update elements that depend on theme
