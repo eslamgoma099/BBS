@@ -58,6 +58,8 @@
         body {
             font-family: 'Inter', 'Space Grotesk', sans-serif;
             overflow-x: hidden;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
         }
 
         /* Dark Theme Variables - Exact Reference Match */
@@ -92,6 +94,36 @@
             --accent-red: #ff6b6b;
             --hover-bg: rgba(0, 0, 0, 0.05);
             --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Universal Text Color Rules - Ensures ALL text displays correctly in both themes */
+        * {
+            color: inherit;
+        }
+        
+        body,
+        html {
+            color: var(--text-primary) !important;
+        }
+        
+        h1, h2, h3, h4, h5, h6,
+        p, span, div, a, li, td, th, 
+        label, input, textarea, select,
+        .text, .content, .title, .subtitle {
+            color: var(--text-primary);
+        }
+        
+        /* Text hierarchy colors */
+        .text-primary-custom {
+            color: var(--text-primary) !important;
+        }
+        
+        .text-secondary-custom {
+            color: var(--text-secondary) !important;
+        }
+        
+        .text-muted-custom {
+            color: var(--text-muted) !important;
         }
 
         /* Main Container */
@@ -1189,6 +1221,37 @@
         body.crypt-dark * {
             --bs-body-bg: var(--bg-primary) !important;
             --bs-body-color: var(--text-primary) !important;
+        }
+        
+        /* Enhanced universal text color enforcement - ensures 100% text visibility */
+        body.crypt-light,
+        body.crypt-light *:not(.badge):not(.alert):not(.btn):not(.text-warning):not(.text-danger):not(.text-success):not(.text-info) {
+            color: var(--text-primary) !important;
+        }
+        
+        body.crypt-dark,
+        body.crypt-dark *:not(.badge):not(.alert):not(.btn):not(.text-warning):not(.text-danger):not(.text-success):not(.text-info) {
+            color: var(--text-primary) !important;
+        }
+        
+        /* Override Bootstrap text utilities to match theme */
+        body.crypt-light .text-dark {
+            color: var(--text-primary) !important;
+        }
+        
+        body.crypt-dark .text-light {
+            color: var(--text-primary) !important;
+        }
+        
+        /* Ensure input placeholders are visible */
+        body.crypt-light ::placeholder {
+            color: var(--text-muted) !important;
+            opacity: 1;
+        }
+        
+        body.crypt-dark ::placeholder {
+            color: var(--text-muted) !important;
+            opacity: 1;
         }
         
         /* Force theme on Bootstrap components */
