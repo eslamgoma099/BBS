@@ -1,25 +1,29 @@
 <aside class="sidebar">
-    <!-- Sidebar Header with Logo and Collapse Button -->
-    <div class="d-flex align-items-center justify-content-between p-3">
-        <div class="crypt-logo logo-expand">
-            <a href="{{ setting('site_info_url', '/') }}">
-                <img class="light" src="{{ setting('logo', '/asset/images/logosm.png') }}" alt="logo">
-                <img class="dark" src="{{ setting('logo_dark', '/asset/images/logosm.png') }}" alt="logo dark">
-            </a>
-        </div>
-        
-        <!-- Sidebar Collapse Button -->
-        <button class="btn btn-sm btn-dark collapse-btn d-none d-md-block" id="sidebar-collapse">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </button>
-        
-        <!-- Small Logo (for collapsed state) -->
-        <div class="crypt-logo logo-sm">
-            <a href="{{ setting('site_info_url', '/') }}">
-                <img src="{{ setting('favicon', '/asset/images/logosm.png') }}" alt="logo" style="width: 32px; height: 32px;">
-            </a>
+    <!-- Brand Logo -->
+    <div class="d-flex align-items-center justify-content-between">
+        <div class="justify-content-between disable-sm-screen mt-3">
+            <!-- Logo -->
+            <div class="crypt-logo dark">
+                <a href="{{ route('backend.dashboard') }}">
+                    <img src="{{ setting('logo_dark', '/asset/images/logosm.png') }}" alt="Crypt Logo Dark">
+                </a>
+            </div>
+            <div class="crypt-logo light">
+                <a href="{{ route('backend.dashboard') }}">
+                    <img src="{{ setting('logo', '/asset/images/logosm.png') }}" alt="Crypt Logo">
+                </a>
+            </div>
+            <!-- Logo sm -->
+            <div class="crypt-logo logo-sm dark">
+                <a href="{{ route('backend.dashboard') }}">
+                    <img src="{{ setting('favicon', '/asset/images/logosm.png') }}" alt="logo" style="width: 32px; height: 32px;">
+                </a>
+            </div>
+            <div class="crypt-logo logo-sm light">
+                <a href="{{ route('backend.dashboard') }}">
+                    <img src="{{ setting('favicon', '/asset/images/logosm.png') }}" alt="logo" style="width: 32px; height: 32px;">
+                </a>
+            </div>
         </div>
     </div>
 
@@ -42,7 +46,7 @@
                 <span>Dashboard</span>
             </a>
 
-            <a class="sidebar-link {{ active('backend.markets') ? 'is-active' : '' }}" href="{{ route('backend.markets') }}" data-bs-toggle="tooltip" data-bs-placement="right" title="Marketplace">
+            <a class="sidebar-link {{ active('backend.markets') ? 'is-active' : '' }}" href="{{ route('backend.markets') }}" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Marketplace">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20.9597 17.84L19.3297 18.39C18.8797 18.54 18.5197 18.89 18.3697 19.35L17.8197 20.98C17.3497 22.39 15.3697 22.36 14.9297 20.95L13.0797 15C12.7197 13.82 13.8097 12.72 14.9797 13.09L20.9397 14.94C22.3397 15.38 22.3597 17.37 20.9597 17.84Z"/>
                     <path opacity="0.4" d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"/>
@@ -51,11 +55,14 @@
             </a>
 
             @if (setting('trade'))
-                <a class="sidebar-link {{ active('backend.tradestation') ? 'is-active' : '' }}" href="{{ route('backend.tradestation') }}" data-bs-toggle="tooltip" data-bs-placement="right" title="Trade Station">
+                <a class="sidebar-link {{ active('backend.tradestation') ? 'is-active' : '' }}" href="{{ route('backend.tradestation') }}" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Exchange">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16 6L18.29 8.29L13.41 13.17L9.41 9.17L2 16.59L3.41 18L9.41 12L13.41 16L19.71 9.71L22 12V6H16Z"/>
+                        <path d="M15 15.5C15 19.09 12.09 22 8.5 22C4.91 22 2 19.09 2 15.5C2 11.91 4.91 9 8.5 9C8.67 9 8.84999 9.01 9.01999 9.02C12.19 9.27 14.73 11.81 14.98 14.98C14.99 15.15 15 15.33 15 15.5Z" fill="currentColor"></path>
+                        <path opacity="0.4" d="M22 8.5C22 12.09 19.09 15 15.5 15C15.33 15 15.15 14.99 14.98 14.98C14.73 11.81 12.19 9.27 9.01999 9.02C9.00999 8.85 9 8.67 9 8.5C9 4.91 11.91 2 15.5 2C19.09 2 22 4.91 22 8.5Z" fill="currentColor"></path>
+                        <path d="M5.59 2H3C2.45 2 2 2.45 2 3V5.59C2 6.48 3.07999 6.93 3.70999 6.3L6.29999 3.71001C6.91999 3.08001 6.48 2 5.59 2Z" fill="currentColor"></path>
+                        <path d="M18.41 22H21C21.55 22 22 21.55 22 21V18.41C22 17.52 20.92 17.07 20.29 17.7L17.7 20.29C17.08 20.92 17.52 22 18.41 22Z" fill="currentColor"></path>
                     </svg>
-                    <span>Trade Station</span>
+                    <span>Exchange</span>
                 </a>
             @endif
 
@@ -71,7 +78,7 @@
                 </a>
             @endif
 
-            <a class="sidebar-link {{ active('backend.profile.edit') ? 'is-active' : '' }}" href="{{ route('backend.profile.edit') }}" data-bs-toggle="tooltip" data-bs-placement="right" title="My Asset">
+            <a class="sidebar-link trending {{ active('backend.profile.edit') ? 'is-active' : '' }}" href="{{ route('backend.profile.edit') }}" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="My Asset">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21.0602 11.8201L20.9002 11.6001C20.6202 11.2601 20.2902 10.9901 19.9102 10.7901C19.4002 10.5001 18.8202 10.3501 18.2202 10.3501H5.7702C5.1702 10.3501 4.6002 10.5001 4.0802 10.7901C3.6902 11.0001 3.3402 11.2901 3.0502 11.6501C2.4802 12.3801 2.2102 13.2801 2.3002 14.1801L2.6702 18.8501C2.8002 20.2601 2.9702 22.0001 6.1402 22.0001H17.8602C21.0302 22.0001 21.1902 20.2601 21.3302 18.8401L21.7002 14.1901C21.7902 13.3501 21.5702 12.5101 21.0602 11.8201ZM14.3902 17.3401H9.6002C9.2102 17.3401 8.9002 17.0201 8.9002 16.6401C8.9002 16.2601 9.2102 15.9401 9.6002 15.9401H14.3902C14.7802 15.9401 15.0902 16.2601 15.0902 16.6401C15.0902 17.0301 14.7802 17.3401 14.3902 17.3401Z"/>
                     <path opacity="0.4" d="M3.37988 11.31C3.59988 11.11 3.81988 10.93 4.07988 10.79C4.58988 10.5 5.16988 10.35 5.76988 10.35H18.2299C18.8299 10.35 19.3999 10.5 19.9199 10.79C20.1799 10.93 20.4099 11.11 20.6199 11.32V10.79V9.82C20.6199 6.25 19.5299 5.16 15.9599 5.16H13.5799C13.1399 5.16 13.1299 5.15 12.8699 4.81L11.6699 3.2C11.0999 2.46 10.6499 2 9.21988 2H8.03988C4.46988 2 3.37988 3.09 3.37988 6.66V10.8V11.31Z"/>

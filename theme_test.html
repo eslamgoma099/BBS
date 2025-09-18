@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head class="crypt-dark">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Crypt Theme Test</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="public/bootstrap/css/bootstrap.css">
+    
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+    
+    <!-- Custom Theme CSS -->
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="public/css/responsive.css">
+    <link rel="stylesheet" href="public/css/button.css">
+    <link rel="stylesheet" href="public/css/crypt-theme.css">
+</head>
+
+<body class="crypt-dark">
+    <section class="container-fluid d-sm-flex flex-row fixed-sidebar">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Brand Logo -->
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="justify-content-between disable-sm-screen mt-3">
+                    <!-- Logo -->
+                    <div class="crypt-logo dark">
+                        <a href="/">
+                            <img src="public/asset/images/logosm.png" alt="logo" style="max-height: 40px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <nav class="nav nav-sidebar">
+                <ul class="list-unstyled">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#trading">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Trading</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#wallet">
+                            <i class="fas fa-wallet"></i>
+                            <span>Wallet</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <div class="wrapper pb-2">
+            <!-- Header -->
+            <div class="header d-flex align-items-center">
+                <!-- Mobile Toggle Button -->
+                <span id="sidebar-mobile-toggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21.25 7.81V16.19C21.25 17.8608 20.7549 19.1045 19.9297 19.9297C19.1045 20.7549 17.8608 21.25 16.19 21.25H9.75V2.75H16.19C17.8608 2.75 19.1045 3.24514 19.9297 4.07033C20.7549 4.89552 21.25 6.13915 21.25 7.81Z" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M9 2V22H7.81C4.17 22 2 19.83 2 16.19V7.81C2 4.17 4.17 2 7.81 2H9Z" fill="currentColor"/>
+                    </svg>
+                </span>
+
+                <!-- Logo -->
+                <div class="crypt-logo logo-m dark">
+                    <a href="/">
+                        <img src="public/asset/images/logosm.png" alt="logo" style="max-height: 35px;">
+                    </a>
+                </div>
+
+                <!-- Collapse Button -->
+                <div class="collapse-btn">
+                    <span id="sidebar-collapse">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21.25 7.81V16.19C21.25 17.8608 20.7549 19.1045 19.9297 19.9297C19.1045 20.7549 17.8608 21.25 16.19 21.25H9.75V2.75H16.19C17.8608 2.75 19.1045 3.24514 19.9297 4.07033C20.7549 4.89552 21.25 6.13915 21.25 7.81Z" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M9 2V22H7.81C4.17 22 2 19.83 2 16.19V7.81C2 4.17 4.17 2 7.81 2H9Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                </div>
+
+                <!-- Header Navigation -->
+                <div class="ml-auto d-flex align-items-center">
+                    <!-- Dark/Light Mode Toggle -->
+                    <div class="theme-toggle">
+                        <button class="btn btn-link theme-toggle-btn" id="themeToggle" aria-label="Toggle Dark/Light Mode">
+                            <!-- Sun Icon (Light Mode) -->
+                            <svg class="theme-icon sun-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 3V4M12 20V21M4 12H3M6.31412 6.31412L5.5 5.5M17.6859 6.31412L18.5 5.5M6.31412 17.69L5.5 18.5M17.6859 17.69L18.5 18.5M21 12H20M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <!-- Moon Icon (Dark Mode) -->
+                            <svg class="theme-icon moon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 3C12.5523 3 13 3.44772 13 4V5C13 5.55228 12.5523 6 12 6C11.4477 6 11 5.55228 11 5V4C11 3.44772 11.4477 3 12 3Z" fill="currentColor"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0672 11.8568L20.4253 11.1162C20.0648 10.7556 19.4842 10.7556 19.1237 11.1162L18.4828 11.7571C18.1223 12.1176 18.1223 12.6982 18.4828 13.0587L19.1237 13.6996C19.4842 14.0601 20.0648 14.0601 20.4253 13.6996L21.0672 13.0587C21.4277 12.6982 21.4277 12.1176 21.0672 11.8568Z" fill="currentColor"/>
+                                <path d="M21.5002 12C21.5002 12.8284 20.8286 13.5 20.0002 13.5H19.0002C18.1718 13.5 17.5002 12.8284 17.5002 12C17.5002 11.1716 18.1718 10.5 19.0002 10.5H20.0002C20.8286 10.5 21.5002 11.1716 21.5002 12Z" fill="currentColor"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <!-- Profile Dropdown -->
+                    <div class="dropdown profile_menu disable-sm-screen">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar">
+                                    <img src="https://via.placeholder.com/40" alt="User Avatar">
+                                </div>
+                                <div class="user-info ml-2">
+                                    <span class="user-name">Test User</span>
+                                    <small class="user-role">Administrator</small>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#profile">
+                                <i class="fas fa-user"></i> Profile
+                            </a>
+                            <a class="dropdown-item" href="#settings">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#logout">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page Content -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Crypt Theme Test</h3>
+                            </div>
+                            <div class="card-body">
+                                <h4>Theme Integration Test</h4>
+                                <p>This is a test page to verify that the Crypt theme has been successfully integrated into the Laravel application.</p>
+                                
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="card bg-primary text-white">
+                                            <div class="card-body">
+                                                <h5>Primary Card</h5>
+                                                <p>Card content</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card bg-success text-white">
+                                            <div class="card-body">
+                                                <h5>Success Card</h5>
+                                                <p>Card content</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card bg-warning text-dark">
+                                            <div class="card-body">
+                                                <h5>Warning Card</h5>
+                                                <p>Card content</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card bg-danger text-white">
+                                            <div class="card-body">
+                                                <h5>Danger Card</h5>
+                                                <p>Card content</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4">
+                                    <h5>Button Tests</h5>
+                                    <button class="btn btn-primary mr-2">Primary Button</button>
+                                    <button class="btn btn-secondary mr-2">Secondary Button</button>
+                                    <button class="btn btn-success mr-2">Success Button</button>
+                                    <button class="btn btn-danger mr-2">Danger Button</button>
+                                </div>
+
+                                <div class="mt-4">
+                                    <h5>Modal Test</h5>
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#testModal">
+                                        Open Test Modal
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Modal -->
+    <div class="modal fade" id="testModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Test Modal</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>This is a test modal to verify that Bootstrap JavaScript components are working correctly with the new theme.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to top -->
+    <a href="#" class="scrollup text-center">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript Files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+    <script src="public/bootstrap/js/bootstrap.js"></script>
+    <script src="public/js/main.js"></script>
+
+    <script>
+        // Test JavaScript functionality
+        $(document).ready(function() {
+            console.log('Crypt Theme Test Page Loaded Successfully!');
+            
+            // Test theme toggle functionality
+            $('#themeToggle').on('click', function() {
+                console.log('Theme toggle button clicked!');
+                const body = $('body');
+                if (body.hasClass('crypt-dark')) {
+                    body.removeClass('crypt-dark').addClass('crypt-light');
+                    console.log('Switched to light mode');
+                } else {
+                    body.removeClass('crypt-light').addClass('crypt-dark');
+                    console.log('Switched to dark mode');
+                }
+            });
+            
+            // Test sidebar toggle functionality
+            $('#sidebar-collapse, #sidebar-mobile-toggle').on('click', function() {
+                $('.sidebar').toggleClass('collapsed');
+                console.log('Sidebar toggle clicked');
+            });
+
+            // Test dropdown functionality
+            $('.dropdown-toggle').on('click', function(e) {
+                e.preventDefault();
+                $(this).next('.dropdown-menu').toggleClass('show');
+                console.log('Dropdown toggle clicked');
+            });
+
+            // Test modal functionality
+            $('[data-toggle="modal"]').on('click', function() {
+                var target = $(this).data('target');
+                $(target).modal('show');
+                console.log('Modal opened:', target);
+            });
+
+            // Close dropdown when clicking outside
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('.dropdown').length) {
+                    $('.dropdown-menu').removeClass('show');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

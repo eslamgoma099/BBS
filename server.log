@@ -1,0 +1,77 @@
+Server running at http://0.0.0.0:8000/
+Serving files from: /home/user/webapp
+Test the theme at: http://0.0.0.0:8000/theme_test.html
+17/Sep/2025 13:22:49 - "GET /theme_test.html HTTP/1.1" 200 -
+17/Sep/2025 13:22:49 - code 404, message File not found
+17/Sep/2025 13:22:49 - "GET /js/main.js HTTP/1.1" 404 -
+17/Sep/2025 13:22:49 - code 404, message File not found
+17/Sep/2025 13:22:49 - "GET /css/responsive.css HTTP/1.1" 404 -
+17/Sep/2025 13:22:49 - code 404, message File not found
+17/Sep/2025 13:22:49 - "GET /css/style.css HTTP/1.1" 404 -
+17/Sep/2025 13:22:49 - code 404, message File not found
+17/Sep/2025 13:22:49 - "GET /bootstrap/css/bootstrap.css HTTP/1.1" 404 -
+17/Sep/2025 13:22:49 - code 404, message File not found
+17/Sep/2025 13:22:49 - "GET /asset/images/logosm.png HTTP/1.1" 404 -
+17/Sep/2025 13:22:49 - code 404, message File not found
+17/Sep/2025 13:22:49 - "GET /css/crypt-theme.css HTTP/1.1" 404 -
+17/Sep/2025 13:22:49 - code 404, message File not found
+17/Sep/2025 13:22:49 - "GET /css/button.css HTTP/1.1" 404 -
+17/Sep/2025 13:22:49 - code 404, message File not found
+17/Sep/2025 13:22:49 - "GET /bootstrap/js/bootstrap.js HTTP/1.1" 404 -
+17/Sep/2025 13:22:49 - code 404, message File not found
+17/Sep/2025 13:22:49 - "GET /favicon.ico HTTP/1.1" 404 -
+17/Sep/2025 13:23:54 - "GET /theme_test.html HTTP/1.1" 200 -
+17/Sep/2025 13:23:54 - "GET /public/bootstrap/css/bootstrap.css HTTP/1.1" 200 -
+17/Sep/2025 13:23:54 - "GET /public/css/style.css HTTP/1.1" 200 -
+17/Sep/2025 13:23:54 - "GET /public/css/responsive.css HTTP/1.1" 200 -
+17/Sep/2025 13:23:54 - "GET /public/css/crypt-theme.css HTTP/1.1" 200 -
+17/Sep/2025 13:23:54 - "GET /public/asset/images/logosm.png HTTP/1.1" 200 -
+17/Sep/2025 13:23:54 - "GET /public/css/button.css HTTP/1.1" 200 -
+17/Sep/2025 13:23:54 - "GET /public/bootstrap/js/bootstrap.js HTTP/1.1" 200 -
+17/Sep/2025 13:23:54 - "GET /public/js/main.js HTTP/1.1" 200 -
+17/Sep/2025 13:23:55 - code 404, message File not found
+17/Sep/2025 13:23:55 - "GET /favicon.ico HTTP/1.1" 404 -
+17/Sep/2025 13:24:36 - "GET /theme_test.html HTTP/1.1" 200 -
+17/Sep/2025 13:24:36 - "GET /public/bootstrap/css/bootstrap.css HTTP/1.1" 200 -
+17/Sep/2025 13:24:36 - "GET /public/css/style.css HTTP/1.1" 200 -
+17/Sep/2025 13:24:36 - "GET /public/css/button.css HTTP/1.1" 200 -
+17/Sep/2025 13:24:36 - "GET /public/css/responsive.css HTTP/1.1" 200 -
+17/Sep/2025 13:24:36 - "GET /public/css/crypt-theme.css HTTP/1.1" 200 -
+17/Sep/2025 13:24:36 - "GET /public/asset/images/logosm.png HTTP/1.1" 200 -
+17/Sep/2025 13:24:36 - "GET /public/js/main.js HTTP/1.1" 200 -
+17/Sep/2025 13:24:36 - "GET /public/bootstrap/js/bootstrap.js HTTP/1.1" 200 -
+17/Sep/2025 13:24:36 - code 404, message File not found
+17/Sep/2025 13:24:36 - "GET /favicon.ico HTTP/1.1" 404 -
+17/Sep/2025 13:42:49 - "GET /theme_test.html HTTP/1.1" 200 -
+17/Sep/2025 13:42:49 - "GET /public/css/crypt-theme.css HTTP/1.1" 200 -
+17/Sep/2025 13:42:49 - "GET /public/bootstrap/css/bootstrap.css HTTP/1.1" 200 -
+17/Sep/2025 13:42:49 - "GET /public/css/style.css HTTP/1.1" 200 -
+17/Sep/2025 13:42:49 - "GET /public/asset/images/logosm.png HTTP/1.1" 200 -
+17/Sep/2025 13:42:49 - "GET /public/css/responsive.css HTTP/1.1" 200 -
+17/Sep/2025 13:42:49 - "GET /public/css/button.css HTTP/1.1" 200 -
+17/Sep/2025 13:42:49 - "GET /public/js/main.js HTTP/1.1" 200 -
+17/Sep/2025 13:42:49 - "GET /public/bootstrap/js/bootstrap.js HTTP/1.1" 200 -
+17/Sep/2025 13:42:49 - code 404, message File not found
+17/Sep/2025 13:42:49 - "GET /favicon.ico HTTP/1.1" 404 -
+17/Sep/2025 13:43:09 - "GET /theme_test.html HTTP/1.1" 200 -
+17/Sep/2025 13:43:09 - "GET /public/bootstrap/css/bootstrap.css HTTP/1.1" 200 -
+17/Sep/2025 13:43:09 - "GET /public/bootstrap/js/bootstrap.js HTTP/1.1" 200 -
+17/Sep/2025 13:43:09 - "GET /public/css/style.css HTTP/1.1" 200 -
+17/Sep/2025 13:43:09 - "GET /public/js/main.js HTTP/1.1" 200 -
+17/Sep/2025 13:43:09 - "GET /public/css/crypt-theme.css HTTP/1.1" 200 -
+17/Sep/2025 13:43:09 - "GET /public/css/responsive.css HTTP/1.1" 200 -
+17/Sep/2025 13:43:09 - "GET /public/asset/images/logosm.png HTTP/1.1" 200 -
+17/Sep/2025 13:43:10 - "GET /public/css/button.css HTTP/1.1" 200 -
+17/Sep/2025 13:43:10 - code 404, message File not found
+17/Sep/2025 13:43:10 - "GET /favicon.ico HTTP/1.1" 404 -
+17/Sep/2025 14:01:23 - "GET /new_header_test.html HTTP/1.1" 200 -
+17/Sep/2025 14:01:23 - "GET /public/asset/images/logosm.png HTTP/1.1" 200 -
+17/Sep/2025 14:01:23 - "GET /public/css/style.css HTTP/1.1" 200 -
+17/Sep/2025 14:01:23 - "GET /public/bootstrap/css/bootstrap.css HTTP/1.1" 200 -
+17/Sep/2025 14:01:23 - "GET /public/css/button.css HTTP/1.1" 200 -
+17/Sep/2025 14:01:23 - "GET /public/bootstrap/js/bootstrap.js HTTP/1.1" 200 -
+17/Sep/2025 14:01:23 - "GET /public/css/crypt-theme.css HTTP/1.1" 200 -
+17/Sep/2025 14:01:23 - "GET /public/js/main.js HTTP/1.1" 200 -
+17/Sep/2025 14:01:23 - "GET /public/css/responsive.css HTTP/1.1" 200 -
+17/Sep/2025 14:01:23 - code 404, message File not found
+17/Sep/2025 14:01:23 - "GET /favicon.ico HTTP/1.1" 404 -

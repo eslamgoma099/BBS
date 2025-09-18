@@ -1,0 +1,24 @@
+2025-09-17 13:22:27,914 INFO RPC interface 'supervisor' initialized
+2025-09-17 13:22:27,914 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-09-17 13:22:27,917 INFO daemonizing the supervisord process
+2025-09-17 13:22:27,919 INFO supervisord started with pid 5851
+2025-09-17 13:22:28,922 INFO spawned: 'theme_test_server' with pid 5857
+2025-09-17 13:22:30,011 INFO success: theme_test_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-09-18 07:08:53,345 INFO waiting for theme_test_server to stop
+2025-09-18 07:08:53,347 WARN stopped: theme_test_server (terminated by SIGTERM)
+2025-09-18 07:08:55,352 WARN received SIGTERM indicating exit request
+2025-09-18 07:09:00,209 INFO RPC interface 'supervisor' initialized
+2025-09-18 07:09:00,210 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-09-18 07:09:00,212 INFO daemonizing the supervisord process
+2025-09-18 07:09:00,213 INFO supervisord started with pid 33908
+2025-09-18 07:09:01,215 INFO spawnerr: can't find command 'php'
+2025-09-18 07:09:02,217 INFO spawnerr: can't find command 'php'
+2025-09-18 07:09:04,385 INFO spawnerr: can't find command 'php'
+2025-09-18 07:09:07,389 INFO spawnerr: can't find command 'php'
+2025-09-18 07:09:07,390 INFO gave up: laravel entered FATAL state, too many start retries too quickly
+2025-09-18 07:09:32,349 INFO RPC interface 'supervisor' initialized
+2025-09-18 07:09:32,349 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-09-18 07:09:32,352 INFO daemonizing the supervisord process
+2025-09-18 07:09:32,352 INFO supervisord started with pid 34023
+2025-09-18 07:09:33,356 INFO spawned: 'theme_test_server' with pid 34028
+2025-09-18 07:09:34,358 INFO success: theme_test_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
