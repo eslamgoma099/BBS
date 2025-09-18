@@ -78,94 +78,102 @@
     </header>
 
     <!-- Login Form -->
-    <div class="container mt-5 pt-5">
-        <div class="row justify-content-center">
-            <div class="crypt-login-form mt-5" style="max-width: 520px;">
-                <div class="d-flex justify-content-between mb-4 text-center">
-                    <h3 class="fw-bold mb-0">Log in</h3>
-                    <!-- QR dropdown kept as in theme (non-functional placeholder) -->
-                    <div class="dropup">
-                        <a class="card card-border circle crypt-grayscale-600 text-link p-2" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 4h7v7H4V4zm0 9h7v7H4v-7zm11 0h-2v4h4v-2h3v-2h-4v2h-1v-2zm5 3h-2v2h-2v2h4v-4zm-5 2h-2v2h2v-2zM13 4h7v7h-7V4zM8.5 6.5h-2v2h2v-2zm-2 9h2v2h-2v-2zm11-9h-2v2h2v-2z" fill="currentColor"></path></svg>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg-end text-center card-bs" style="max-width: 390px;">
-                            <div class="d-flex flex-column justify-content-center text-sm px-3 mt-2">
-                                <img class="card text-bg-light p-3" alt="qr" src="{{ asset('assets/images/features/qr.svg') }}">
-                                <div class="crypto-has-dropdown fw-medium crypt-grayscale-600 mt-3" role="button">
-                                    Scan the QR code to log in or Open Crypt app.
-                                </div>
-                                <div class="d-flex flex-row gap-2 mt-3 justify-content-center">
-                                    <p class="crypt-grayscale-500 mb-0">Don't have an account?</p>
-                                    <a href="{{ url('joined') }}" class="link-primary fw-bold">Sign up</a>
-                                </div>
-                            </div>
+    <div class="container-fluid d-flex align-items-center justify-content-center min-vh-100 py-5">
+        <div class="card border-0 shadow-lg" style="max-width: 900px; border-radius: 12px; overflow: hidden;">
+            <div class="row g-0">
+                <!-- Left Column - QR Code Section -->
+                <div class="col-lg-5 d-flex flex-column align-items-center justify-content-center p-4 p-lg-5 bg-light" style="min-height: 500px;">
+                    <div class="text-center">
+                        <div class="mb-4">
+                            <img class="card text-bg-light p-3 border-0" alt="QR Code to sign in" src="{{ asset('assets/images/features/qr.svg') }}" style="max-width: 200px; border-radius: 8px;">
+                        </div>
+                        <p class="fw-medium text-muted mb-4">
+                            Scan the QR code to log in or Open Crypt app.
+                        </p>
+                        <div class="d-flex flex-row gap-2 justify-content-center">
+                            <p class="text-muted mb-0">Don't have an account?</p>
+                            <a href="{{ url('joined') }}" class="link-primary fw-bold text-decoration-none">Sign up</a>
                         </div>
                     </div>
                 </div>
-
-                {{-- Validation errors block (same behavior as old view) --}}
-                @if ($errors->any())
-                    <div class="alert alert-danger py-2" role="alert">
-                        <ul class="mb-0 small">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                
+                <!-- Right Column - Login Form -->
+                <div class="col-lg-7 p-4 p-lg-5">
+                    <div class="mb-4">
+                        <h3 class="fw-bold mb-0">Log in</h3>
                     </div>
-                @endif
 
-                <form class="needs-validation" action="{{ route('login') }}" method="POST" novalidate>
-                    @csrf
-                    <div class="d-flex flex-column">
-                        <div class="d-flex flex-column mb-3">
-                            <label for="email" class="form-label text-light">Email <span class="crypt-grayscale-600">*</span></label>
-                            <input type="email" class="form-control py-2 @error('email') is-invalid @enderror" name="email" id="email" placeholder="Email" value="{{ old('email') }}" required autofocus>
-                            <div class="invalid-feedback mt-0">This field is required.</div>
+                    {{-- Validation errors block --}}
+                    @if ($errors->any())
+                        <div class="alert alert-danger py-2" role="alert">
+                            <ul class="mb-0 small">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form class="needs-validation" action="{{ route('login') }}" method="POST" novalidate>
+                        @csrf
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control py-2 @error('email') is-invalid @enderror" name="email" id="email" placeholder="Enter your email" value="{{ old('email') }}" required autofocus style="border-radius: 8px;">
+                            <div class="invalid-feedback">This field is required.</div>
                             @error('email')
                                 <div class="text-danger small mt-1">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="d-flex flex-column">
-                            <div class="d-flex justify-content-between">
-                                <label for="password" class="form-label text-light">Password <span class="crypt-grayscale-600">*</span></label>
-                                <a href="{{ route('password.request') }}" class="link-primary text-sm text-decoration-none">Forgot password?</a>
+                        
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <label for="password" class="form-label mb-0">Password <span class="text-danger">*</span></label>
+                                <a href="{{ route('password.request') }}" class="link-primary text-decoration-none">Forgot password?</a>
                             </div>
-                            <div class="input-group-append position-relative">
-                                <input type="password" class="form-control form-controls py-2 @error('password') is-invalid @enderror" name="password" id="password" placeholder="Login Password" required>
-                                <button class="eye fright position-absolute top-50 end-0 translate-middle-y me-3 btn btn-link p-0 text-secondary" type="button" id="togglePassword" aria-label="Show password">
+                            <div class="position-relative">
+                                <input type="password" class="form-control py-2 @error('password') is-invalid @enderror" name="password" id="password" placeholder="Enter your password" required style="border-radius: 8px; padding-right: 45px;">
+                                <button class="btn btn-link position-absolute top-50 end-0 translate-middle-y me-2 p-0 text-muted" type="button" id="togglePassword" aria-label="Show password">
                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                 </button>
-                                <div class="invalid-feedback mt-0">This field is required.</div>
+                                <div class="invalid-feedback">This field is required.</div>
                                 @error('password')
-                                    <div class="text-danger small mt-1 w-100">{{ $message }}</div>
+                                    <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between mt-3">
+                        
+                        <div class="mb-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="1" name="remember" id="remember_me" {{ old('remember') ? 'checked' : '' }}>
-                                <label class="form-check-label text-secondary" for="remember_me">Remember me</label>
+                                <label class="form-check-label" for="remember_me">Remember me</label>
                             </div>
                         </div>
-                        <button class="btn btn-primary rounded-pill text-center mt-4" type="submit">Continue</button>
-                    </div>
-                </form>
+                        
+                        <button class="btn btn-primary w-100 py-2 mb-3" type="submit" style="border-radius: 8px;">Log in</button>
+                    </form>
 
-                <div class="d-flex flex-column mt-3">
-                    <div class="divider" role="separator">
-                        <span class="crypt-grayscale-500 p-2">or</span>
+                    <div class="text-center my-3">
+                        <div class="d-flex align-items-center">
+                            <hr class="flex-grow-1">
+                            <span class="px-3 text-muted">or</span>
+                            <hr class="flex-grow-1">
+                        </div>
                     </div>
-                    <a href="#" class="d-flex justify-content-between align-items-center button btn btn-outline-secondary" data-bs-toggle="button">Sign in with Google
-                        <img alt="" width="32" src="{{ asset('assets/images/icon/google.svg') }}">
-                    </a>
-                    <a href="#" class="d-flex justify-content-between align-items-center button btn btn-outline-secondary mt-3" data-bs-toggle="button">Sign in with Apple
-                        <img alt="" width="32" src="{{ asset('assets/images/icon/apple.svg') }}">
-                    </a>
-                </div>
 
-                <div class="d-flex flex-row gap-2 mt-4 justify-content-center">
-                    <p class="crypt-grayscale-500 mb-0">Don't have an account?</p>
-                    <a href="{{ url('joined') }}" class="link-primary fw-bold">Sign up</a>
+                    <div class="d-grid gap-2">
+                        <a href="#" class="btn btn-outline-secondary d-flex align-items-center justify-content-center py-2" style="border-radius: 8px;">
+                            <img alt="Google" width="20" height="20" src="{{ asset('assets/images/icon/google.svg') }}" class="me-2">
+                            Sign in with Google
+                        </a>
+                        <a href="#" class="btn btn-outline-dark d-flex align-items-center justify-content-center py-2" style="border-radius: 8px;">
+                            <img alt="Apple" width="20" height="20" src="{{ asset('assets/images/icon/apple.svg') }}" class="me-2">
+                            Sign in with Apple
+                        </a>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <p class="mb-0">Don't have an account? <a href="{{ url('joined') }}" class="link-primary fw-bold text-decoration-none">Sign up</a></p>
+                    </div>
                 </div>
             </div>
         </div>
