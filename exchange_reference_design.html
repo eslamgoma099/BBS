@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Exchange - Laravel Crypt (Reference Design)</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sidebar-width: 200px;
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Light Theme Variables - Matching Reference Exactly */
+        body.crypt-light {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f1f3f4;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --border-color: #e2e8f0;
+            --accent-yellow: #FFC107;
+            --accent-yellow-hover: #ffb300;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --hover-bg: rgba(0, 0, 0, 0.04);
+            --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dark Theme Variables */
+        body.crypt-dark {
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2d2d2d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --text-muted: #718096;
+            --border-color: #2d3748;
+            --accent-yellow: #FFC107;
+            --accent-yellow-hover: #ffb300;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --hover-bg: rgba(255, 255, 255, 0.06);
+            --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Main Container */
+        .crypt-layout {
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--bg-primary);
+        }
+
+        /* Sidebar - Reference Design */
+        .crypt-sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-brand {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-brand .logo {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-yellow), #ffb300);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #000;
+            font-size: 16px;
+        }
+
+        .sidebar-nav {
+            padding: 10px 0;
+        }
+
+        .nav-section {
+            margin-bottom: 8px;
+        }
+
+        .nav-section-title {
+            padding: 8px 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: none;
+            background: none;
+            position: relative;
+        }
+
+        .sidebar-link:hover {
+            background-color: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .sidebar-link.active {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: var(--accent-yellow);
+            border-right: 3px solid var(--accent-yellow);
+        }
+
+        .sidebar-link i {
+            margin-right: 12px;
+            width: 18px;
+            font-size: 16px;
+        }
+
+        /* Main Content Wrapper */
+        .crypt-main {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        /* Header - Reference Design */
+        .crypt-header {
+            height: var(--header-height);
+            background-color: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Header Search */
+        .header-search {
+            position: relative;
+            width: 320px;
+            margin-right: 40px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 16px 10px 40px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.1);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Header Navigation - Reference Design */
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-right: auto;
+        }
+
+        .nav-tab {
+            padding: 8px 16px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .nav-tab:hover {
+            background-color: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .nav-tab.active {
+            background-color: var(--accent-yellow);
+            color: #000000;
+            font-weight: 600;
+        }
+
+        .nav-tab .badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background-color: var(--accent-red);
+            color: white;
+            border-radius: 10px;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: 600;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-add-funds {
+            background-color: var(--accent-yellow);
+            color: #000000;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-add-funds:hover {
+            background-color: var(--accent-yellow-hover);
+            transform: translateY(-1px);
+        }
+
+        .header-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .header-icon:hover {
+            background-color: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .header-icon .badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background-color: var(--accent-yellow);
+            color: #000000;
+            border-radius: 10px;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: 600;
+            min-width: 16px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        /* Content Area */
+        .crypt-content {
+            flex: 1;
+            background-color: var(--bg-primary);
+            padding: 24px;
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        /* Assets Section - Reference Design */
+        .assets-section {
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .section-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Asset Tabs - Reference Design */
+        .asset-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .asset-tab {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .asset-tab:hover {
+            background-color: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .asset-tab.active {
+            background-color: var(--accent-yellow);
+            color: #000000;
+            border-color: var(--accent-yellow);
+            font-weight: 600;
+        }
+
+        /* Search Coin */
+        .search-coin {
+            width: 100%;
+            padding: 12px 16px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .search-coin:focus {
+            outline: none;
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.1);
+        }
+
+        .search-coin::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Trading Layout */
+        .trading-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr 320px;
+            gap: 20px;
+            min-height: 600px;
+        }
+
+        /* Trading Card */
+        .trading-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* Order Book */
+        .orderbook-table {
+            width: 100%;
+            font-size: 12px;
+        }
+
+        .orderbook-table th {
+            padding: 8px 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-align: right;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .orderbook-table td {
+            padding: 4px 12px;
+            text-align: right;
+            color: var(--text-secondary);
+        }
+
+        .price-buy {
+            color: var(--accent-green);
+        }
+
+        .price-sell {
+            color: var(--accent-red);
+        }
+
+        /* Market Pairs */
+        .pair-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .pair-info h6 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 4px 0;
+        }
+
+        .pair-info small {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .pair-price {
+            text-align: right;
+        }
+
+        .pair-price .price {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .pair-change {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .change-up {
+            color: var(--accent-green);
+        }
+
+        .change-down {
+            color: var(--accent-red);
+        }
+
+        /* Chart Area */
+        .chart-container {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--card-shadow);
+        }
+
+        .chart-placeholder {
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .chart-placeholder i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .trading-layout {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+            }
+            
+            .header-search {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .crypt-sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .crypt-main {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .header-nav {
+                display: none;
+            }
+            
+            .header-search {
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body class="crypt-light">
+    <div class="crypt-layout">
+        <!-- Sidebar -->
+        <nav class="crypt-sidebar">
+            <div class="sidebar-brand">
+                <div class="logo">C</div>
+                <span style="font-weight: 600; color: var(--text-primary);">Crypt</span>
+            </div>
+            
+            <div class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Assets</div>
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-store"></i>
+                        <span>Marketplace</span>
+                    </a>
+                    <a href="#" class="sidebar-link active">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Exchange</span>
+                    </a>
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-wallet"></i>
+                        <span>My Asset</span>
+                    </a>
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-history"></i>
+                        <span>Order History</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Accounts</div>
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Trading Plans</span>
+                    </a>
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-certificate"></i>
+                        <span>Investment Certificates</span>
+                    </a>
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Transaction History</span>
+                    </a>
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="crypt-main">
+            <!-- Header -->
+            <header class="crypt-header">
+                <!-- Search -->
+                <div class="header-search">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search">
+                </div>
+
+                <!-- Navigation Tabs -->
+                <nav class="header-nav">
+                    <button class="nav-tab">Assets</button>
+                    <button class="nav-tab active">
+                        Orders
+                        <span class="badge">3</span>
+                    </button>
+                </nav>
+
+                <!-- Actions -->
+                <div class="header-actions">
+                    <button class="btn-add-funds">Add Funds</button>
+                    
+                    <div class="header-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">2</span>
+                    </div>
+                    
+                    <div class="header-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    
+                    <button class="theme-toggle" id="theme-toggle">
+                        <i class="fas fa-sun" id="theme-icon"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="crypt-content">
+                <!-- Assets Section -->
+                <div class="assets-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Assets</h2>
+                        <div class="section-actions">
+                            <button class="nav-tab active">Orders</button>
+                            <button class="btn-add-funds">Add Funds</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Asset Tabs -->
+                    <div class="asset-tabs">
+                        <button class="asset-tab active" data-asset="BTC">BTC</button>
+                        <button class="asset-tab" data-asset="ETH">ETH</button>
+                        <button class="asset-tab" data-asset="USDT">USDT</button>
+                        <button class="asset-tab" data-asset="XRP">XRP</button>
+                    </div>
+                    
+                    <!-- Search Coin -->
+                    <input type="text" class="search-coin" placeholder="Search coin">
+                </div>
+
+                <!-- Trading Chart -->
+                <div class="chart-container">
+                    <div class="chart-placeholder">
+                        <i class="fas fa-chart-line"></i>
+                        <h5 style="color: var(--text-primary); margin-bottom: 8px;">BTC/USDT Trading Chart</h5>
+                        <p>Price: $76,248.96 | 24h Change: +2.45%</p>
+                    </div>
+                </div>
+
+                <!-- Trading Layout -->
+                <div class="trading-layout">
+                    <!-- Order Book -->
+                    <div class="trading-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Order Book</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="orderbook-table">
+                                <thead>
+                                    <tr>
+                                        <th>Price (USDT)</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Sell Orders -->
+                                    <tr class="price-sell">
+                                        <td>76,249.95</td>
+                                        <td>24.098</td>
+                                        <td>---</td>
+                                    </tr>
+                                    <tr class="price-sell">
+                                        <td>76,249.95</td>
+                                        <td>24.098</td>
+                                        <td>---</td>
+                                    </tr>
+                                    <tr class="price-sell">
+                                        <td>76,249.95</td>
+                                        <td>24.098</td>
+                                        <td>---</td>
+                                    </tr>
+                                    <!-- Current Price -->
+                                    <tr style="border-top: 2px solid var(--accent-yellow); border-bottom: 2px solid var(--accent-yellow);">
+                                        <td colspan="3" style="text-align: center; color: var(--accent-yellow); font-weight: 600; padding: 8px;">
+                                            ¥ 0.9007 ≈ $0,000.00 USD
+                                        </td>
+                                    </tr>
+                                    <!-- Buy Orders -->
+                                    <tr class="price-buy">
+                                        <td>76,249.95</td>
+                                        <td>24.098</td>
+                                        <td>---</td>
+                                    </tr>
+                                    <tr class="price-buy">
+                                        <td>76,249.95</td>
+                                        <td>24.098</td>
+                                        <td>---</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Chart Area (Center) -->
+                    <div class="trading-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Market Trading</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="height: 300px; background: var(--bg-tertiary); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
+                                <div class="text-center">
+                                    <i class="fas fa-chart-area" style="font-size: 48px; margin-bottom: 16px;"></i>
+                                    <p>Trading Chart Area</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Market Pairs -->
+                    <div class="trading-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Assets</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="margin-bottom: 16px;">
+                                <div style="display: flex; justify-content: space-between; color: var(--text-muted); font-size: 12px; font-weight: 500; margin-bottom: 8px;">
+                                    <span>Pairs</span>
+                                    <span>Price</span>
+                                    <span>Change</span>
+                                </div>
+                            </div>
+                            
+                            <div class="pair-item">
+                                <div class="pair-info">
+                                    <h6>USDT</h6>
+                                    <small>BTC</small>
+                                </div>
+                                <div class="pair-price">
+                                    <div class="price">$30.03</div>
+                                    <div class="pair-change change-up">62.9%</div>
+                                </div>
+                            </div>
+
+                            <div class="pair-item">
+                                <div class="pair-info">
+                                    <h6>TON</h6>
+                                    <small>BTC</small>
+                                </div>
+                                <div class="pair-price">
+                                    <div class="price">$21.12</div>
+                                    <div class="pair-change change-down">-10.4%</div>
+                                </div>
+                            </div>
+
+                            <div class="pair-item">
+                                <div class="pair-info">
+                                    <h6>LSK</h6>
+                                    <small>BTC</small>
+                                </div>
+                                <div class="pair-price">
+                                    <div class="price">$3.53</div>
+                                    <div class="pair-change change-up">19.2%</div>
+                                </div>
+                            </div>
+
+                            <div class="pair-item">
+                                <div class="pair-info">
+                                    <h6>XLM</h6>
+                                    <small>BTC</small>
+                                </div>
+                                <div class="pair-price">
+                                    <div class="price">$92.53</div>
+                                    <div class="pair-change change-up">12.3%</div>
+                                </div>
+                            </div>
+
+                            <div class="pair-item">
+                                <div class="pair-info">
+                                    <h6>LINK</h6>
+                                    <small>BTC</small>
+                                </div>
+                                <div class="pair-price">
+                                    <div class="price">$40.50</div>
+                                    <div class="pair-change change-down">-26.3%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme functionality
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            
+            function applyTheme(theme) {
+                document.body.classList.remove('crypt-dark', 'crypt-light');
+                document.body.classList.add(`crypt-${theme}`);
+                document.documentElement.setAttribute('data-bs-theme', theme);
+                
+                const themeIcon = document.getElementById('theme-icon');
+                if (themeIcon) {
+                    themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+                }
+                
+                console.log(`Theme applied: ${theme}`);
+            }
+            
+            // Initialize theme
+            applyTheme(savedTheme);
+
+            // Theme toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    const currentTheme = localStorage.getItem('theme') || 'light';
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    
+                    applyTheme(newTheme);
+                    localStorage.setItem('theme', newTheme);
+                });
+            }
+
+            // Asset tabs functionality
+            const assetTabs = document.querySelectorAll('.asset-tab');
+            assetTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    assetTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    console.log(`Selected asset: ${this.dataset.asset}`);
+                });
+            });
+
+            console.log('Reference design loaded successfully! ✅');
+        });
+    </script>
+</body>
+</html>

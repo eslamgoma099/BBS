@@ -15,14 +15,14 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="icon" type="image/svg" href="./images/favicon.svg">
     
     <style>
         :root {
             --sidebar-width: 200px;
-            --header-height: 60px;
+            --header-height: 70px;
         }
 
         * {
@@ -32,38 +32,42 @@
         }
 
         body {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+        }
+
+        /* Light Theme Variables - Matching Reference Exactly */
+        body.crypt-light {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #f1f3f4;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --border-color: #e2e8f0;
+            --accent-yellow: #FFC107;
+            --accent-yellow-hover: #ffb300;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --hover-bg: rgba(0, 0, 0, 0.04);
+            --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         /* Dark Theme Variables */
         body.crypt-dark {
-            --bg-primary: #000000;
+            --bg-primary: #0f0f0f;
             --bg-secondary: #1a1a1a;
-            --bg-tertiary: #2a2a2a;
+            --bg-tertiary: #2d2d2d;
             --text-primary: #ffffff;
-            --text-secondary: #cccccc;
-            --text-muted: #888888;
-            --border-color: #333333;
-            --accent-yellow: #ffd700;
-            --accent-green: #00d4aa;
-            --accent-red: #ff6b6b;
-            --hover-bg: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Light Theme Variables */
-        body.crypt-light {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --bg-tertiary: #e9ecef;
-            --text-primary: #000000;
-            --text-secondary: #333333;
-            --text-muted: #666666;
-            --border-color: #dee2e6;
-            --accent-yellow: #ffd700;
-            --accent-green: #28a745;
-            --accent-red: #dc3545;
-            --hover-bg: rgba(0, 0, 0, 0.05);
+            --text-secondary: #a0aec0;
+            --text-muted: #718096;
+            --border-color: #2d3748;
+            --accent-yellow: #FFC107;
+            --accent-yellow-hover: #ffb300;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --hover-bg: rgba(255, 255, 255, 0.06);
+            --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         /* Main Container */
@@ -243,22 +247,46 @@
             font-weight: bold;
         }
 
-        /* Asset Selector Buttons - Matching Reference Design */
-        .asset-selector {
+        /* Asset Tabs - Reference Design Exact Match */
+        .asset-tabs {
             display: flex;
-            align-items: center;
             gap: 8px;
-            margin: 20px 0;
+            margin-bottom: 16px;
         }
 
-        .asset-btn {
-            background-color: var(--bg-tertiary);
-            color: var(--text-secondary);
+        .asset-tab {
+            background-color: var(--bg-secondary);
             border: 1px solid var(--border-color);
+            color: var(--text-secondary);
             padding: 8px 16px;
-            border-radius: 8px;
+            border-radius: 6px;
             font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .asset-tab:hover {
+            background-color: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .asset-tab.active {
+            background-color: var(--accent-yellow);
+            color: #000000;
+            border-color: var(--accent-yellow);
             font-weight: 600;
+        }
+
+        /* Legacy support */
+        .asset-btn {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -272,6 +300,7 @@
             background-color: var(--accent-yellow) !important;
             color: #000000 !important;
             border-color: var(--accent-yellow) !important;
+            font-weight: 600 !important;
         }
 
         /* Search Coin Input */
@@ -377,29 +406,55 @@
             background-color: var(--hover-bg);
         }
 
-        /* Exchange Specific Styles */
-        .exchange-container {
+        /* Exchange Specific Styles - Reference Design */
+        .exchange-container,
+        .trading-layout {
             display: grid;
             grid-template-columns: 280px 1fr 320px;
             gap: 20px;
-            height: calc(100vh - var(--header-height) - 40px);
+            min-height: 600px;
         }
 
-        .exchange-panel {
+        .exchange-panel,
+        .trading-card {
             background-color: var(--bg-secondary);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 15px;
-            overflow-y: auto;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
         }
 
-        .panel-title {
+        .panel-title,
+        .card-title {
             color: var(--text-primary);
             font-size: 16px;
             font-weight: 600;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
+            margin: 0;
+        }
+
+        .card-header {
+            padding: 16px 20px;
             border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* Legacy panel support */
+        .exchange-panel {
+            padding: 0;
+        }
+
+        .exchange-panel .panel-title {
+            padding: 16px 20px;
+            margin-bottom: 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .exchange-panel > *:not(.panel-title) {
+            padding: 0 20px 20px 20px;
         }
 
         /* Order Book */
@@ -469,22 +524,40 @@
             color: var(--accent-red);
         }
 
-        /* Trading Chart Area */
+        /* Trading Chart Area - Reference Design */
         .chart-container {
             background-color: var(--bg-secondary);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 15px;
+            padding: 20px;
             margin-bottom: 20px;
             height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: var(--card-shadow);
         }
 
         .chart-placeholder {
-            color: var(--text-muted);
             text-align: center;
+            color: var(--text-muted);
+        }
+
+        .chart-placeholder i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .chart-placeholder h5 {
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .chart-placeholder p {
+            color: var(--text-secondary);
+            font-size: 14px;
         }
 
         /* Orders Section */
@@ -1065,51 +1138,26 @@
 
             <!-- Content Area - Exchange Interface -->
             <div class="crypt-content">
-                <!-- Assets Section - Matching Reference Design 100% -->
-                <div class="card mb-4" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color);">
-                    <!-- Card Header -->
-                    <div class="card-header border-0 bg-transparent px-3 py-2">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h6 class="mb-0 fw-bold" style="color: var(--text-primary);">Assets</h6>
-                            <div class="d-flex gap-2">
-                                <span class="badge-orders">Orders</span>
-                                <button class="btn-add-funds-new">Add Funds</button>
-                            </div>
+                <!-- Assets Section - Reference Design Exact Match -->
+                <div class="assets-section">
+                    <div class="section-header">
+                        <h2 class="section-title" style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin: 0;">Assets</h2>
+                        <div class="section-actions" style="display: flex; align-items: center; gap: 12px;">
+                            <button class="nav-button-new nav-button-active" style="background-color: var(--accent-yellow); color: #000000; padding: 8px 16px; border: none; border-radius: 6px; font-weight: 600;">Orders</button>
+                            <button class="btn-add-funds-new">Add Funds</button>
                         </div>
                     </div>
                     
-                    <!-- Card Body -->
-                    <div class="card-body px-3 pt-0">
-                        <!-- Crypto Tabs -->
-                        <div class="crypto-tabs mb-3">
-                            <div class="d-flex gap-2">
-                                <button class="crypto-btn crypto-btn-active">BTC</button>
-                                <button class="crypto-btn">ETH</button>
-                                <button class="crypto-btn">USDT</button>
-                                <button class="crypto-btn">XRP</button>
-                            </div>
-                        </div>
-                        
-                        <!-- Search Coin Input -->
-                        <div class="search-coin-container">
-                            <input type="text" class="search-coin-input" placeholder="Search coin">
-                        </div>
-
-                        <!-- Pairs Table Header -->
-                        <div class="pairs-table-header mt-4 mb-2">
-                            <div class="row text-muted small">
-                                <div class="col-4">
-                                    <strong>Pairs</strong>
-                                </div>
-                                <div class="col-4 text-center">
-                                    <strong>Price</strong>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <strong>Change</strong>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Asset Tabs - Reference Design -->
+                    <div class="asset-tabs">
+                        <button class="asset-tab active" data-asset="BTC">BTC</button>
+                        <button class="asset-tab" data-asset="ETH">ETH</button>
+                        <button class="asset-tab" data-asset="USDT">USDT</button>
+                        <button class="asset-tab" data-asset="XRP">XRP</button>
                     </div>
+                    
+                    <!-- Search Coin -->
+                    <input type="text" class="search-coin" placeholder="Search coin" style="width: 100%; padding: 12px 16px; background-color: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-primary); font-size: 14px; margin-bottom: 16px;">
                 </div>
 
                 <!-- Trading Chart -->
@@ -1121,12 +1169,14 @@
                     </div>
                 </div>
 
-                <!-- Exchange Trading Interface -->
-                <div class="exchange-container">
+                <!-- Exchange Trading Interface - Reference Design -->
+                <div class="trading-layout">
                     <!-- Left Panel: Order Book -->
-                    <div class="exchange-panel">
-                        <div class="panel-title">Order Book</div>
-                        
+                    <div class="trading-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Order Book</h3>
+                        </div>
+                        <div class="card-body">
                         <!-- Order Book Table -->
                         <table class="orderbook-table">
                             <thead>
@@ -1200,15 +1250,19 @@
                             </tbody>
                         </table>
 
-                        <div class="mt-3" style="font-size: 12px;">
-                            <p>Trade Fee: (0.1%) <strong>0.00 USDT</strong></p>
-                            <button class="btn btn-warning btn-sm">Buy USDT</button>
+                            <div class="mt-3" style="font-size: 12px;">
+                                <p>Trade Fee: (0.1%) <strong>0.00 USDT</strong></p>
+                                <button class="btn btn-warning btn-sm">Buy USDT</button>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Center Panel: Trading Form & Recent Trades -->
-                    <div class="exchange-panel">
-                        <div class="panel-title">Buy/Sell BTC</div>
+                    <div class="trading-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Market Trading</h3>
+                        </div>
+                        <div class="card-body">
                         
                         <!-- Trading Form Tabs -->
                         <div class="orders-tabs">
@@ -1273,11 +1327,15 @@
                                 </tbody>
                             </table>
                         </div>
+                        </div>
                     </div>
 
                     <!-- Right Panel: Market Pairs & Wallet -->
-                    <div class="exchange-panel">
-                        <div class="panel-title">Markets</div>
+                    <div class="trading-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Assets</h3>
+                        </div>
+                        <div class="card-body">
                         
                         <!-- Market Pairs -->
                         <div class="pair-item">
@@ -1357,6 +1415,7 @@
                                 <span class="badge bg-secondary">BTC/USDT</span>
                                 <span class="badge bg-secondary">Earn</span>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -1505,7 +1564,17 @@
             const savedTheme = localStorage.getItem('theme') || 'dark';
             updateTheme(savedTheme);
 
-            // Crypto buttons functionality - New Theme
+            // Asset tabs functionality - Reference Design
+            const assetTabs = document.querySelectorAll('.asset-tab');
+            assetTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    assetTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    console.log(`Selected asset: ${this.dataset.asset || this.textContent}`);
+                });
+            });
+
+            // Crypto buttons functionality (legacy support)
             const cryptoBtns = document.querySelectorAll('.crypto-btn');
             cryptoBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
