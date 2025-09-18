@@ -1,6 +1,14 @@
 <!-- Header Content -->
+<!-- Sidebar Collapse Button (Desktop) -->
+<button class="header-icon d-none d-md-flex" id="sidebar-collapse" title="Toggle Sidebar">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21.25 7.81V16.19C21.25 17.8608 20.7549 19.1045 19.9297 19.9297C19.1045 20.7549 17.8608 21.25 16.19 21.25H9.75V2.75H16.19C17.8608 2.75 19.1045 3.24514 19.9297 4.07033C20.7549 4.89552 21.25 6.13915 21.25 7.81Z" stroke="currentColor" stroke-width="1.5"></path>
+        <path d="M9 2V22H7.81C4.17 22 2 19.83 2 16.19V7.81C2 4.17 4.17 2 7.81 2H9Z" fill="currentColor"></path>
+    </svg>
+</button>
+
 <!-- Mobile Sidebar Toggle -->
-<button class="header-icon d-md-none" id="sidebar-toggle">
+<button class="header-icon d-md-none" id="sidebar-toggle" title="Open Sidebar">
     <i class="fas fa-bars"></i>
 </button>
 
