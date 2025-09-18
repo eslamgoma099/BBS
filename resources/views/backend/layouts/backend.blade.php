@@ -177,7 +177,197 @@
             flex-shrink: 0;
         }
 
-        /* Header Styles */
+        /* New Header Styles - Matching Reference Design 100% */
+        
+        /* Left Section: Search Bar */
+        .header-search-new {
+            position: relative;
+            width: 300px;
+            margin-right: auto;
+        }
+
+        .search-container-new {
+            position: relative;
+        }
+
+        .search-input-new {
+            width: 100%;
+            padding: 8px 40px 8px 40px;
+            background-color: #2a2a2a;
+            border: 1px solid #444444;
+            border-radius: 20px;
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-input-new:focus {
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+
+        .search-input-new::placeholder {
+            color: #888888;
+        }
+
+        .search-icon-new {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888888;
+            font-size: 14px;
+            pointer-events: none;
+        }
+
+        /* Center Section: Navigation */
+        .header-nav-new {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-dropdown-toggle-new {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .nav-dropdown-toggle-new:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--accent-yellow);
+        }
+
+        .nav-dropdown-icon-new {
+            margin-left: 8px;
+            font-size: 10px;
+        }
+
+        .nav-badge-new {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--accent-yellow);
+            color: #000000;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Right Section: Actions */
+        .header-actions-new {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: auto;
+        }
+
+        .btn-add-funds-new {
+            background-color: var(--accent-yellow);
+            color: #000000;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-add-funds-new:hover {
+            background-color: #ffed4a;
+        }
+
+        .header-icon-new {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .header-icon-new:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .header-icon-badge-new {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--accent-yellow);
+            color: #000000;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .profile-img-new {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid #444444;
+            object-fit: cover;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 991px) {
+            .header-search-new {
+                width: 200px;
+            }
+            
+            .header-nav-new {
+                display: none;
+            }
+            
+            .header-actions-new {
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-search-new {
+                width: 150px;
+            }
+            
+            .search-input-new {
+                padding: 6px 35px 6px 35px;
+                font-size: 13px;
+            }
+            
+            .header-actions-new {
+                gap: 8px;
+            }
+            
+            .btn-add-funds-new {
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+        }
+
+        /* Legacy Header Styles for Backward Compatibility */
         .header-search {
             flex: 1;
             max-width: 400px;
