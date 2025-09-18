@@ -600,6 +600,120 @@
             color: var(--text-primary);
         }
 
+        /* New Asset Card Styles - Matching Reference Design */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+        }
+
+        .card-header {
+            background-color: transparent !important;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-body {
+            background-color: var(--bg-secondary);
+        }
+
+        /* Badge Orders Styling */
+        .badge-orders {
+            background-color: var(--accent-yellow);
+            color: #000000;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Crypto Tabs - New Theme Design */
+        .crypto-tabs {
+            margin-bottom: 16px;
+        }
+
+        .crypto-btn {
+            background-color: var(--bg-tertiary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .crypto-btn:hover {
+            background-color: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .crypto-btn-active {
+            background-color: var(--accent-yellow) !important;
+            color: #000000 !important;
+        }
+
+        /* Search Coin Input - New Theme */
+        .search-coin-container {
+            margin-top: 8px;
+        }
+
+        .search-coin-input {
+            width: 100%;
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .search-coin-input:focus {
+            outline: none;
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+
+        .search-coin-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Light mode specific adjustments */
+        body.crypt-light .crypto-btn {
+            background-color: #f8f9fa;
+            color: #6c757d;
+            border: 1px solid #dee2e6;
+        }
+
+        body.crypt-light .crypto-btn:hover {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+
+        body.crypt-light .search-coin-input {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+        }
+
+        /* Pairs Table Header */
+        .pairs-table-header {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .pairs-table-header .row {
+            margin: 0;
+        }
+
+        .pairs-table-header strong {
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
         /* Responsive Design */
         @media (max-width: 991px) {
             .header-search-new {
@@ -952,25 +1066,50 @@
             <!-- Content Area - Exchange Interface -->
             <div class="crypt-content">
                 <!-- Assets Section - Matching Reference Design 100% -->
-                <div class="assets-header-section">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h4 style="color: var(--text-primary); margin: 0;">Assets</h4>
-                        <div class="d-flex gap-2">
-                            <button class="nav-button-new nav-button-active">Orders</button>
-                            <button class="btn-add-funds-new">Add Funds</button>
+                <div class="card mb-4" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color);">
+                    <!-- Card Header -->
+                    <div class="card-header border-0 bg-transparent px-3 py-2">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0 fw-bold" style="color: var(--text-primary);">Assets</h6>
+                            <div class="d-flex gap-2">
+                                <span class="badge-orders">Orders</span>
+                                <button class="btn-add-funds-new">Add Funds</button>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Asset Selector Buttons -->
-                    <div class="asset-selector">
-                        <button class="asset-btn active">BTC</button>
-                        <button class="asset-btn">ETH</button>
-                        <button class="asset-btn">USDT</button>
-                        <button class="asset-btn">XRP</button>
+                    <!-- Card Body -->
+                    <div class="card-body px-3 pt-0">
+                        <!-- Crypto Tabs -->
+                        <div class="crypto-tabs mb-3">
+                            <div class="d-flex gap-2">
+                                <button class="crypto-btn crypto-btn-active">BTC</button>
+                                <button class="crypto-btn">ETH</button>
+                                <button class="crypto-btn">USDT</button>
+                                <button class="crypto-btn">XRP</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Search Coin Input -->
+                        <div class="search-coin-container">
+                            <input type="text" class="search-coin-input" placeholder="Search coin">
+                        </div>
+
+                        <!-- Pairs Table Header -->
+                        <div class="pairs-table-header mt-4 mb-2">
+                            <div class="row text-muted small">
+                                <div class="col-4">
+                                    <strong>Pairs</strong>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <strong>Price</strong>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <strong>Change</strong>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <!-- Search Coin Input -->
-                    <input type="text" class="search-coin" placeholder="Search coin">
                 </div>
 
                 <!-- Trading Chart -->
@@ -1366,7 +1505,17 @@
             const savedTheme = localStorage.getItem('theme') || 'dark';
             updateTheme(savedTheme);
 
-            // Asset buttons functionality
+            // Crypto buttons functionality - New Theme
+            const cryptoBtns = document.querySelectorAll('.crypto-btn');
+            cryptoBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    cryptoBtns.forEach(b => b.classList.remove('crypto-btn-active'));
+                    this.classList.add('crypto-btn-active');
+                    console.log(`Selected crypto: ${this.textContent}`);
+                });
+            });
+
+            // Asset buttons functionality (legacy support)
             const assetBtns = document.querySelectorAll('.asset-btn');
             assetBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
