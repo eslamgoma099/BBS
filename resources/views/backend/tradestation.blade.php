@@ -7,11 +7,63 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <!-- Original Theme CSS Files -->
-    <link rel="stylesheet" href="{{ asset('assets1/bootstrap/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets1/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets1/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets1/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('assets1/css/button.css') }}">
     <link rel="icon" type="image/svg" href="{{ asset('assets1/images/favicon.svg') }}">
+    
+    <!-- Additional Theme CSS to ensure proper loading -->
+    <style>
+        /* Ensure dark theme is applied correctly */
+        body.crypt-dark {
+            background-color: #0a0e1a;
+            color: #fff;
+        }
+        
+        .sidebar {
+            background-color: #141929;
+            min-height: 100vh;
+        }
+        
+        .card-bs {
+            background-color: #1a202c;
+            border: 1px solid #2d3748;
+            border-radius: 8px;
+        }
+        
+        /* Ensure sidebar is visible */
+        .fixed-sidebar .sidebar {
+            width: 280px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 1000;
+        }
+        
+        .fixed-sidebar .wrapper {
+            margin-left: 280px;
+            width: calc(100% - 280px);
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .fixed-sidebar .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .fixed-sidebar .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+            
+            .fixed-sidebar .wrapper {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body class="crypt-dark">
@@ -225,11 +277,11 @@
                     <div class="profile_menu d-flex align-items-center">
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle no-active d-flex align-items-center" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                <img alt="" src="{{ asset('assets1/images/social/user.svg') }}">
+                                <img alt="" src="{{ asset('assets1/images/social/user.png') }}">
                             </button>
                             <ul class="dropdown-menu">
                                 <li class="wallet align-items-center">
-                                    <img alt="" src="{{ asset('assets1/images/social/user.svg') }}">
+                                    <img alt="" src="{{ asset('assets1/images/social/user.png') }}">
                                     <div class="d-grid">
                                         <h6 class="fw-bold crypt-grayscale-100 mb-0">{{ auth()->user()->email }}</h6>
                                         <a class="d-flex gap-2 mb-2 verified mt-2" href="#!">
@@ -577,56 +629,56 @@
                             <button class="nav-link active text-sm" id="v-pills-btcusdt-tab" data-bs-toggle="pill" data-bs-target="#v-pills-btcusdt" type="button" role="tab" aria-controls="v-pills-btcusdt" aria-selected="true">
                                 <div class="d-flex flex-row justify-content-between gap-3 align-items-center">
                                     <div class="d-flex flex-row align-items-center gap-2">
-                                        <img alt="" src="{{ asset('assets1/images/coins/btc.svg') }}" width="20">
+                                        <img alt="" src="{{ asset('assets1/images/coin/btc.svg') }}" width="20">
                                         <div class="d-flex flex-column justify-content-start align-items-start text-start">
                                             <p class="fw-medium mb-0">BTC/USDT <span class="verified text-sm">24h</span></p>
                                             <p class="fw-medium mb-0 text-success">76,494.88 <span class="text-success text-opacity-75">+1.24%</span></p>
                                         </div>
                                     </div>
                                     <div>
-                                        <img class="up-candle" alt="" src="{{ asset('assets1/images/icon/candle-up.svg') }}" width="30">
+                                        <img class="up-candle" alt="" src="{{ asset('assets1/images/icon/up.svg') }}" width="30">
                                     </div>
                                 </div>
                             </button>
                             <button class="nav-link text-sm" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
                                 <div class="d-flex flex-row justify-content-between gap-3 align-items-center">
                                     <div class="d-flex flex-row align-items-center gap-2">
-                                        <img alt="" src="{{ asset('assets1/images/coins/eth.svg') }}" width="20">
+                                        <img alt="" src="{{ asset('assets1/images/coin/eth.svg') }}" width="20">
                                         <div class="d-flex flex-column justify-content-start align-items-start text-start">
                                             <p class="fw-medium mb-0">ETH/USDT <span class="verified text-sm">24h</span></p>
                                             <p class="fw-medium mb-0 text-danger">3,274.85 <span class="text-danger text-opacity-75">-0.24%</span></p>
                                         </div>
                                     </div>
                                     <div>
-                                        <img class="down-candle" alt="" src="{{ asset('assets1/images/icon/candle-down.svg') }}" width="30">
+                                        <img class="down-candle" alt="" src="{{ asset('assets1/images/icon/down.svg') }}" width="30">
                                     </div>
                                 </div>
                             </button>
                             <button class="nav-link text-sm" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#v-pills-disabled" type="button" role="tab" aria-controls="v-pills-disabled" aria-selected="false" tabindex="-1" aria-disabled="true">
                                 <div class="d-flex flex-row justify-content-between gap-3 align-items-center">
                                     <div class="d-flex flex-row align-items-center gap-2">
-                                        <img alt="" src="{{ asset('assets1/images/coins/bnb.svg') }}" width="20">
+                                        <img alt="" src="{{ asset('assets1/images/coin/bnb.svg') }}" width="20">
                                         <div class="d-flex flex-column justify-content-start align-items-start text-start">
                                             <p class="fw-medium mb-0">BNB/USDT <span class="verified text-sm">24h</span></p>
                                             <p class="fw-medium mb-0 text-success">634.56 <span class="text-success text-opacity-75">+2.75%</span></p>
                                         </div>
                                     </div>
                                     <div>
-                                        <img class="up-candle" alt="" src="{{ asset('assets1/images/icon/candle-up.svg') }}" width="30">
+                                        <img class="up-candle" alt="" src="{{ asset('assets1/images/icon/up.svg') }}" width="30">
                                     </div>
                                 </div>
                             </button>
                             <button class="nav-link text-sm" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">
                                 <div class="d-flex flex-row justify-content-between gap-3 align-items-center">
                                     <div class="d-flex flex-row align-items-center gap-2">
-                                        <img alt="" src="{{ asset('assets1/images/coins/sol.svg') }}" width="20">
+                                        <img alt="" src="{{ asset('assets1/images/coin/sol.svg') }}" width="20">
                                         <div class="d-flex flex-column justify-content-start align-items-start text-start">
                                             <p class="fw-medium mb-0">SOL/USDT <span class="verified text-sm">24h</span></p>
                                             <p class="fw-medium mb-0 text-success">214.56 <span class="text-success text-opacity-75">+4.89%</span></p>
                                         </div>
                                     </div>
                                     <div>
-                                        <img class="up-candle" alt="" src="{{ asset('assets1/images/icon/candle-up.svg') }}" width="30">
+                                        <img class="up-candle" alt="" src="{{ asset('assets1/images/icon/up.svg') }}" width="30">
                                     </div>
                                 </div>
                             </button>
@@ -975,21 +1027,21 @@
                         <!-- Open Orders -->
                         <div class="tab-pane fade show active" id="pills-open-order" role="tabpanel" aria-labelledby="pills-open-order-tab" tabindex="0">
                             <div class="text-center p-4">
-                                <img alt="" src="{{ asset('assets1/images/icon/empty-list.svg') }}" width="60" class="mb-3">
+                                <img alt="" src="{{ asset('assets1/images/empty.svg') }}" width="60" class="mb-3">
                                 <p class="text-muted">You have no open orders</p>
                             </div>
                         </div>
                         <!-- Order History -->
                         <div class="tab-pane fade" id="pills-order-history" role="tabpanel" aria-labelledby="pills-order-history-tab" tabindex="0">
                             <div class="text-center p-4">
-                                <img alt="" src="{{ asset('assets1/images/icon/empty-list.svg') }}" width="60" class="mb-3">
+                                <img alt="" src="{{ asset('assets1/images/empty.svg') }}" width="60" class="mb-3">
                                 <p class="text-muted">No order history available</p>
                             </div>
                         </div>
                         <!-- Trade History -->
                         <div class="tab-pane fade" id="pills-trade-history" role="tabpanel" aria-labelledby="pills-trade-history-tab" tabindex="0">
                             <div class="text-center p-4">
-                                <img alt="" src="{{ asset('assets1/images/icon/empty-list.svg') }}" width="60" class="mb-3">
+                                <img alt="" src="{{ asset('assets1/images/empty.svg') }}" width="60" class="mb-3">
                                 <p class="text-muted">No trade history available</p>
                             </div>
                         </div>
@@ -1157,7 +1209,7 @@
     <!-- JavaScript Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
-    <script src="{{ asset('assets1/bootstrap/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('assets1/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets1/js/main.js') }}"></script>
     
     <!-- Original Theme JavaScript -->
