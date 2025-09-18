@@ -29,7 +29,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     
     <!-- New Theme CSS Files -->
@@ -46,7 +46,7 @@
     <style>
         :root {
             --sidebar-width: 200px;
-            --header-height: 60px;
+            --header-height: 70px;
         }
 
         * {
@@ -56,38 +56,42 @@
         }
 
         body {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Inter', 'Space Grotesk', sans-serif;
             overflow-x: hidden;
         }
 
-        /* Dark Theme Variables */
+        /* Dark Theme Variables - Reference Design */
         body.crypt-dark {
-            --bg-primary: #000000;
+            --bg-primary: #0f0f0f;
             --bg-secondary: #1a1a1a;
-            --bg-tertiary: #2a2a2a;
+            --bg-tertiary: #2d2d2d;
             --text-primary: #ffffff;
-            --text-secondary: #cccccc;
-            --text-muted: #888888;
-            --border-color: #333333;
-            --accent-yellow: #ffd700;
-            --accent-green: #00d4aa;
-            --accent-red: #ff6b6b;
-            --hover-bg: rgba(255, 255, 255, 0.1);
+            --text-secondary: #a0aec0;
+            --text-muted: #718096;
+            --border-color: #2d3748;
+            --accent-yellow: #FFC107;
+            --accent-yellow-hover: #ffb300;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --hover-bg: rgba(255, 255, 255, 0.06);
+            --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
-        /* Light Theme Variables */
+        /* Light Theme Variables - Reference Design Exact Match */
         body.crypt-light {
             --bg-primary: #ffffff;
             --bg-secondary: #f8f9fa;
-            --bg-tertiary: #e9ecef;
-            --text-primary: #000000;
-            --text-secondary: #333333;
-            --text-muted: #666666;
-            --border-color: #dee2e6;
-            --accent-yellow: #ffc107;
-            --accent-green: #28a745;
-            --accent-red: #dc3545;
-            --hover-bg: rgba(0, 0, 0, 0.05);
+            --bg-tertiary: #f1f3f4;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --border-color: #e2e8f0;
+            --accent-yellow: #FFC107;
+            --accent-yellow-hover: #ffb300;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --hover-bg: rgba(0, 0, 0, 0.04);
+            --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         /* Main Container */
@@ -1211,6 +1215,237 @@
         
         *::-webkit-scrollbar-track {
             background-color: var(--bg-secondary);
+        }
+
+        /* ========== REFERENCE DESIGN SPECIFIC STYLES ========== */
+        
+        /* Asset Tabs - Reference Design */
+        .asset-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .asset-tab {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .asset-tab:hover {
+            background-color: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .asset-tab.active {
+            background-color: var(--accent-yellow);
+            color: #000000;
+            border-color: var(--accent-yellow);
+            font-weight: 600;
+        }
+
+        /* Trading Cards - Reference Design */
+        .trading-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr 320px;
+            gap: 20px;
+            min-height: 600px;
+        }
+
+        .trading-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+
+        .card-header-new {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+        }
+
+        .card-title-new {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .card-body-new {
+            padding: 20px;
+        }
+
+        /* Enhanced Button Styles - Reference Design */
+        .btn-add-funds-reference {
+            background-color: var(--accent-yellow);
+            color: #000000;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-add-funds-reference:hover {
+            background-color: var(--accent-yellow-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Section Headers - Reference Design */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .section-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Asset Section - Reference Design */
+        .assets-section {
+            margin-bottom: 24px;
+        }
+
+        /* Search Coin - Reference Design */
+        .search-coin-reference {
+            width: 100%;
+            padding: 12px 16px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .search-coin-reference:focus {
+            outline: none;
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.1);
+        }
+
+        .search-coin-reference::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Nav Tabs - Reference Design */
+        .nav-tab-reference {
+            padding: 8px 16px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .nav-tab-reference:hover {
+            background-color: var(--hover-bg);
+            color: var(--text-primary);
+        }
+
+        .nav-tab-reference.active {
+            background-color: var(--accent-yellow);
+            color: #000000;
+            font-weight: 600;
+        }
+
+        .nav-tab-reference .badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background-color: var(--accent-red);
+            color: white;
+            border-radius: 10px;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: 600;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        /* Chart Container - Reference Design */
+        .chart-container-reference {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--card-shadow);
+        }
+
+        .chart-placeholder-reference {
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .chart-placeholder-reference i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .chart-placeholder-reference h5 {
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .chart-placeholder-reference p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive Grid - Reference Design */
+        @media (max-width: 1200px) {
+            .trading-layout {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .trading-layout {
+                gap: 15px;
+            }
+            
+            .asset-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
         }
     </style>
 
