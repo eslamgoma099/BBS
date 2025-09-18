@@ -1,238 +1,372 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>{{ setting('site_name', 'Crypt') }}</title>
+  <title>{{ setting('site_name', 'Crypt') }} - Log in</title>
 
-  {{-- Bootstrap & Styles (من public/) --}}
-  <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+  {{-- Bootstrap 5.3.3 & Styles --}}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('css/button.css') }}">
   <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
-  {{-- Font Awesome --}}
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  {{-- Font Awesome 6 --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  {{-- Google Fonts --}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   {{-- Favicon --}}
   <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.svg') }}">
 </head>
 
-<body class="crypt-dark">
-
-    {{-- Header --}}
-    <header class="crypt-header blur-header align-items-center fixed-top z-3">
-        <div class="row align-items-center justify-content-between w-100 m-0">
-
-            {{-- Logo / Home --}}
-            <div class="col-auto d-flex flex-row align-items-center">
-                <div class="crypt-logo dark">
-                    <a href="{{ url('/') }}">
-                        {{-- لو عندك لوجو محفوظ في الإعدادات --}}
-                        <img src="{{ setting('logo','asset/images/logo.png') }}" alt="logo">
-                    </a>
-                </div>
-                <div class="crypt-logo light d-none">
-                    <a href="{{ url('/') }}">
-                        <img src="{{ setting('logo','asset/images/logo.png') }}" alt="logo">
-                    </a>
-                </div>
+<body class="bg-dark text-white">
+    {{-- Modern Header --}}
+    <header class="navbar navbar-expand-lg bg-dark border-bottom border-secondary fixed-top">
+        <div class="container-fluid px-4">
+            {{-- Logo --}}
+            <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                <img src="{{ setting('logo', asset('images/logo.png')) }}" alt="{{ setting('site_name', 'Crypt') }}" height="32" class="me-2">
+                <span class="fw-bold text-warning">{{ setting('site_name', 'Crypt') }}</span>
+            </a>
+            
+            {{-- Right Side --}}
+            <div class="d-flex align-items-center gap-3">
+                {{-- Theme Toggle --}}
+                <button class="btn btn-outline-secondary btn-sm" type="button" id="themeToggle" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                {{-- Help Link --}}
+                <a href="#" class="btn btn-outline-secondary btn-sm">
+                    <i class="fas fa-question-circle"></i>
+                    Help
+                </a>
             </div>
-
-            {{-- يمين الهيدر --}}
-            <div class="col-auto d-flex flex-row align-items-center">
-                <div class="user-settings gap-2 gap-sm-3">
-
-                    {{-- dark/light mode زر شكلي (اختياري) --}}
-                    <div class="mode">
-                        <button class="controller m-auto" id="darkMode" type="button" aria-label="Toggle theme">
-                            <span class="dark-logo">
-                                <svg viewBox="0 0 512 512" width="20" fill="currentColor" aria-hidden="true">
-                                    <path d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z" />
-                                </svg>
-                            </span>
-                            <span class="light-logo d-none">
-                                <svg viewBox="0 0 512 512" width="20" fill="currentColor" aria-hidden="true">
-                                    <path d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z" />
-                                </svg>
-                            </span>
-                        </button>
-                    </div>
-
-                    {{-- زرار الموبايل (اختياري) --}}
-                    <div id="mobile_menu" class="close">
-                        <button class="navbar-toggler" type="button">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                <path d="M4 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                <path d="M4 6H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-
         </div>
     </header>
 
-    {{-- Login Form --}}
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="crypt-login-form mt-5" style="max-width: 520px; width: 100%;">
-
-                {{-- عنوان و QR (نفس شكل التصميم الجديد) --}}
-                <div class="d-flex justify-content-between mb-4 text-center">
-                    <h3 class="fw-bold m-0">Log in</h3>
-
-                    <div class="dropup">
-                        <a class="card card-border circle crypt-grayscale-600 text-link p-2" href="#!" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                            <svg data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="QR code login"
-                                width="26" height="26" viewBox="0 0 24 24" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4 4h7v7H4V4zm0 9h7v7H4v-7zm11 0h-2v4h4v-2h3v-2h-4v2h-1v-2zm5 3h-2v2h-2v2h4v-4zm-5 2h-2v2h2v-2zM13 4h7v7h-7V4zM8.5 6.5h-2v2h2v-2zm-2 9h2v2h-2v-2zm11-9h-2v2h2v-2z" fill="currentColor"></path>
-                            </svg>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg-end text-center card-bs" style="max-width: 390px;">
-                            <div class="d-flex flex-column justify-content-center text-sm px-3 mt-2">
-                                <img class="card text-bg-light p-3" alt="QR" src="{{ asset('images/features/qr.svg') }}">
-                                <div class="crypto-has-dropdown fw-medium crypt-grayscale-600 mt-3">
-                                    Scan the QR code to log in or Open {{ setting('site_name','Crypt') }} app.
-                                </div>
-                                <div class="d-flex flex-row gap-2 mt-3 justify-content-center">
-                                    <p class="crypt-grayscale-500 m-0">Don't have an account?</p>
-                                    <a href="{{ url('joined') }}" class="link-primary fw-bold">Sign up</a>
-                                </div>
+    {{-- Main Content --}}
+    <div class="container-fluid bg-dark" style="min-height: 100vh; padding-top: 80px;">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            {{-- Left Column - QR Code Section --}}
+            <div class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center">
+                <div class="text-center">
+                    <div class="card bg-secondary bg-opacity-10 border-secondary p-4 mb-4" style="max-width: 320px;">
+                        <div class="card-body text-center">
+                            <div class="bg-white p-3 rounded mb-3">
+                                <img src="{{ asset('images/features/qr.svg') }}" alt="QR Code" class="img-fluid" style="max-width: 200px;">
                             </div>
+                            <h6 class="text-muted">Scan QR code to login</h6>
+                            <p class="text-muted small">Or open {{ setting('site_name','Crypt') }} app</p>
                         </div>
                     </div>
+                    <div class="text-center">
+                        <span class="text-muted">Don't have an account? </span>
+                        <a href="{{ route('register') }}" class="text-warning text-decoration-none fw-semibold">Sign up</a>
+                    </div>
                 </div>
-
-                {{-- رسائل الخطأ العامة (لو بتظهر رسالة من السيشن) --}}
-                @if (session('status'))
-                    <div class="alert alert-info py-2">{{ session('status') }}</div>
-                @endif
-
-                {{-- FORM: مهم ما نغيّرش الاسماء ولا الروت --}}
-                <form class="needs-validation" action="{{ route('login') }}" method="POST" novalidate>
-                    @csrf
-                    <div class="d-flex flex-column">
-
-                        {{-- email --}}
-                        <div class="d-flex flex-column mb-3">
-                            <label for="email" class="form-label text-light">
-                                Email/Phone Number <span class="crypt-grayscale-600">*</span>
-                            </label>
-                            <input
-                                type="email"
-                                class="form-control py-2 @error('email') is-invalid @enderror"
-                                name="email"
-                                id="email"
-                                value="{{ old('email') }}"
-                                placeholder="Email/Phone Number"
-                                required>
-                            @error('email')
-                                <div class="invalid-feedback d-block mt-1">{{ $message }}</div>
-                            @enderror
+            </div>
+            
+            {{-- Right Column - Login Form --}}
+            <div class="col-lg-6 col-xl-5">
+                <div class="card bg-dark border-secondary shadow-lg" style="max-width: 480px; margin: 0 auto;">
+                    <div class="card-body p-4 p-md-5">
+                        {{-- Header --}}
+                        <div class="text-center mb-4">
+                            <h2 class="fw-bold text-white">Log in</h2>
+                            <p class="text-muted">Welcome back! Please enter your details</p>
                         </div>
 
-                        {{-- password --}}
-                        <div class="d-flex flex-column">
-                            <div class="d-flex justify-content-between">
-                                <label for="password" class="form-label text-light">
-                                    Password <span class="crypt-grayscale-600">*</span>
-                                </label>
-                                <a href="{{ route('password.request') }}" class="link-primary text-sm text-decoration-none">Forgot password?</a>
+                        {{-- Status Messages --}}
+                        @if (session('status'))
+                            <div class="alert alert-info border-0 bg-info bg-opacity-10 text-info">
+                                <i class="fas fa-info-circle me-2"></i>{{ session('status') }}
                             </div>
-                            <div class="position-relative">
+                        @endif
+
+                        {{-- Login Form --}}
+                        <form action="{{ route('login') }}" method="POST" class="needs-validation" novalidate>
+                            @csrf
+                            
+                            {{-- Email/Phone Field --}}
+                            <div class="mb-3">
+                                <label for="email" class="form-label text-white fw-medium">
+                                    Email/Phone Number <span class="text-danger">*</span>
+                                </label>
                                 <input
-                                    type="password"
-                                    class="form-control form-controls py-2 @error('password') is-invalid @enderror"
-                                    name="password"
-                                    id="password"
-                                    placeholder="Login Password"
-                                    required>
-                                <button type="button" class="btn btn-link position-absolute end-0 top-0 h-100 px-3 text-decoration-none"
-                                        onclick="togglePassword()" aria-label="Show/Hide password">
-                                    <i class="fa fa-eye" id="eye"></i>
-                                </button>
-                                @error('password')
-                                    <div class="invalid-feedback d-block mt-1">{{ $message }}</div>
+                                    type="email"
+                                    class="form-control form-control-lg bg-dark border-secondary text-white @error('email') is-invalid @enderror"
+                                    name="email"
+                                    id="email"
+                                    value="{{ old('email') }}"
+                                    placeholder="Enter your email or phone number"
+                                    required
+                                    autocomplete="email">
+                                @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @else
+                                    <div class="invalid-feedback">This field is required.</div>
                                 @enderror
                             </div>
-                        </div>
 
-                        {{-- remember --}}
-                        <div class="d-flex justify-content-between mt-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="1" name="remember" id="remember"
-                                       {{ old('remember') ? 'checked' : '' }}>
-                                <label class="form-check-label text-secondary" for="remember">Remember me</label>
+                            {{-- Password Field --}}
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <label for="password" class="form-label text-white fw-medium mb-0">
+                                        Password <span class="text-danger">*</span>
+                                    </label>
+                                    <a href="{{ route('password.request') }}" class="text-warning text-decoration-none small">
+                                        Forgot password?
+                                    </a>
+                                </div>
+                                <div class="position-relative">
+                                    <input
+                                        type="password"
+                                        class="form-control form-control-lg bg-dark border-secondary text-white pe-5 @error('password') is-invalid @enderror"
+                                        name="password"
+                                        id="password"
+                                        placeholder="Enter your password"
+                                        required
+                                        autocomplete="current-password">
+                                    <button type="button" class="btn btn-link position-absolute end-0 top-50 translate-middle-y text-muted px-3"
+                                            onclick="togglePassword()" aria-label="Show/Hide password">
+                                        <i class="fas fa-eye" id="eyeIcon"></i>
+                                    </button>
+                                    @error('password')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @else
+                                        <div class="invalid-feedback">This field is required.</div>
+                                    @enderror
+                                </div>
                             </div>
+
+                            {{-- Remember Me --}}
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="1" name="remember" id="remember"
+                                           {{ old('remember') ? 'checked' : '' }}>
+                                    <label class="form-check-label text-muted" for="remember">
+                                        Remember me
+                                    </label>
+                                </div>
+                            </div>
+
+                            {{-- Submit Button --}}
+                            <button type="submit" class="btn btn-warning btn-lg w-100 fw-semibold mb-4">
+                                Continue
+                            </button>
+                        </form>
+
+                        {{-- Divider --}}
+                        <div class="d-flex align-items-center my-4">
+                            <hr class="flex-grow-1 border-secondary">
+                            <span class="px-3 text-muted small">or</span>
+                            <hr class="flex-grow-1 border-secondary">
                         </div>
 
-                        {{-- submit --}}
-                        <button class="btn btn-primary rounded-pill text-center mt-4" type="submit">Continue</button>
-                    </div>
-                </form>
+                        {{-- Social Login Buttons --}}
+                        <div class="d-grid gap-2 mb-4">
+                            <button type="button" class="btn btn-outline-secondary btn-lg d-flex justify-content-center align-items-center">
+                                <img src="{{ asset('images/icon/google.svg') }}" alt="Google" width="20" height="20" class="me-3">
+                                Sign in with Google
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary btn-lg d-flex justify-content-center align-items-center">
+                                <img src="{{ asset('images/icon/apple.svg') }}" alt="Apple" width="20" height="20" class="me-3">
+                                Sign in with Apple
+                            </button>
+                        </div>
 
-                {{-- Social (شكلي) --}}
-                <div class="d-flex flex-column mt-4">
-                    <div class="divider" role="separator">
-                        <span class="crypt-grayscale-500 p-2">or</span>
+                        {{-- Sign Up Link --}}
+                        <div class="text-center">
+                            <span class="text-muted">Don't have an account? </span>
+                            <a href="{{ route('register') }}" class="text-warning text-decoration-none fw-semibold">Sign up</a>
+                        </div>
+                        
+                        {{-- Mobile QR Code Link --}}
+                        <div class="d-lg-none text-center mt-4">
+                            <a href="#qrModal" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal">
+                                <i class="fas fa-qrcode me-2"></i>
+                                Scan QR Code
+                            </a>
+                        </div>
                     </div>
-                    <a href="#!" class="d-flex justify-content-between align-items-center button btn btn-outline-secondary">
-                        Sign in with Google
-                        <img alt="" width="32" src="{{ asset('images/icon/google.svg') }}">
-                    </a>
-                    <a href="#!" class="d-flex justify-content-between align-items-center button btn btn-outline-secondary mt-3">
-                        Sign in with Apple
-                        <img alt="" width="32" src="{{ asset('images/icon/apple.svg') }}">
-                    </a>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <div class="d-flex flex-row gap-2 mt-4 justify-content-center">
-                    <p class="crypt-grayscale-500 m-0">Don't have an account?</p>
-                    <a href="{{ url('joined') }}" class="link-primary fw-bold">Sign up</a>
+    {{-- QR Code Modal for Mobile --}}
+    <div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title text-white" id="qrModalLabel">QR Code Login</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="bg-white p-3 rounded mb-3 d-inline-block">
+                        <img src="{{ asset('images/features/qr.svg') }}" alt="QR Code" class="img-fluid" style="max-width: 200px;">
+                    </div>
+                    <h6 class="text-muted">Scan QR code to login</h6>
+                    <p class="text-muted small">Or open {{ setting('site_name','Crypt') }} app</p>
                 </div>
             </div>
         </div>
     </div>
 
     {{-- Footer --}}
-    <footer class="container-fluid text-left text-lg-start animation-element mt-5">
-        <div class="container in-view">
-            <div class="d-flex justify-content-center gap-4 crypt-footer-copyright border-0 mb-3 mt-3">
-                <a class="text-link text-sm crypt-grayscale-600" href="{{ setting('docs_url', '#!') }}">Docs</a>
-                <a class="text-link text-sm crypt-grayscale-600" href="{{ setting('cookies_url', '#!') }}">Cookies</a>
-                <a class="text-link text-sm crypt-grayscale-600" href="{{ setting('terms', '#!') }}">Terms</a>
-                <a class="text-link text-sm crypt-grayscale-600" href="{{ setting('privacy_policy', '#!') }}">Privacy</a>
+    <footer class="bg-dark border-top border-secondary py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex flex-wrap justify-content-center gap-4 text-center">
+                        <a href="{{ setting('docs_url', '#') }}" class="text-muted text-decoration-none small">Documentation</a>
+                        <a href="{{ setting('cookies_url', '#') }}" class="text-muted text-decoration-none small">Cookies Policy</a>
+                        <a href="{{ setting('terms', '#') }}" class="text-muted text-decoration-none small">Terms of Service</a>
+                        <a href="{{ setting('privacy_policy', '#') }}" class="text-muted text-decoration-none small">Privacy Policy</a>
+                        <a href="#" class="text-muted text-decoration-none small">Support</a>
+                    </div>
+                    <div class="text-center mt-3">
+                        <p class="text-muted small mb-0">
+                            &copy; {{ date('Y') }} {{ setting('site_name', 'Crypt') }}. All rights reserved.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
     {{-- Scripts --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" ></script>
-    <script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 
     <script>
+        // Password Toggle
         function togglePassword() {
-            const input = document.getElementById('password');
-            const eye   = document.getElementById('eye');
-            if (input.type === 'password') {
-                input.type = 'text';
-                eye.classList.remove('fa-eye');
-                eye.classList.add('fa-eye-slash');
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
             } else {
-                input.type = 'password';
-                eye.classList.remove('fa-eye-slash');
-                eye.classList.add('fa-eye');
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
             }
         }
+
+        // Theme Toggle
+        document.getElementById('themeToggle')?.addEventListener('click', function() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-bs-theme', newTheme);
+            
+            const icon = this.querySelector('i');
+            if (newTheme === 'dark') {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        });
+
+        // Form Validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const forms = document.querySelectorAll('.needs-validation');
+            
+            Array.from(forms).forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                });
+            });
+        });
+
+        // Auto-hide alerts
+        document.addEventListener('DOMContentLoaded', function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                setTimeout(function() {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                }, 5000);
+            });
+        });
     </script>
+
+    {{-- Custom Styles --}}
+    <style>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+        
+        .form-control:focus {
+            border-color: #ffc107;
+            box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+            border: none;
+            color: #000;
+        }
+        
+        .btn-warning:hover {
+            background: linear-gradient(135deg, #ffb300 0%, #ff8f00 100%);
+            color: #000;
+        }
+        
+        .card {
+            backdrop-filter: blur(10px);
+            background: rgba(33, 37, 41, 0.95) !important;
+        }
+        
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(33, 37, 41, 0.95) !important;
+        }
+        
+        @media (max-width: 991.98px) {
+            .min-vh-100 {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+        }
+        
+        .invalid-feedback {
+            color: #dc3545;
+            font-size: 0.875rem;
+        }
+        
+        .form-check-input:checked {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+        
+        .btn-outline-secondary {
+            border-color: #6c757d;
+            color: #6c757d;
+        }
+        
+        .btn-outline-secondary:hover {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            color: #fff;
+        }
+    </style>
 </body>
 </html>

@@ -1,249 +1,518 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>{{ setting('site_name', 'Crypt') }} | Registration</title>
+  <title>{{ setting('site_name', 'Crypt') }} - Create Account</title>
 
-  {{-- CSS من public/ --}}
-  <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+  {{-- Bootstrap 5.3.3 & Styles --}}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('css/button.css') }}">
   <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
-  {{-- Font Awesome --}}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  {{-- Font Awesome 6 --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  {{-- Google Fonts --}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   {{-- Favicon --}}
   <link rel="icon" type="image/svg+xml" href="{{ asset('images/favicon.svg') }}">
 </head>
 
-<body class="crypt-dark log-bg">
-
-    <!-- Header -->
-    <header class="crypt-header blur-header align-items-center fixed-top z-3">
-        <div class="row align-items-center justify-content-between w-100 m-0">
-            <!-- Logo -->
-            <div class="col-auto d-flex flex-row align-items-center">
-                <div class="crypt-logo dark">
-                    <a href="{{ url('/') }}">
-                        <img src="{{ setting('logo','asset/images/logo.png') }}" alt="logo">
-                    </a>
-                </div>
-                <div class="crypt-logo light d-none">
-                    <a href="{{ url('/') }}">
-                        <img src="{{ setting('logo','asset/images/logo.png') }}" alt="logo">
-                    </a>
-                </div>
-            </div>
-
-            <!-- secondary menu (اختياري) -->
-            <div class="col-auto d-flex flex-row align-items-center">
-                <div class="user-settings gap-2 gap-sm-3">
-                    <!-- dark/light mode (شكلي) -->
-                    <div class="mode">
-                        <button class="controller m-auto" id="darkMode" type="button" aria-label="Toggle theme">
-                            <span class="dark-logo">
-                                <svg viewBox="0 0 512 512" width="20" fill="currentColor" aria-hidden="true">
-                                    <path d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"/>
-                                </svg>
-                            </span>
-                            <span class="light-logo d-none">
-                                <svg viewBox="0 0 512 512" width="20" fill="currentColor" aria-hidden="true">
-                                    <path d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"/>
-                                </svg>
-                            </span>
-                        </button>
-                    </div>
-                </div>
+<body class="bg-dark text-white">
+    {{-- Modern Header --}}
+    <header class="navbar navbar-expand-lg bg-dark border-bottom border-secondary fixed-top">
+        <div class="container-fluid px-4">
+            {{-- Logo --}}
+            <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                <img src="{{ setting('logo', asset('images/logo.png')) }}" alt="{{ setting('site_name', 'Crypt') }}" height="32" class="me-2">
+                <span class="fw-bold text-warning">{{ setting('site_name', 'Crypt') }}</span>
+            </a>
+            
+            {{-- Right Side --}}
+            <div class="d-flex align-items-center gap-3">
+                {{-- Theme Toggle --}}
+                <button class="btn btn-outline-secondary btn-sm" type="button" id="themeToggle" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                {{-- Help Link --}}
+                <a href="#" class="btn btn-outline-secondary btn-sm">
+                    <i class="fas fa-question-circle"></i>
+                    Help
+                </a>
             </div>
         </div>
     </header>
 
-    <!-- Signup Form -->
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="crypt-login-form mt-5" style="max-width: 640px; width:100%;">
-                <div class="d-flex mb-4">
-                    <h3 class="fw-bold m-0">Create Account</h3>
-                </div>
-
-                {{-- رسائل الأخطاء --}}
-                @if ($errors->any())
-                    <div class="alert alert-danger py-2">
-                        <ul class="m-0 ps-3">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
-                {{-- مهم: نفس الروت ونفس أسماء الحقول القديمة --}}
-                <form class="needs-validation" action="{{ route('register') }}" method="POST" novalidate style="background: transparent;">
-                    @csrf
-
-                    <div class="d-flex flex-column">
-
-                        {{-- الاسم الأول/الأخير --}}
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label text-light">First Name <span class="crypt-grayscale-600">*</span></label>
-                                <input type="text" class="form-control py-2" name="first_name" value="{{ old('first_name') }}" placeholder="Your First Name" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label text-light">Last Name <span class="crypt-grayscale-600">*</span></label>
-                                <input type="text" class="form-control py-2" name="last_name" value="{{ old('last_name') }}" placeholder="Your Last Name" required>
-                            </div>
+    {{-- Main Content --}}
+    <div class="container-fluid bg-dark" style="min-height: 100vh; padding-top: 80px;">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-xl-6 col-lg-7 col-md-8 col-sm-10">
+                <div class="card bg-dark border-secondary shadow-lg" style="max-width: 600px; margin: 0 auto;">
+                    <div class="card-body p-4 p-md-5">
+                        {{-- Header --}}
+                        <div class="text-center mb-4">
+                            <h2 class="fw-bold text-white">Create Account</h2>
+                            <p class="text-muted">Join the future of cryptocurrency trading</p>
                         </div>
 
-                        {{-- الإيميل --}}
-                        <div class="d-flex flex-column mb-3 mt-3">
-                            <label for="email" class="form-label text-light">Email <span class="crypt-grayscale-600">*</span></label>
-                            <input type="email" class="form-control py-2" name="email" id="email" value="{{ old('email') }}" placeholder="name@example.com" required>
-                            <div class="invalid-feedback mt-0">This field is required.</div>
-                        </div>
+                        {{-- Error Messages --}}
+                        @if ($errors->any())
+                            <div class="alert alert-danger border-0 bg-danger bg-opacity-10 text-danger mb-4">
+                                <div class="d-flex align-items-start">
+                                    <i class="fas fa-exclamation-triangle me-2 mt-1"></i>
+                                    <div>
+                                        <strong>Please correct the following errors:</strong>
+                                        <ul class="mb-0 mt-2 ps-3">
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
 
-                        {{-- الدولة + كود الهاتف + الهاتف --}}
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label text-light">Country <span class="crypt-grayscale-600">*</span></label>
-                                <select onchange="endpoint('{{ route('get-country-info','') }}',this.value)" name="country" id="country" class="form-control" required>
-                                    <option value="" selected disabled>Country</option>
-                                    @foreach($countries as $country)
-                                        <option value="{{ $country->nicename ?? '' }}" id="{{ $country->phonecode }}">{{ $country->nicename ?? '' }}</option>
+                        {{-- Registration Form --}}
+                        <form action="{{ route('register') }}" method="POST" class="needs-validation" novalidate>
+                            @csrf
+
+                            {{-- Name Fields --}}
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label text-white fw-medium">First Name <span class="text-danger">*</span></label>
+                                    <input type="text" 
+                                           class="form-control form-control-lg bg-dark border-secondary text-white @error('first_name') is-invalid @enderror" 
+                                           name="first_name" 
+                                           value="{{ old('first_name') }}" 
+                                           placeholder="Enter your first name" 
+                                           required
+                                           autocomplete="given-name">
+                                    @error('first_name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @else
+                                        <div class="invalid-feedback">This field is required.</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-white fw-medium">Last Name <span class="text-danger">*</span></label>
+                                    <input type="text" 
+                                           class="form-control form-control-lg bg-dark border-secondary text-white @error('last_name') is-invalid @enderror" 
+                                           name="last_name" 
+                                           value="{{ old('last_name') }}" 
+                                           placeholder="Enter your last name" 
+                                           required
+                                           autocomplete="family-name">
+                                    @error('last_name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @else
+                                        <div class="invalid-feedback">This field is required.</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            {{-- Email Field --}}
+                            <div class="mb-3">
+                                <label for="email" class="form-label text-white fw-medium">Email <span class="text-danger">*</span></label>
+                                <input type="email" 
+                                       class="form-control form-control-lg bg-dark border-secondary text-white @error('email') is-invalid @enderror" 
+                                       name="email" 
+                                       id="email" 
+                                       value="{{ old('email') }}" 
+                                       placeholder="Enter your email address" 
+                                       required
+                                       autocomplete="email">
+                                @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @else
+                                    <div class="invalid-feedback">This field is required.</div>
+                                @enderror
+                            </div>
+
+                            {{-- Country & Phone Fields --}}
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label text-white fw-medium">Country <span class="text-danger">*</span></label>
+                                    <select onchange="endpoint('{{ route('get-country-info','') }}', this.value)" 
+                                            name="country" 
+                                            id="country" 
+                                            class="form-select form-select-lg bg-dark border-secondary text-white @error('country') is-invalid @enderror" 
+                                            required>
+                                        <option value="" selected disabled>Select your country</option>
+                                        @foreach($countries as $country)
+                                            <option value="{{ $country->nicename ?? '' }}" 
+                                                    data-code="{{ $country->phonecode }}"
+                                                    {{ old('country') == $country->nicename ? 'selected' : '' }}>
+                                                {{ $country->nicename ?? '' }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('country')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @else
+                                        <div class="invalid-feedback">This field is required.</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-white fw-medium">Phone Code & Flag</label>
+                                    <div class="input-group">
+                                        <input id="phone_code" 
+                                               type="text" 
+                                               name="phone_code" 
+                                               class="form-control form-control-lg bg-dark border-secondary text-white" 
+                                               placeholder="+00" 
+                                               readonly>
+                                        <span class="input-group-text bg-dark border-secondary">
+                                            <img id="flag-icon" src="{{ asset('flags/dd.png') }}" style="height: 20px;" alt="Flag"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-white fw-medium">Phone Number <span class="text-danger">*</span></label>
+                                <input required 
+                                       id="phone" 
+                                       name="phone" 
+                                       type="text" 
+                                       value="{{ old('phone') }}" 
+                                       class="form-control form-control-lg bg-dark border-secondary text-white @error('phone') is-invalid @enderror" 
+                                       placeholder="Enter your phone number"
+                                       autocomplete="tel">
+                                @error('phone')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @else
+                                    <div class="invalid-feedback">This field is required.</div>
+                                @enderror
+                            </div>
+
+                            {{-- Password Fields --}}
+                            <div class="mb-3">
+                                <label for="password" class="form-label text-white fw-medium">Password <span class="text-danger">*</span></label>
+                                <div class="position-relative">
+                                    <input type="password" 
+                                           class="form-control form-control-lg bg-dark border-secondary text-white pe-5 @error('password') is-invalid @enderror" 
+                                           name="password" 
+                                           id="password" 
+                                           placeholder="Create a secure password" 
+                                           autocomplete="new-password" 
+                                           required>
+                                    <button type="button" 
+                                            class="btn btn-link position-absolute end-0 top-50 translate-middle-y text-muted px-3"
+                                            onclick="togglePassword('password', 'eyeIcon1')" 
+                                            aria-label="Show/Hide password">
+                                        <i class="fas fa-eye" id="eyeIcon1"></i>
+                                    </button>
+                                    @error('password')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @else
+                                        <div class="invalid-feedback">This field is required.</div>
+                                    @enderror
+                                </div>
+                                <div class="text-muted small mt-1">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    Use 8 or more characters with a mix of letters, numbers & symbols.
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-white fw-medium">Confirm Password <span class="text-danger">*</span></label>
+                                <div class="position-relative">
+                                    <input required 
+                                           name="password_confirmation" 
+                                           type="password" 
+                                           class="form-control form-control-lg bg-dark border-secondary text-white pe-5 @error('password_confirmation') is-invalid @enderror" 
+                                           id="cPassword" 
+                                           placeholder="Confirm your password"
+                                           autocomplete="new-password">
+                                    <button type="button" 
+                                            class="btn btn-link position-absolute end-0 top-50 translate-middle-y text-muted px-3"
+                                            onclick="togglePassword('cPassword', 'eyeIcon2')" 
+                                            aria-label="Show/Hide password confirmation">
+                                        <i class="fas fa-eye" id="eyeIcon2"></i>
+                                    </button>
+                                    @error('password_confirmation')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @else
+                                        <div class="invalid-feedback">This field is required.</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            {{-- Currency Selection --}}
+                            <div class="mb-4">
+                                <label class="form-label text-white fw-medium">Preferred Currency</label>
+                                <select name="cur" class="form-select form-select-lg bg-dark border-secondary text-white">
+                                    @foreach($curs as $item)
+                                        <option value="{{ $item->code }}" {{ old('cur') == $item->code ? 'selected' : '' }}>
+                                            {{ $item->name }} ({{ $item->sign }})
+                                        </option>
                                     @endforeach
                                 </select>
+                                <div class="text-muted small mt-1">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    You can change this later in your account settings.
+                                </div>
                             </div>
-                            <div class="col-md-3">
-                                <label class="form-label text-light">Code</label>
-                                <input id="phone_code" type="text" name="phone_code" class="form-control" placeholder="+00" readonly>
+
+                            {{-- Terms Agreement --}}
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" 
+                                           type="checkbox" 
+                                           value="1" 
+                                           id="agree_terms" 
+                                           required
+                                           {{ old('agree_terms') ? 'checked' : '' }}>
+                                    <label class="form-check-label text-muted" for="agree_terms">
+                                        I have read and agree to the
+                                        <a href="{{ setting('terms', '#') }}" class="text-warning text-decoration-none fw-semibold" target="_blank">
+                                            Terms of Use
+                                        </a> and 
+                                        <a href="{{ setting('privacy_policy', '#') }}" class="text-warning text-decoration-none fw-semibold" target="_blank">
+                                            Privacy Policy
+                                        </a>.
+                                    </label>
+                                    <div class="invalid-feedback">You must agree before submitting.</div>
+                                </div>
                             </div>
-                            <div class="col-md-3 d-flex align-items-end">
-                                <span class="form-control bg-white d-flex align-items-center justify-content-center">
-                                    <img id="flag-icon" src="{{ asset('flags/dd.png') }}" style="height: 24px;"/>
-                                </span>
-                            </div>
+
+                            {{-- Submit Button --}}
+                            <button type="submit" class="btn btn-warning btn-lg w-100 fw-semibold mb-4">
+                                <i class="fas fa-user-plus me-2"></i>
+                                Create Account
+                            </button>
+                        </form>
+
+                        {{-- Divider --}}
+                        <div class="d-flex align-items-center my-4">
+                            <hr class="flex-grow-1 border-secondary">
+                            <span class="px-3 text-muted small">or</span>
+                            <hr class="flex-grow-1 border-secondary">
                         </div>
 
-                        <div class="d-flex flex-column mt-3">
-                            <label class="form-label text-light">Phone <span class="crypt-grayscale-600">*</span></label>
-                            <input required id="phone" name="phone" type="text" value="{{ old('phone') }}" class="form-control py-2" placeholder="Phone Number">
+                        {{-- Social Registration Buttons --}}
+                        <div class="d-grid gap-2 mb-4">
+                            <button type="button" class="btn btn-outline-secondary btn-lg d-flex justify-content-center align-items-center">
+                                <img src="{{ asset('images/icon/google.svg') }}" alt="Google" width="20" height="20" class="me-3">
+                                Continue with Google
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary btn-lg d-flex justify-content-center align-items-center">
+                                <img src="{{ asset('images/icon/apple.svg') }}" alt="Apple" width="20" height="20" class="me-3">
+                                Continue with Apple
+                            </button>
                         </div>
 
-                        {{-- الباسوورد + التأكيد --}}
-                        <div class="d-flex flex-column mt-3">
-                            <label for="password" class="form-label text-light">Password <span class="crypt-grayscale-600">*</span></label>
-                            <div class="position-relative">
-                                <input type="password" class="form-control form-controls py-2" name="password" id="password" placeholder="Enter a password" autocomplete="off" required>
-                                <button type="button" class="btn btn-link position-absolute end-0 top-0 h-100 px-3 text-decoration-none" onclick="togglePassword()" aria-label="Show/Hide password">
-                                    <i class="fa fa-eye" id="eye"></i>
-                                </button>
-                            </div>
-                            <div class="text-muted crypt-grayscale-600 text-sm mt-1">Use 8 or more characters with a mix of letters, numbers & symbols.</div>
+                        {{-- Login Link --}}
+                        <div class="text-center">
+                            <span class="text-muted">Already have an account? </span>
+                            <a href="{{ route('login') }}" class="text-warning text-decoration-none fw-semibold">Sign in</a>
                         </div>
-
-                        <div class="d-flex flex-column mt-3">
-                            <label class="form-label text-light">Confirm Password <span class="crypt-grayscale-600">*</span></label>
-                            <input required name="password_confirmation" type="password" class="form-control py-2" id="cPassword" placeholder="Confirm Password">
-                        </div>
-
-                        {{-- العملة --}}
-                        <div class="d-flex flex-column mt-3">
-                            <label class="form-label text-light">Currency</label>
-                            <select name="cur" class="form-control">
-                                @foreach($curs as $item)
-                                    <option value="{{ $item->code }}">{{ $item->name }} ({{ $item->sign }})</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        {{-- الموافقة على الشروط --}}
-                        <div class="d-flex justify-content-between mt-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="1" id="agree_terms" required>
-                                <label class="form-check-label text-secondary" for="agree_terms">
-                                    I have read and agree to the
-                                    <a href="{{ setting('terms', '#!') }}" class="link-primary fw-bold mb-0" target="_blank">Terms of Use</a>.
-                                </label>
-                                <div class="invalid-feedback mt-0">You must agree before submitting.</div>
-                            </div>
-                        </div>
-
-                        {{-- Submit --}}
-                        <button class="btn btn-primary rounded-pill text-center mt-4" type="submit">Create Account</button>
                     </div>
-                </form>
-
-                {{-- Social (اختياري/شكلي) --}}
-                <div class="d-flex flex-column mt-4">
-                    <div class="divider" role="separator">
-                        <span class="crypt-grayscale-500 p-2">or</span>
-                    </div>
-                    <a href="#!" class="d-flex justify-content-between align-items-center button btn btn-outline-secondary">
-                        Sign in with Google
-                        <img alt="" width="32" src="{{ asset('images/icon/google.svg') }}">
-                    </a>
-                    <a href="#!" class="d-flex justify-content-between align-items-center button btn btn-outline-secondary mt-3">
-                        Sign in with Apple
-                        <img alt="" width="32" src="{{ asset('images/icon/apple.svg') }}">
-                    </a>
-                </div>
-
-                <div class="d-flex flex-row gap-2 mt-4 justify-content-center">
-                    <p class="crypt-grayscale-500 m-0">Already have an account?</p>
-                    <a href="{{ route('login') }}" class="link-primary fw-bold">Login</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="container-fluid text-left text-lg-start animation-element mt-5">
-        <div class="container in-view">
-            <div class="d-flex justify-content-center gap-4 crypt-footer-copyright border-0 mb-3 mt-3">
-                <a class="text-link text-sm crypt-grayscale-600" href="{{ setting('docs_url', '#!') }}">Docs</a>
-                <a class="text-link text-sm crypt-grayscale-600" href="{{ setting('cookies_url', '#!') }}">Cookies</a>
-                <a class="text-link text-sm crypt-grayscale-600" href="{{ setting('terms', '#!') }}">Terms</a>
-                <a class="text-link text-sm crypt-grayscale-600" href="{{ setting('privacy_policy', '#!') }}">Privacy</a>
+    {{-- Footer --}}
+    <footer class="bg-dark border-top border-secondary py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex flex-wrap justify-content-center gap-4 text-center">
+                        <a href="{{ setting('docs_url', '#') }}" class="text-muted text-decoration-none small">Documentation</a>
+                        <a href="{{ setting('cookies_url', '#') }}" class="text-muted text-decoration-none small">Cookies Policy</a>
+                        <a href="{{ setting('terms', '#') }}" class="text-muted text-decoration-none small">Terms of Service</a>
+                        <a href="{{ setting('privacy_policy', '#') }}" class="text-muted text-decoration-none small">Privacy Policy</a>
+                        <a href="#" class="text-muted text-decoration-none small">Support</a>
+                    </div>
+                    <div class="text-center mt-3">
+                        <p class="text-muted small mb-0">
+                            &copy; {{ date('Y') }} {{ setting('site_name', 'Crypt') }}. All rights reserved.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
-    {{-- JS --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" ></script>
-    <script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
+    {{-- Scripts --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
-        function togglePassword() {
-            const input = document.getElementById('password');
-            const eye   = document.getElementById('eye');
-            if (input.type === 'password') {
-                input.type = 'text';
-                eye.classList.remove('fa-eye');
-                eye.classList.add('fa-eye-slash');
+        // Password Toggle
+        function togglePassword(inputId, iconId) {
+            const passwordInput = document.getElementById(inputId);
+            const eyeIcon = document.getElementById(iconId);
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
             } else {
-                input.type = 'password';
-                eye.classList.remove('fa-eye-slash');
-                eye.classList.add('fa-eye');
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
             }
         }
 
-        function endpoint(url, value){
-            if(!value) return;
+        // Country Info Endpoint
+        function endpoint(url, value) {
+            if (!value) return;
+            
             axios.get(url + '/' + value)
                 .then(function (response) {
-                    document.getElementById('phone_code').value = "+" + response.data.phonecode;
-                    document.getElementById('phone_code').innerHTML = "+" + response.data.phonecode;
-                    document.getElementById('flag-icon').src = response.data.iso;
+                    const phoneCodeInput = document.getElementById('phone_code');
+                    const flagIcon = document.getElementById('flag-icon');
+                    
+                    phoneCodeInput.value = "+" + response.data.phonecode;
+                    flagIcon.src = response.data.iso;
+                    flagIcon.alt = value + " flag";
                 })
-                .catch(function () {
-                    console.error('Country info fetch failed');
+                .catch(function (error) {
+                    console.error('Country info fetch failed:', error);
+                    // Optionally show user-friendly error message
+                    const phoneCodeInput = document.getElementById('phone_code');
+                    phoneCodeInput.value = '+00';
                 });
         }
+
+        // Theme Toggle
+        document.getElementById('themeToggle')?.addEventListener('click', function() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-bs-theme', newTheme);
+            
+            const icon = this.querySelector('i');
+            if (newTheme === 'dark') {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        });
+
+        // Form Validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const forms = document.querySelectorAll('.needs-validation');
+            
+            Array.from(forms).forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                });
+            });
+            
+            // Password confirmation validation
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('cPassword');
+            
+            function validatePasswordMatch() {
+                if (password.value !== confirmPassword.value) {
+                    confirmPassword.setCustomValidity('Passwords do not match');
+                } else {
+                    confirmPassword.setCustomValidity('');
+                }
+            }
+            
+            password.addEventListener('change', validatePasswordMatch);
+            confirmPassword.addEventListener('keyup', validatePasswordMatch);
+        });
+
+        // Auto-hide alerts
+        document.addEventListener('DOMContentLoaded', function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                setTimeout(function() {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                }, 8000); // 8 seconds for registration errors
+            });
+        });
     </script>
+
+    {{-- Custom Styles --}}
+    <style>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+        
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #ffc107;
+            box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+            border: none;
+            color: #000;
+        }
+        
+        .btn-warning:hover {
+            background: linear-gradient(135deg, #ffb300 0%, #ff8f00 100%);
+            color: #000;
+        }
+        
+        .card {
+            backdrop-filter: blur(10px);
+            background: rgba(33, 37, 41, 0.95) !important;
+        }
+        
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(33, 37, 41, 0.95) !important;
+        }
+        
+        .invalid-feedback {
+            color: #dc3545;
+            font-size: 0.875rem;
+        }
+        
+        .form-check-input:checked {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+        
+        .btn-outline-secondary {
+            border-color: #6c757d;
+            color: #6c757d;
+        }
+        
+        .btn-outline-secondary:hover {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            color: #fff;
+        }
+        
+        .input-group-text {
+            background-color: #212529 !important;
+            border-color: #6c757d;
+        }
+        
+        @media (max-width: 767.98px) {
+            .min-vh-100 {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+            
+            .card-body {
+                padding: 2rem 1.5rem !important;
+            }
+        }
+    </style>
 </body>
 </html>
