@@ -60,38 +60,38 @@
             overflow-x: hidden;
         }
 
-        /* Dark Theme Variables - Reference Design */
+        /* Dark Theme Variables - Exact Reference Match */
         body.crypt-dark {
-            --bg-primary: #0f0f0f;
+            --bg-primary: #000000;
             --bg-secondary: #1a1a1a;
-            --bg-tertiary: #2d2d2d;
+            --bg-tertiary: #333333;
             --text-primary: #ffffff;
-            --text-secondary: #a0aec0;
-            --text-muted: #718096;
-            --border-color: #2d3748;
+            --text-secondary: #cccccc;
+            --text-muted: #999999;
+            --border-color: #333333;
             --accent-yellow: #FFC107;
-            --accent-yellow-hover: #ffb300;
-            --accent-green: #10b981;
-            --accent-red: #ef4444;
-            --hover-bg: rgba(255, 255, 255, 0.06);
-            --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --accent-yellow-hover: #ffed4a;
+            --accent-green: #00d4aa;
+            --accent-red: #ff6b6b;
+            --hover-bg: rgba(255, 255, 255, 0.08);
+            --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         }
 
-        /* Light Theme Variables - Reference Design Exact Match */
+        /* Light Theme Variables - Exact Reference Match */
         body.crypt-light {
             --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --bg-tertiary: #f1f3f4;
-            --text-primary: #1a1a1a;
-            --text-secondary: #4a5568;
-            --text-muted: #718096;
-            --border-color: #e2e8f0;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f5f5f5;
+            --text-primary: #000000;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border-color: #e0e0e0;
             --accent-yellow: #FFC107;
-            --accent-yellow-hover: #ffb300;
-            --accent-green: #10b981;
-            --accent-red: #ef4444;
-            --hover-bg: rgba(0, 0, 0, 0.04);
-            --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --accent-yellow-hover: #ffed4a;
+            --accent-green: #00d4aa;
+            --accent-red: #ff6b6b;
+            --hover-bg: rgba(0, 0, 0, 0.05);
+            --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         /* Main Container */
@@ -1639,7 +1639,7 @@
                 document.documentElement.setAttribute('data-bs-theme', theme);
                 document.body.classList.add(`crypt-${theme}`);
                 
-                // Force update body background
+                // Force update body background to match reference exactly
                 document.body.style.backgroundColor = theme === 'dark' ? '#000000' : '#ffffff';
                 document.body.style.color = theme === 'dark' ? '#ffffff' : '#000000';
                 
@@ -1665,34 +1665,34 @@
                     el.style.color = theme === 'dark' ? '#ffffff' : '#000000';
                 });
                 
-                // Update all cards and panels
+                // Update all cards and panels to match reference exactly
                 const cards = document.querySelectorAll('.card, .panel, .widget, .box');
                 cards.forEach(el => {
-                    el.style.backgroundColor = theme === 'dark' ? '#1a1a1a' : '#f8f9fa';
-                    el.style.borderColor = theme === 'dark' ? '#333333' : '#dee2e6';
+                    el.style.backgroundColor = theme === 'dark' ? '#1a1a1a' : '#ffffff';
+                    el.style.borderColor = theme === 'dark' ? '#333333' : '#e0e0e0';
                     el.style.color = theme === 'dark' ? '#ffffff' : '#000000';
                 });
                 
-                // Update all tables
+                // Update all tables to match reference
                 const tables = document.querySelectorAll('.table, table');
                 tables.forEach(el => {
-                    el.style.backgroundColor = theme === 'dark' ? '#1a1a1a' : '#f8f9fa';
+                    el.style.backgroundColor = theme === 'dark' ? '#1a1a1a' : '#ffffff';
                     el.style.color = theme === 'dark' ? '#ffffff' : '#000000';
                 });
                 
-                // Update table cells
+                // Update table cells to match reference
                 const tableCells = document.querySelectorAll('th, td');
                 tableCells.forEach(el => {
-                    el.style.backgroundColor = theme === 'dark' ? '#1a1a1a' : '#f8f9fa';
+                    el.style.backgroundColor = theme === 'dark' ? '#1a1a1a' : '#ffffff';
                     el.style.color = theme === 'dark' ? '#ffffff' : '#000000';
-                    el.style.borderColor = theme === 'dark' ? '#333333' : '#dee2e6';
+                    el.style.borderColor = theme === 'dark' ? '#333333' : '#e0e0e0';
                 });
                 
-                // Update form elements
+                // Update form elements to match reference
                 const formElements = document.querySelectorAll('.form-control, input, textarea, select');
                 formElements.forEach(el => {
-                    el.style.backgroundColor = theme === 'dark' ? '#2a2a2a' : '#ffffff';
-                    el.style.borderColor = theme === 'dark' ? '#333333' : '#dee2e6';
+                    el.style.backgroundColor = theme === 'dark' ? '#333333' : '#ffffff';
+                    el.style.borderColor = theme === 'dark' ? '#333333' : '#e0e0e0';
                     el.style.color = theme === 'dark' ? '#ffffff' : '#000000';
                 });
                 
