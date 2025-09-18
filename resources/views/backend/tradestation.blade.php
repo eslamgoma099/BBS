@@ -464,22 +464,23 @@
 
 .current-price-line {
     padding: 12px 16px;
-    background: linear-gradient(90deg, rgba(255, 193, 7, 0.1), transparent);
-    border-top: 1px solid var(--accent-yellow);
-    border-bottom: 1px solid var(--accent-yellow);
+    background: linear-gradient(90deg, rgba(255, 193, 7, 0.15), rgba(255, 193, 7, 0.05), transparent);
+    border-top: 2px solid var(--accent-yellow);
+    border-bottom: 2px solid var(--accent-yellow);
     text-align: center;
+    margin: 2px 0;
 }
 
 .current-price {
     color: var(--accent-yellow);
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 2px;
 }
 
 .price-usd {
     color: var(--text-muted);
-    font-size: 12px;
-    margin-top: 2px;
+    font-size: 11px;
 }
 
 /* Chart Panel */
@@ -584,6 +585,7 @@
     border-radius: 8px;
     position: relative;
     overflow: hidden;
+    background-color: var(--bg-secondary);
 }
 
 .chart-placeholder {
@@ -657,33 +659,37 @@
 
 .trading-buttons {
     display: flex;
-    gap: 2px;
+    gap: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
 }
 
 .trading-btn {
     flex: 1;
     padding: 12px;
-    border: 1px solid var(--border-color);
-    background-color: var(--bg-tertiary);
+    border: none;
+    background-color: var(--bg-secondary);
     color: var(--text-secondary);
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
-}
-
-.trading-btn:first-child {
-    border-radius: 6px 0 0 6px;
+    border-right: 1px solid var(--border-color);
 }
 
 .trading-btn:last-child {
-    border-radius: 0 6px 6px 0;
+    border-right: none;
+}
+
+.trading-btn:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-primary);
 }
 
 .trading-btn.active {
     background-color: var(--accent-yellow);
     color: #000000;
-    border-color: var(--accent-yellow);
     font-weight: 600;
 }
 
@@ -724,18 +730,36 @@
     overflow-y: auto;
 }
 
+.market-data-table::-webkit-scrollbar {
+    width: 4px;
+}
+
+.market-data-table::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+.market-data-table::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 2px;
+}
+
 .market-table-header {
     display: grid;
     grid-template-columns: 1fr 80px 80px;
     padding: 12px 16px;
     border-bottom: 1px solid var(--border-color);
     background-color: var(--bg-tertiary);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .market-header-col {
     font-size: 12px;
     color: var(--text-muted);
-    font-weight: 500;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .market-header-col:nth-child(2),
@@ -746,15 +770,21 @@
 .market-row {
     display: grid;
     grid-template-columns: 1fr 80px 80px;
-    padding: 12px 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-color);
     align-items: center;
     transition: all 0.2s ease;
+    min-height: 56px;
 }
 
 .market-row:hover {
     background-color: var(--hover-bg);
     cursor: pointer;
+    transform: translateX(2px);
+}
+
+.market-row:last-child {
+    border-bottom: none;
 }
 
 .market-pair {
@@ -809,30 +839,89 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1400px) {
+    .trading-interface-grid {
+        grid-template-columns: 280px 1fr 300px;
+    }
+}
+
 @media (max-width: 1200px) {
     .trading-interface-grid {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto;
+        gap: 15px;
+    }
+    
+    .order-book-panel,
+    .market-data-panel {
+        max-height: 400px;
     }
 }
 
 @media (max-width: 768px) {
     .trading-interface-grid {
-        gap: 15px;
+        gap: 12px;
     }
     
     .asset-tabs-horizontal {
         flex-wrap: wrap;
+        gap: 6px;
     }
     
     .assets-header-section .d-flex {
         flex-direction: column;
         align-items: flex-start;
-        gap: 15px;
+        gap: 12px;
     }
     
     .chart-area {
-        height: 300px;
+        height: 250px;
+    }
+    
+    .price-info-header .crypto-pair {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    
+    .current-price-display {
+        font-size: 24px;
+    }
+    
+    .timeframe-buttons {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    
+    .trading-buttons {
+        flex-direction: column;
+        gap: 1px;
+    }
+    
+    .trading-btn {
+        border-radius: 0 !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .trading-btn:last-child {
+        border-bottom: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .assets-title {
+        font-size: 20px;
+    }
+    
+    .btn-orders-reference,
+    .btn-add-funds-main {
+        font-size: 13px;
+        padding: 6px 12px;
+    }
+    
+    .asset-tab-btn {
+        padding: 6px 14px;
+        font-size: 13px;
     }
 }
 
@@ -842,7 +931,7 @@ body.crypt-light .market-row:hover {
 }
 
 body.crypt-dark .market-row:hover {
-    background-color: rgba(255, 255, 255, 0.06);
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
 body.crypt-light .order-row:hover {
@@ -850,7 +939,53 @@ body.crypt-light .order-row:hover {
 }
 
 body.crypt-dark .order-row:hover {
-    background-color: rgba(255, 255, 255, 0.06);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Enhanced focus states */
+.asset-tab-btn:focus,
+.timeframe-btn:focus,
+.trading-btn:focus {
+    outline: 2px solid var(--accent-yellow);
+    outline-offset: 2px;
+}
+
+/* Smooth transitions for all interactive elements */
+.asset-tab-btn,
+.timeframe-btn,
+.trading-btn,
+.market-row,
+.order-row {
+    transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Loading states */
+.trading-interface-grid.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Enhanced scrollbar styling */
+.order-book-table::-webkit-scrollbar,
+.market-data-table::-webkit-scrollbar {
+    width: 6px;
+}
+
+.order-book-table::-webkit-scrollbar-track,
+.market-data-table::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 3px;
+}
+
+.order-book-table::-webkit-scrollbar-thumb,
+.market-data-table::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.order-book-table::-webkit-scrollbar-thumb:hover,
+.market-data-table::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
 }
 </style>
 @endsection
@@ -906,7 +1041,54 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    console.log('Trading interface initialized successfully');
+    // Real-time price updates simulation
+    function updatePrices() {
+        const marketPrices = document.querySelectorAll('.market-price');
+        const orderPrices = document.querySelectorAll('.price-col');
+        
+        marketPrices.forEach(price => {
+            const currentPrice = parseFloat(price.textContent.replace('$', ''));
+            const change = (Math.random() - 0.5) * 0.02; // Small random change
+            const newPrice = Math.max(0.01, currentPrice + change);
+            price.textContent = '$' + newPrice.toFixed(price.textContent.includes('.') && price.textContent.split('.')[1].length > 2 ? 3 : 2);
+        });
+        
+        orderPrices.forEach(price => {
+            const currentPrice = parseFloat(price.textContent);
+            const change = (Math.random() - 0.5) * 0.02;
+            const newPrice = Math.max(10000, currentPrice + change);
+            price.textContent = newPrice.toFixed(2);
+        });
+    }
+
+    // Update prices every 3 seconds
+    setInterval(updatePrices, 3000);
+    
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey || e.metaKey) {
+            switch(e.key) {
+                case '1':
+                    e.preventDefault();
+                    document.querySelector('[data-asset="BTC"]')?.click();
+                    break;
+                case '2':
+                    e.preventDefault();
+                    document.querySelector('[data-asset="ETH"]')?.click();
+                    break;
+                case '3':
+                    e.preventDefault();
+                    document.querySelector('[data-asset="USDT"]')?.click();
+                    break;
+                case '4':
+                    e.preventDefault();
+                    document.querySelector('[data-asset="XRP"]')?.click();
+                    break;
+            }
+        }
+    });
+
+    console.log('Trading interface initialized successfully with real-time updates');
 });
 </script>
 @endsection
