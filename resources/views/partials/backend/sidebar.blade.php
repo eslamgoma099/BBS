@@ -17,32 +17,7 @@
             </svg>
             <span>Assets</span>
         </div>
-        
-        <!-- Asset Selection Tabs - From New Theme -->
-        <div class="asset-tabs-sidebar">
-            <button class="asset-tab-sidebar active" data-asset="BTC">
-                <i class="fab fa-bitcoin"></i>
-                <span>BTC</span>
-            </button>
-            <button class="asset-tab-sidebar" data-asset="ETH">
-                <i class="fab fa-ethereum"></i>
-                <span>ETH</span>
-            </button>
-            <button class="asset-tab-sidebar" data-asset="USDT">
-                <i class="fas fa-dollar-sign"></i>
-                <span>USDT</span>
-            </button>
-            <button class="asset-tab-sidebar" data-asset="XRP">
-                <i class="fas fa-coins"></i>
-                <span>XRP</span>
-            </button>
-        </div>
-        
-        <!-- Search Coin in Sidebar -->
-        <div class="search-coin-sidebar">
-            <input type="text" class="search-coin-sidebar-input" placeholder="Search coin">
-        </div>
-        
+
         <a class="sidebar-link {{ active('backend.dashboard') ? 'active' : '' }}" href="{{ route('backend.dashboard') }}">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path opacity="0.4" d="M18.6699 2H16.7699C14.5899 2 13.4399 3.15 13.4399 5.33V7.23C13.4399 9.41 14.5899 10.56 16.7699 10.56H18.6699C20.8499 10.56 21.9999 9.41 21.9999 7.23V5.33C21.9999 3.15 20.8499 2 18.6699 2Z"/>
@@ -268,75 +243,7 @@
         transform: translateX(2px);
     }
 
-    /* Asset Tabs in Sidebar - Matching New Theme Design */
-    .asset-tabs-sidebar {
-        padding: 0 15px;
-        margin-bottom: 15px;
-    }
-    
-    .asset-tab-sidebar {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        padding: 10px 12px;
-        margin-bottom: 5px;
-        background: transparent;
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        color: var(--text-secondary);
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        text-align: left;
-    }
-    
-    .asset-tab-sidebar:hover {
-        background-color: var(--hover-bg);
-        color: var(--text-primary);
-        border-color: var(--accent-yellow);
-        transform: translateX(2px);
-    }
-    
-    .asset-tab-sidebar.active {
-        background-color: var(--accent-yellow);
-        color: #000000;
-        border-color: var(--accent-yellow);
-        font-weight: 600;
-    }
-    
-    .asset-tab-sidebar i {
-        margin-right: 10px;
-        width: 16px;
-        font-size: 14px;
-    }
-    
-    /* Search in Sidebar */
-    .search-coin-sidebar {
-        padding: 0 15px;
-        margin-bottom: 15px;
-    }
-    
-    .search-coin-sidebar-input {
-        width: 100%;
-        padding: 10px 12px;
-        background-color: var(--bg-tertiary);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        color: var(--text-primary);
-        font-size: 14px;
-        outline: none;
-        transition: all 0.2s ease;
-    }
-    
-    .search-coin-sidebar-input:focus {
-        border-color: var(--accent-yellow);
-        box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.1);
-    }
-    
-    .search-coin-sidebar-input::placeholder {
-        color: var(--text-muted);
-    }
+
 
     /* Mobile responsive */
     @media (max-width: 768px) {
@@ -371,22 +278,3 @@
     }
 </style>
 
-<!-- JavaScript for Asset Tabs -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Asset tabs functionality in sidebar
-    const assetTabsSidebar = document.querySelectorAll('.asset-tab-sidebar');
-    assetTabsSidebar.forEach(tab => {
-        tab.addEventListener('click', function() {
-            assetTabsSidebar.forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-            console.log(`Selected asset from sidebar: ${this.dataset.asset}`);
-            
-            // You can add logic here to update the main trading interface
-            // based on the selected asset
-        });
-    });
-    
-    console.log('Sidebar asset tabs initialized successfully! ✅');
-});
-</script>
