@@ -7,11 +7,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <!-- Original Theme CSS Files -->
-    <link rel="stylesheet" href="{{ asset('new-theme/bootstrap/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('new-theme/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('new-theme/css/responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('new-theme/css/button.css') }}">
-    <link rel="icon" type="image/svg" href="{{ asset('images/favicon.svg') }}">
+    <link rel="stylesheet" href="{{ asset('assets1/bootstrap/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/button.css') }}">
+    <link rel="icon" type="image/svg" href="{{ asset('assets1/images/favicon.svg') }}">
 </head>
 
 <body class="crypt-dark">
@@ -25,23 +25,23 @@
                     <!-- Logo -->
                     <div class="crypt-logo dark">
                         <a href="{{ route('dashboard') }}">
-                            <img src="{{ asset('images/logo-dark.svg') }}" alt="logo-dark">
+                            <img src="{{ asset('assets1/images/logo-dark.svg') }}" alt="logo-dark">
                         </a>
                     </div>
                     <div class="crypt-logo light">
                         <a href="{{ route('dashboard') }}">
-                            <img src="{{ asset('images/logo.svg') }}" alt="logo">
+                            <img src="{{ asset('assets1/images/logo.svg') }}" alt="logo">
                         </a>
                     </div>
                     <!-- Logo sm -->
                     <div class="crypt-logo logo-sm dark">
                         <a href="{{ route('dashboard') }}">
-                            <img src="{{ asset('images/logo-m-dark.svg') }}" alt="logo-sm-dark">
+                            <img src="{{ asset('assets1/images/logo-m-dark.svg') }}" alt="logo-sm-dark">
                         </a>
                     </div>
                     <div class="crypt-logo logo-sm light">
                         <a href="{{ route('dashboard') }}">
-                            <img src="{{ asset('images/logo-m.svg') }}" alt="logo-sm">
+                            <img src="{{ asset('assets1/images/logo-m.svg') }}" alt="logo-sm">
                         </a>
                     </div>
                 </div>
@@ -137,12 +137,12 @@
                 <!-- Logo -->
                 <div class="crypt-logo logo-m dark">
                     <a href="{{ route('dashboard') }}">
-                        <img src="{{ asset('images/logo-dark.svg') }}" alt="logo-dark">
+                        <img src="{{ asset('assets1/images/logo-dark.svg') }}" alt="logo-dark">
                     </a>
                 </div>
                 <div class="crypt-logo logo-m light">
                     <a href="{{ route('dashboard') }}">
-                        <img src="{{ asset('images/logo.svg') }}" alt="logo">
+                        <img src="{{ asset('assets1/images/logo.svg') }}" alt="logo">
                     </a>
                 </div>
 
@@ -225,11 +225,11 @@
                     <div class="profile_menu d-flex align-items-center">
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle no-active d-flex align-items-center" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                <img alt="" src="{{ asset('images/social/user.svg') }}">
+                                <img alt="" src="{{ asset('assets1/images/social/user.svg') }}">
                             </button>
                             <ul class="dropdown-menu">
                                 <li class="wallet align-items-center">
-                                    <img alt="" src="{{ asset('images/social/user.svg') }}">
+                                    <img alt="" src="{{ asset('assets1/images/social/user.svg') }}">
                                     <div class="d-grid">
                                         <h6 class="fw-bold crypt-grayscale-100 mb-0">{{ auth()->user()->email }}</h6>
                                         <a class="d-flex gap-2 mb-2 verified mt-2" href="#!">
@@ -316,186 +316,400 @@
                 </div>
             </div>
 
-            <!-- Dashboard -->
+            <!-- Dashboard/Trading Interface -->
             <div class="row g-2 pb-2 animation-element">
                 <!-- Order Book | Market Trades -->
                 <div id="second" class="col-12 col-xxl-2 col-xl-3 col-lg-6">
                     <div class="tab-content card-bs table-temp3 p-2">
                         <!-- Tab -->
                         <div class="nav nav-pills nav-justified card-bs-tabs gap-2 p-1">
-                            <button class="nav-link active" id="book-tab" data-bs-toggle="tab" data-bs-target="#book-tab-pane" type="button" aria-controls="book-tab-pane">Order Book</button>
-                            <button class="nav-link" id="market-tab" data-bs-toggle="tab" data-bs-target="#market-tab-pane" type="button" aria-controls="market-tab-pane">Market Trades</button>
+                            <button class="nav-link active" id="book-tab" data-bs-toggle="tab" data-bs-target="#book-tab-pane" type="button" role="tab" aria-controls="book-tab-pane" aria-selected="true">Order Book</button>
+                            <button class="nav-link" id="market-tab" data-bs-toggle="tab" data-bs-target="#market-tab-pane" type="button" role="tab" aria-controls="market-tab-pane" aria-selected="false">Market Trades</button>
                         </div>
                         <!-- Order Book -->
-                        <div class="tab-pane fade show active" id="book-tab-pane" aria-labelledby="book-tab" tabindex="0">
+                        <div class="tab-pane fade show active" id="book-tab-pane" role="tabpanel" aria-labelledby="book-tab" tabindex="0">
+                            <!-- Spread Button -->
+                            <div class="col-12 text-start px-2">
+                                <button class="btn btn-secondary btn-sm mt-1">Spread 0.05%</button>
+                            </div>
                             <!-- Table -->
                             <div class="table-responsive">
                                 <table class="table table-dark table-hover crypt-tab">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Price (USDT)</th>
-                                            <th scope="col">Quantity</th>
-                                            <th scope="col">Total</th>
+                                            <th scope="col">Price(USDT)</th>
+                                            <th scope="col">Amount(BTC)</th>
+                                            <th scope="col">Total(USDT)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @for ($i = 1; $i <= 10; $i++)
                                         <tr>
-                                            <td class="text-down">{{ number_format(76294 + $i * 10, 2) }}<span class="text-down text-opacity-75">.{{ rand(10, 99) }}</span></td>
-                                            <td>{{ number_format(rand(10, 50) / 100, 3) }}</td>
-                                            <td>{{ number_format(rand(1, 9) / 1000, 3) }}</td>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.87</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
                                         </tr>
-                                        @endfor
-                                        
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.86</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.85</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.84</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.83</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.82</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.81</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.80</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.79</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.78</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
                                         <tr class="table-active mb-0">
-                                            <th scope="row" class="text-danger fs-6 fw-bold">76,294.82 <img alt="" src="{{ asset('images/icon/down.svg') }}" width="10"></th>
-                                            <td colspan="2" class="text-primary">≈ 76446.06 USD</td>
+                                            <th scope="row" class="text-danger fs-6 fw-bold">76,494.88 <img alt="" src="{{ asset('assets1/images/icon/down.svg') }}" width="10"></th>
+                                            <td colspan="2" class="text-primary">≈ 76.706,32 USD</td>
                                         </tr>
-                                        
-                                        @for ($i = 1; $i <= 10; $i++)
                                         <tr>
-                                            <td class="text-up">{{ number_format(76294 - $i * 10, 2) }}<span class="text-up text-opacity-50">.{{ rand(10, 99) }}</span></td>
-                                            <td>{{ number_format(rand(10, 50) / 100, 3) }}</td>
-                                            <td>{{ number_format(rand(1, 9) / 1000, 3) }}</td>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.77</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
                                         </tr>
-                                        @endfor
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.76</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.75</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.74</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.73</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.72</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.71</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.70</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.69</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.68</span></td>
+                                            <td>0.536</td>
+                                            <td>6.345</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         <!-- Market Trades -->
-                        <div class="tab-pane fade" id="market-tab-pane" aria-labelledby="market-tab" tabindex="0">
+                        <div class="tab-pane fade" id="market-tab-pane" role="tabpanel" aria-labelledby="market-tab" tabindex="0">
                             <!-- Table -->
                             <div class="table-responsive">
                                 <table class="table table-dark table-hover crypt-tab">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Price (USDT)</th>
-                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Price(USDT)</th>
+                                            <th scope="col">Amount(BTC)</th>
                                             <th scope="col">Time</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @for ($i = 0; $i < 30; $i++)
-                                        @php $isBuy = $i % 3 !== 0; @endphp
                                         <tr>
-                                            <td class="{{ $isBuy ? 'text-up' : 'text-down' }}">{{ number_format(76294 + ($isBuy ? 1 : -1) * rand(1, 30), 2) }}<span class="{{ $isBuy ? 'text-up text-opacity-50' : 'text-down text-opacity-75' }}">.{{ rand(10, 99) }}</span></td>
-                                            <td>{{ number_format(rand(10, 100) / 1000, 3) }}</td>
-                                            <td>{{ sprintf('%02d:%02d:%02d', rand(0, 23), rand(0, 59), rand(0, 59)) }}</td>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.67</span></td>
+                                            <td>0.023</td>
+                                            <td>20:34:26</td>
                                         </tr>
-                                        @endfor
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.66</span></td>
+                                            <td>0.156</td>
+                                            <td>20:34:22</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.65</span></td>
+                                            <td>0.089</td>
+                                            <td>20:34:18</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.64</span></td>
+                                            <td>0.234</td>
+                                            <td>20:34:14</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.63</span></td>
+                                            <td>0.067</td>
+                                            <td>20:34:10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.62</span></td>
+                                            <td>0.145</td>
+                                            <td>20:34:06</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.61</span></td>
+                                            <td>0.078</td>
+                                            <td>20:34:02</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.60</span></td>
+                                            <td>0.123</td>
+                                            <td>20:33:58</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.59</span></td>
+                                            <td>0.056</td>
+                                            <td>20:33:54</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.58</span></td>
+                                            <td>0.234</td>
+                                            <td>20:33:50</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.57</span></td>
+                                            <td>0.089</td>
+                                            <td>20:33:46</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.56</span></td>
+                                            <td>0.167</td>
+                                            <td>20:33:42</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.55</span></td>
+                                            <td>0.045</td>
+                                            <td>20:33:38</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.54</span></td>
+                                            <td>0.234</td>
+                                            <td>20:33:34</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.53</span></td>
+                                            <td>0.123</td>
+                                            <td>20:33:30</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.52</span></td>
+                                            <td>0.078</td>
+                                            <td>20:33:26</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.51</span></td>
+                                            <td>0.156</td>
+                                            <td>20:33:22</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.50</span></td>
+                                            <td>0.234</td>
+                                            <td>20:33:18</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-down">76,494.88<span class="text-down text-opacity-75">.49</span></td>
+                                            <td>0.089</td>
+                                            <td>20:33:14</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-up">76,494.88<span class="text-up text-opacity-50">.48</span></td>
+                                            <td>0.145</td>
+                                            <td>20:33:10</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                
                 <div id="first" class="col-12 col-xxl-7 col-xl-6 col-lg-12">
                     <!-- Watchlist -->
                     <div class="card-bs p-2">
-                        <!-- TradingView Mini Chart -->
-                        <div class="tradingview-widget-container card-line">
-                            <!-- TradingView Widget Placeholder -->
-                            <div class="bg-dark p-3 text-center rounded mb-3">
-                                <h6 class="text-muted mb-2">BTC/USDT Chart</h6>
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <div>
-                                        <span class="text-warning h5">76,294.82</span>
-                                        <span class="text-success ms-2">+1,234.56 (+1.65%)</span>
+                        <div class="nav nav-pills nav-justified card-bs-tabs gap-2 p-1">
+                            <button class="nav-link active text-sm" id="v-pills-btcusdt-tab" data-bs-toggle="pill" data-bs-target="#v-pills-btcusdt" type="button" role="tab" aria-controls="v-pills-btcusdt" aria-selected="true">
+                                <div class="d-flex flex-row justify-content-between gap-3 align-items-center">
+                                    <div class="d-flex flex-row align-items-center gap-2">
+                                        <img alt="" src="{{ asset('assets1/images/coins/btc.svg') }}" width="20">
+                                        <div class="d-flex flex-column justify-content-start align-items-start text-start">
+                                            <p class="fw-medium mb-0">BTC/USDT <span class="verified text-sm">24h</span></p>
+                                            <p class="fw-medium mb-0 text-success">76,494.88 <span class="text-success text-opacity-75">+1.24%</span></p>
+                                        </div>
                                     </div>
                                     <div>
-                                        <small class="text-muted">24h Vol: 1,234.56 BTC</small>
+                                        <img class="up-candle" alt="" src="{{ asset('assets1/images/icon/candle-up.svg') }}" width="30">
                                     </div>
                                 </div>
-                            </div>
+                            </button>
+                            <button class="nav-link text-sm" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                                <div class="d-flex flex-row justify-content-between gap-3 align-items-center">
+                                    <div class="d-flex flex-row align-items-center gap-2">
+                                        <img alt="" src="{{ asset('assets1/images/coins/eth.svg') }}" width="20">
+                                        <div class="d-flex flex-column justify-content-start align-items-start text-start">
+                                            <p class="fw-medium mb-0">ETH/USDT <span class="verified text-sm">24h</span></p>
+                                            <p class="fw-medium mb-0 text-danger">3,274.85 <span class="text-danger text-opacity-75">-0.24%</span></p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img class="down-candle" alt="" src="{{ asset('assets1/images/icon/candle-down.svg') }}" width="30">
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="nav-link text-sm" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#v-pills-disabled" type="button" role="tab" aria-controls="v-pills-disabled" aria-selected="false" tabindex="-1" aria-disabled="true">
+                                <div class="d-flex flex-row justify-content-between gap-3 align-items-center">
+                                    <div class="d-flex flex-row align-items-center gap-2">
+                                        <img alt="" src="{{ asset('assets1/images/coins/bnb.svg') }}" width="20">
+                                        <div class="d-flex flex-column justify-content-start align-items-start text-start">
+                                            <p class="fw-medium mb-0">BNB/USDT <span class="verified text-sm">24h</span></p>
+                                            <p class="fw-medium mb-0 text-success">634.56 <span class="text-success text-opacity-75">+2.75%</span></p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img class="up-candle" alt="" src="{{ asset('assets1/images/icon/candle-up.svg') }}" width="30">
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="nav-link text-sm" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                                <div class="d-flex flex-row justify-content-between gap-3 align-items-center">
+                                    <div class="d-flex flex-row align-items-center gap-2">
+                                        <img alt="" src="{{ asset('assets1/images/coins/sol.svg') }}" width="20">
+                                        <div class="d-flex flex-column justify-content-start align-items-start text-start">
+                                            <p class="fw-medium mb-0">SOL/USDT <span class="verified text-sm">24h</span></p>
+                                            <p class="fw-medium mb-0 text-success">214.56 <span class="text-success text-opacity-75">+4.89%</span></p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img class="up-candle" alt="" src="{{ asset('assets1/images/icon/candle-up.svg') }}" width="30">
+                                    </div>
+                                </div>
+                            </button>
                         </div>
                         <!-- TradingView Advanced Real-Time Chart -->
                         <div class="tradingview-widget-container">
-                            <!-- Chart Placeholder -->
-                            <div class="bg-dark p-4 text-center rounded" style="height: 400px; display: flex; align-items: center; justify-content: center;">
-                                <div>
-                                    <i class="fas fa-chart-line fa-4x text-warning mb-3"></i>
-                                    <h5 class="text-muted">TradingView Chart</h5>
-                                    <p class="text-muted">Interactive price chart will be displayed here</p>
-                                    <div class="btn-group btn-group-sm mt-3">
-                                        <button class="btn btn-outline-secondary">1H</button>
-                                        <button class="btn btn-warning">4H</button>
-                                        <button class="btn btn-outline-secondary">1D</button>
-                                        <button class="btn btn-outline-secondary">1W</button>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="tradingview-widget-container__widget"></div>
+                            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                                {
+                                    "autosize": true,
+                                    "symbol": "BINANCE:BTCUSDT",
+                                    "interval": "D",
+                                    "timezone": "Etc/UTC",
+                                    "theme": "dark",
+                                    "style": "1",
+                                    "locale": "en",
+                                    "enable_publishing": false,
+                                    "allow_symbol_change": true,
+                                    "calendar": false,
+                                    "support_host": "https://www.tradingview.com"
+                                }
+                            </script>
                         </div>
                     </div>
-                    
                     <!-- Buy/Sell Tabs -->
                     <div class="tab-content table-responsive card-bs p-2 mt-2">
                         <!-- Tab -->
                         <ul class="nav nav-pills nav-justified gap-1 card-bs-tabs p-1">
                             <li class="nav-item">
-                                <button class="nav-link active" id="pills-limit" data-bs-toggle="pill" data-bs-target="#pills-limit-tab" type="button" aria-controls="pills-limit-tab">Limit</button>
+                                <button class="nav-link active" id="pills-limit-tab" data-bs-toggle="pill" data-bs-target="#pills-limit" type="button" role="tab" aria-controls="pills-limit" aria-selected="true">Limit</button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" id="pills-market" data-bs-toggle="pill" data-bs-target="#pills-market-tab" type="button" aria-controls="pills-market-tab">Market</button>
+                                <button class="nav-link" id="pills-market-tab" data-bs-toggle="pill" data-bs-target="#pills-market" type="button" role="tab" aria-controls="pills-market" aria-selected="false">Market</button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" id="pills-stop-limit" data-bs-toggle="pill" data-bs-target="#pills-stop-limit-tab" type="button" aria-controls="pills-stop-limit-tab">Stop Limit</button>
+                                <button class="nav-link" id="pills-stop-limit-tab" data-bs-toggle="pill" data-bs-target="#pills-stop-limit" type="button" role="tab" aria-controls="pills-stop-limit" aria-selected="false">Stop-Limit</button>
                             </li>
                         </ul>
-                        
                         <!-- Limit Tabs -->
-                        <div class="tab-pane fade show active" id="pills-limit-tab" aria-labelledby="pills-limit" tabindex="0">
+                        <div class="tab-pane fade show active" id="pills-limit" role="tabpanel" aria-labelledby="pills-limit-tab" tabindex="0">
                             <div class="d-sm-flex flex-row justify-content-between gap-3 p-1">
                                 <!-- Buy Tabs -->
                                 <div class="w-100 active mt-3">
                                     <form method="POST" action="{{ route('trade.buy') }}">
                                         @csrf
+                                        <p class="text-sm crypt-grayscale-500">Avbl {{ number_format(auth()->user()->balance ?? 10000.25, 2) }} USDT</p>
                                         <div class="input-group mb-3 p-1">
-                                            <div class="input-group-prepend input-group-text">Spend ≈</div>
-                                            <input class="form-control placeholder-text" type="text" name="spend_amount" placeholder="Enter amount">
+                                            <div class="input-group-prepend input-group-text">Price</div>
+                                            <input class="form-control placeholder-text" type="text" name="buy_price" placeholder="76494.88" value="76494.88">
                                             <div class="input-group-append input-group-text p-1">
-                                                <select class="form-select text-sm crypt-grayscale-500" name="spend_currency">
+                                                <select class="form-select text-sm crypt-grayscale-500" name="price_currency">
                                                     <option selected>USDT</option>
-                                                    <option value="1">USD</option>
-                                                    <option value="2">EUR</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="input-group mb-3 p-1">
-                                            <div class="input-group-prepend input-group-text">Receive</div>
-                                            <input class="form-control placeholder-text" type="text" name="receive_amount" placeholder="0">
+                                            <div class="input-group-prepend input-group-text">Size</div>
+                                            <input class="form-control placeholder-text" type="text" name="buy_size" placeholder="0.00000000">
                                             <div class="input-group-append input-group-text p-1">
-                                                <select class="form-select text-sm crypt-grayscale-500" name="receive_currency">
+                                                <select class="form-select text-sm crypt-grayscale-500" name="size_currency">
                                                     <option selected>BTC</option>
-                                                    <option value="1">ETH</option>
-                                                    <option value="2">BNB</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="mt-2 text-sm card-border p-2">
-                                            <div class="d-flex flex-row justify-content-between">
-                                                <p class="crypt-grayscale-500">Subtotal:</p>
-                                                <p class="crypt-grayscale-600">0.00 USDT</p>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between">
-                                                <p class="crypt-grayscale-500">Trade Fee: <span class="crypt-grayscale-500">(0.1%)</span></p>
-                                                <p class="crypt-grayscale-600">0.00 USDT</p>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between">
-                                                <p class="crypt-grayscale-500">Gas Fee:</p>
-                                                <p class="text-primary">Free</p>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between">
-                                                <p class="crypt-grayscale-500 mb-0">Total:</p>
-                                                <p class="crypt-grayscale-600 mb-0">0.00 USDT</p>
+                                        <div class="col-12 p-1">
+                                            <div class="percentage-buttons d-flex justify-content-between gap-1 mb-3">
+                                                <button type="button" class="btn btn-outline-light btn-sm flex-fill" data-percentage="25">25%</button>
+                                                <button type="button" class="btn btn-outline-light btn-sm flex-fill" data-percentage="50">50%</button>
+                                                <button type="button" class="btn btn-outline-light btn-sm flex-fill" data-percentage="75">75%</button>
+                                                <button type="button" class="btn btn-outline-light btn-sm flex-fill" data-percentage="100">Max</button>
                                             </div>
                                         </div>
-                                        <div class="d-grid mt-5">
-                                            <div class="d-flex flex-row justify-content-between text-sm">
-                                                <p class="crypt-grayscale-500">Reference Price</p>
-                                                <p class="crypt-grayscale-300">1 BTC ≈ 76,294.82 USDT</p>
+                                        <div class="input-group mb-3 p-1">
+                                            <div class="input-group-prepend input-group-text">Total</div>
+                                            <input class="form-control placeholder-text" type="text" name="buy_total" placeholder="0.00">
+                                            <div class="input-group-append input-group-text p-1">
+                                                <select class="form-select text-sm crypt-grayscale-500" name="total_currency">
+                                                    <option selected>USDT</option>
+                                                </select>
                                             </div>
+                                        </div>
+                                        <div class="d-grid">
                                             <button type="submit" class="btn btn-up" role="button">Buy BTC</button>
                                         </div>
                                     </form>
@@ -507,97 +721,83 @@
                                 <div class="w-100 active mt-3">
                                     <form method="POST" action="{{ route('trade.sell') }}">
                                         @csrf
+                                        <p class="text-sm crypt-grayscale-500">Avbl {{ number_format(auth()->user()->crypto_balance ?? 0.12345678, 8) }} BTC</p>
                                         <div class="input-group mb-3 p-1">
-                                            <div class="input-group-prepend input-group-text">Spend ≈</div>
-                                            <input class="form-control placeholder-text" type="text" name="spend_amount" placeholder="Enter amount">
+                                            <div class="input-group-prepend input-group-text">Price</div>
+                                            <input class="form-control placeholder-text" type="text" name="sell_price" placeholder="76494.88" value="76494.88">
                                             <div class="input-group-append input-group-text p-1">
-                                                <select class="form-select text-sm crypt-grayscale-500" name="spend_currency">
-                                                    <option selected>BTC</option>
-                                                    <option value="1">ETH</option>
-                                                    <option value="2">BNB</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="input-group mb-3 p-1">
-                                            <div class="input-group-prepend input-group-text">Receive</div>
-                                            <input class="form-control placeholder-text" type="text" name="receive_amount" placeholder="0">
-                                            <div class="input-group-append input-group-text p-1">
-                                                <select class="form-select text-sm crypt-grayscale-500" name="receive_currency">
+                                                <select class="form-select text-sm crypt-grayscale-500" name="price_currency">
                                                     <option selected>USDT</option>
-                                                    <option value="1">USD</option>
-                                                    <option value="2">EUR</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="mt-2 text-sm card-border p-2">
-                                            <div class="d-flex flex-row justify-content-between">
-                                                <p class="crypt-grayscale-500">Subtotal:</p>
-                                                <p class="crypt-grayscale-600">0.00 USDT</p>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between">
-                                                <p class="crypt-grayscale-500">Trade Fee: <span class="crypt-grayscale-500">(0.1%)</span></p>
-                                                <p class="crypt-grayscale-600">0.00 USDT</p>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between">
-                                                <p class="crypt-grayscale-500">Gas Fee:</p>
-                                                <p class="text-primary">Free</p>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-between">
-                                                <p class="crypt-grayscale-500 mb-0">Total:</p>
-                                                <p class="crypt-grayscale-600 mb-0">0.00 USDT</p>
+                                        <div class="input-group mb-3 p-1">
+                                            <div class="input-group-prepend input-group-text">Size</div>
+                                            <input class="form-control placeholder-text" type="text" name="sell_size" placeholder="0.00000000">
+                                            <div class="input-group-append input-group-text p-1">
+                                                <select class="form-select text-sm crypt-grayscale-500" name="size_currency">
+                                                    <option selected>BTC</option>
+                                                </select>
                                             </div>
                                         </div>
-                                        <div class="d-grid mt-5">
-                                            <div class="d-flex flex-row justify-content-between text-sm">
-                                                <p class="crypt-grayscale-500">Reference Price</p>
-                                                <p class="crypt-grayscale-300">1 BTC ≈ 76,294.82 USDT</p>
+                                        <div class="col-12 p-1">
+                                            <div class="percentage-buttons d-flex justify-content-between gap-1 mb-3">
+                                                <button type="button" class="btn btn-outline-light btn-sm flex-fill" data-percentage="25">25%</button>
+                                                <button type="button" class="btn btn-outline-light btn-sm flex-fill" data-percentage="50">50%</button>
+                                                <button type="button" class="btn btn-outline-light btn-sm flex-fill" data-percentage="75">75%</button>
+                                                <button type="button" class="btn btn-outline-light btn-sm flex-fill" data-percentage="100">Max</button>
                                             </div>
+                                        </div>
+                                        <div class="input-group mb-3 p-1">
+                                            <div class="input-group-prepend input-group-text">Total</div>
+                                            <input class="form-control placeholder-text" type="text" name="sell_total" placeholder="0.00">
+                                            <div class="input-group-append input-group-text p-1">
+                                                <select class="form-select text-sm crypt-grayscale-500" name="total_currency">
+                                                    <option selected>USDT</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="d-grid">
                                             <button type="submit" class="btn btn-down" role="button">Sell BTC</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        
                         <!-- Market Tabs -->
-                        <div class="tab-pane fade" id="pills-market-tab" role="tabpanel" aria-labelledby="pills-market" tabindex="0">
+                        <div class="tab-pane fade" id="pills-market" role="tabpanel" aria-labelledby="pills-market-tab" tabindex="0">
                             <div class="d-sm-flex flex-row justify-content-between gap-3 p-1">
-                                <!-- Market Buy/Sell forms similar to above -->
                                 <div class="w-100 text-center p-4">
                                     <p class="text-muted">Market orders coming soon...</p>
                                 </div>
                             </div>
                         </div>
-                        
                         <!-- Stop Limit Tabs -->
-                        <div class="tab-pane fade" id="pills-stop-limit-tab" role="tabpanel" aria-labelledby="pills-stop-limit" tabindex="0">
+                        <div class="tab-pane fade" id="pills-stop-limit" role="tabpanel" aria-labelledby="pills-stop-limit-tab" tabindex="0">
                             <div class="d-sm-flex flex-row justify-content-between gap-3 p-1">
-                                <!-- Stop Limit Buy/Sell forms similar to above -->
                                 <div class="w-100 text-center p-4">
-                                    <p class="text-muted">Stop limit orders coming soon...</p>
+                                    <p class="text-muted">Stop-limit orders coming soon...</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
                 <!-- Coin Tab -->
                 <div id="third" class="col-12 col-xxl-3 col-xl-3 col-lg-6">
-                    <!-- Coin Overview -->
                     <div class="tab-content card-bs table-temp3 p-2">
                         <!-- Tab -->
                         <div class="nav nav-pills nav-justified gap-1 card-bs-tabs p-1">
-                            <button class="nav-link active" id="pills-btc" data-bs-toggle="pill" data-bs-target="#pills-btc-tab" type="button" aria-controls="pills-btc-tab">BTC</button>
-                            <button class="nav-link" id="pills-eth" data-bs-toggle="pill" data-bs-target="#pills-eth-tab" type="button" aria-controls="pills-eth-tab">ETH</button>
-                            <button class="nav-link" id="pills-usdt" data-bs-toggle="pill" data-bs-target="#pills-usdt-tab" type="button" aria-controls="pills-usdt-tab">USDT</button>
-                            <button class="nav-link" id="pills-xrp" data-bs-toggle="pill" data-bs-target="#pills-xrp-tab" type="button" aria-controls="pills-xrp-tab">XRP</button>
+                            <button class="nav-link active" id="pills-btc-tab" data-bs-toggle="pill" data-bs-target="#pills-btc" type="button" role="tab" aria-controls="pills-btc" aria-selected="true">BTC</button>
+                            <button class="nav-link" id="pills-eth-tab" data-bs-toggle="pill" data-bs-target="#pills-eth" type="button" role="tab" aria-controls="pills-eth" aria-selected="false">ETH</button>
+                            <button class="nav-link" id="pills-usdt-tab" data-bs-toggle="pill" data-bs-target="#pills-usdt" type="button" role="tab" aria-controls="pills-usdt" aria-selected="false">USDT</button>
+                            <button class="nav-link" id="pills-xrp-tab" data-bs-toggle="pill" data-bs-target="#pills-xrp" type="button" role="tab" aria-controls="pills-xrp" aria-selected="false">XRP</button>
                         </div>
                         <!-- Search -->
                         <div class="pt-2">
                             <input type="text" class="search form-control text-sm" placeholder="Search coin">
                         </div>
                         <!-- BTC Tabs -->
-                        <div class="tab-pane fade show active" id="pills-btc-tab" role="tabpanel" aria-labelledby="pills-btc" tabindex="0">
+                        <div class="tab-pane fade show active" id="pills-btc" role="tabpanel" aria-labelledby="pills-btc-tab" tabindex="0">
                             <!-- Table -->
                             <div class="table-responsive">
                                 <table class="table table-dark table-hover crypt-tab">
@@ -605,25 +805,11 @@
                                         <tr>
                                             <th scope="col">Pairs</th>
                                             <th scope="col">Price</th>
-                                            <th scope="col">Change (24h)</th>
+                                            <th scope="col">Change</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                        $marketPairs = [
-                                            ['pair' => 'USDT/BTC', 'price' => 30.03, 'change' => 2.96, 'positive' => false],
-                                            ['pair' => 'TON/BTC', 'price' => 21.12, 'change' => 17.88, 'positive' => false],
-                                            ['pair' => 'ADA/BTC', 'price' => 0.3780, 'change' => 12.45, 'positive' => true],
-                                            ['pair' => 'XRP/BTC', 'price' => 0.5621, 'change' => -5.32, 'positive' => false],
-                                            ['pair' => 'DOT/BTC', 'price' => 7.89, 'change' => 8.76, 'positive' => true],
-                                            ['pair' => 'SOL/BTC', 'price' => 145.67, 'change' => 15.23, 'positive' => true],
-                                            ['pair' => 'MATIC/BTC', 'price' => 0.8934, 'change' => -3.45, 'positive' => false],
-                                            ['pair' => 'AVAX/BTC', 'price' => 34.56, 'change' => 6.78, 'positive' => true],
-                                        ];
-                                        @endphp
-                                        
-                                        @foreach($marketPairs as $market)
-                                        <tr data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="${{ number_format($market['price'], 4) }}">
+                                        <tr data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="$30.03">
                                             <td>
                                                 <div class="d-flex flex-row align-items-center gap-2">
                                                     <div class="fav-btn">
@@ -632,33 +818,179 @@
                                                         </svg>
                                                     </div>
                                                     <div class="d-flex flex-row align-items-center gap-2">
-                                                        <p class="fw-medium mb-0">{{ $market['pair'] }} <span class="verified text-sm">{{ rand(5, 20) }}x</span></p>
+                                                        <p class="fw-medium mb-0">USDT/BTC <span class="verified text-sm">5x</span></p>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>${{ number_format($market['price'], 2) }}</td>
-                                            <td class="{{ $market['positive'] ? 'text-up' : 'text-down' }}">{{ number_format($market['change'], 2) }}% <img alt="" src="{{ asset('images/icon/' . ($market['positive'] ? 'up' : 'down') . '.svg') }}" width="16"></td>
+                                            <td>$30.03</td>
+                                            <td class="text-down">2.96% <img alt="" src="{{ asset('assets1/images/icon/down.svg') }}" width="16"></td>
                                         </tr>
-                                        @endforeach
+                                        <tr data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="$21.12">
+                                            <td>
+                                                <div class="d-flex flex-row align-items-center gap-2">
+                                                    <div class="fav-btn">
+                                                        <svg class="favme is_animating" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" stroke="currentColor" d="M11.173 3.007L12.768 3L15.178 8.11L20.504 8.941L21 10.436L17.11 14.449L18.005 20.085L16.707 21L11.972 18.352L7.236 21L5.94 20.077L6.886 14.445L3 10.436L3.496 8.941L8.818 8.111L11.173 3.007Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center gap-2">
+                                                        <p class="fw-medium mb-0">TON/BTC <span class="verified text-sm">10x</span></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>$21.12</td>
+                                            <td class="text-down">17.88% <img alt="" src="{{ asset('assets1/images/icon/down.svg') }}" width="16"></td>
+                                        </tr>
+                                        <tr data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="$0.3780">
+                                            <td>
+                                                <div class="d-flex flex-row align-items-center gap-2">
+                                                    <div class="fav-btn">
+                                                        <svg class="favme is_animating" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" stroke="currentColor" d="M11.173 3.007L12.768 3L15.178 8.11L20.504 8.941L21 10.436L17.11 14.449L18.005 20.085L16.707 21L11.972 18.352L7.236 21L5.94 20.077L6.886 14.445L3 10.436L3.496 8.941L8.818 8.111L11.173 3.007Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center gap-2">
+                                                        <p class="fw-medium mb-0">ADA/BTC <span class="verified text-sm">15x</span></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>$0.3780</td>
+                                            <td class="text-up">12.45% <img alt="" src="{{ asset('assets1/images/icon/up.svg') }}" width="16"></td>
+                                        </tr>
+                                        <tr data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="$0.5621">
+                                            <td>
+                                                <div class="d-flex flex-row align-items-center gap-2">
+                                                    <div class="fav-btn">
+                                                        <svg class="favme is_animating" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" stroke="currentColor" d="M11.173 3.007L12.768 3L15.178 8.11L20.504 8.941L21 10.436L17.11 14.449L18.005 20.085L16.707 21L11.972 18.352L7.236 21L5.94 20.077L6.886 14.445L3 10.436L3.496 8.941L8.818 8.111L11.173 3.007Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center gap-2">
+                                                        <p class="fw-medium mb-0">XRP/BTC <span class="verified text-sm">8x</span></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>$0.5621</td>
+                                            <td class="text-down">-5.32% <img alt="" src="{{ asset('assets1/images/icon/down.svg') }}" width="16"></td>
+                                        </tr>
+                                        <tr data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="$7.89">
+                                            <td>
+                                                <div class="d-flex flex-row align-items-center gap-2">
+                                                    <div class="fav-btn">
+                                                        <svg class="favme is_animating" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" stroke="currentColor" d="M11.173 3.007L12.768 3L15.178 8.11L20.504 8.941L21 10.436L17.11 14.449L18.005 20.085L16.707 21L11.972 18.352L7.236 21L5.94 20.077L6.886 14.445L3 10.436L3.496 8.941L8.818 8.111L11.173 3.007Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center gap-2">
+                                                        <p class="fw-medium mb-0">DOT/BTC <span class="verified text-sm">12x</span></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>$7.89</td>
+                                            <td class="text-up">8.76% <img alt="" src="{{ asset('assets1/images/icon/up.svg') }}" width="16"></td>
+                                        </tr>
+                                        <tr data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="$145.67">
+                                            <td>
+                                                <div class="d-flex flex-row align-items-center gap-2">
+                                                    <div class="fav-btn">
+                                                        <svg class="favme is_animating" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" stroke="currentColor" d="M11.173 3.007L12.768 3L15.178 8.11L20.504 8.941L21 10.436L17.11 14.449L18.005 20.085L16.707 21L11.972 18.352L7.236 21L5.94 20.077L6.886 14.445L3 10.436L3.496 8.941L8.818 8.111L11.173 3.007Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center gap-2">
+                                                        <p class="fw-medium mb-0">SOL/BTC <span class="verified text-sm">20x</span></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>$145.67</td>
+                                            <td class="text-up">15.23% <img alt="" src="{{ asset('assets1/images/icon/up.svg') }}" width="16"></td>
+                                        </tr>
+                                        <tr data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="$0.8934">
+                                            <td>
+                                                <div class="d-flex flex-row align-items-center gap-2">
+                                                    <div class="fav-btn">
+                                                        <svg class="favme is_animating" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" stroke="currentColor" d="M11.173 3.007L12.768 3L15.178 8.11L20.504 8.941L21 10.436L17.11 14.449L18.005 20.085L16.707 21L11.972 18.352L7.236 21L5.94 20.077L6.886 14.445L3 10.436L3.496 8.941L8.818 8.111L11.173 3.007Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center gap-2">
+                                                        <p class="fw-medium mb-0">MATIC/BTC <span class="verified text-sm">7x</span></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>$0.8934</td>
+                                            <td class="text-down">-3.45% <img alt="" src="{{ asset('assets1/images/icon/down.svg') }}" width="16"></td>
+                                        </tr>
+                                        <tr data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="$34.56">
+                                            <td>
+                                                <div class="d-flex flex-row align-items-center gap-2">
+                                                    <div class="fav-btn">
+                                                        <svg class="favme is_animating" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" stroke="currentColor" d="M11.173 3.007L12.768 3L15.178 8.11L20.504 8.941L21 10.436L17.11 14.449L18.005 20.085L16.707 21L11.972 18.352L7.236 21L5.94 20.077L6.886 14.445L3 10.436L3.496 8.941L8.818 8.111L11.173 3.007Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center gap-2">
+                                                        <p class="fw-medium mb-0">AVAX/BTC <span class="verified text-sm">18x</span></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>$34.56</td>
+                                            <td class="text-up">6.78% <img alt="" src="{{ asset('assets1/images/icon/up.svg') }}" width="16"></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        
-                        <!-- Other coin tabs (ETH, USDT, XRP) -->
-                        <div class="tab-pane fade" id="pills-eth-tab" role="tabpanel" aria-labelledby="pills-eth" tabindex="0">
+                        <!-- ETH Tabs -->
+                        <div class="tab-pane fade" id="pills-eth" role="tabpanel" aria-labelledby="pills-eth-tab" tabindex="0">
                             <div class="text-center p-4">
                                 <p class="text-muted">ETH pairs coming soon...</p>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="pills-usdt-tab" role="tabpanel" aria-labelledby="pills-usdt" tabindex="0">
+                        <!-- USDT Tabs -->
+                        <div class="tab-pane fade" id="pills-usdt" role="tabpanel" aria-labelledby="pills-usdt-tab" tabindex="0">
                             <div class="text-center p-4">
                                 <p class="text-muted">USDT pairs coming soon...</p>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="pills-xrp-tab" role="tabpanel" aria-labelledby="pills-xrp" tabindex="0">
+                        <!-- XRP Tabs -->
+                        <div class="tab-pane fade" id="pills-xrp" role="tabpanel" aria-labelledby="pills-xrp-tab" tabindex="0">
                             <div class="text-center p-4">
                                 <p class="text-muted">XRP pairs coming soon...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- My History -->
+            <div class="row g-2 animation-element">
+                <div class="col-12">
+                    <div class="tab-content card-bs table-temp3 p-2">
+                        <!-- Tab -->
+                        <div class="nav nav-pills nav-justified gap-1 card-bs-tabs p-1">
+                            <button class="nav-link active" id="pills-open-order-tab" data-bs-toggle="pill" data-bs-target="#pills-open-order" type="button" role="tab" aria-controls="pills-open-order" aria-selected="true">Open Orders (0)</button>
+                            <button class="nav-link" id="pills-order-history-tab" data-bs-toggle="pill" data-bs-target="#pills-order-history" type="button" role="tab" aria-controls="pills-order-history" aria-selected="false">Order History</button>
+                            <button class="nav-link" id="pills-trade-history-tab" data-bs-toggle="pill" data-bs-target="#pills-trade-history" type="button" role="tab" aria-controls="pills-trade-history" aria-selected="false">Trade History</button>
+                        </div>
+                        <!-- Open Orders -->
+                        <div class="tab-pane fade show active" id="pills-open-order" role="tabpanel" aria-labelledby="pills-open-order-tab" tabindex="0">
+                            <div class="text-center p-4">
+                                <img alt="" src="{{ asset('assets1/images/icon/empty-list.svg') }}" width="60" class="mb-3">
+                                <p class="text-muted">You have no open orders</p>
+                            </div>
+                        </div>
+                        <!-- Order History -->
+                        <div class="tab-pane fade" id="pills-order-history" role="tabpanel" aria-labelledby="pills-order-history-tab" tabindex="0">
+                            <div class="text-center p-4">
+                                <img alt="" src="{{ asset('assets1/images/icon/empty-list.svg') }}" width="60" class="mb-3">
+                                <p class="text-muted">No order history available</p>
+                            </div>
+                        </div>
+                        <!-- Trade History -->
+                        <div class="tab-pane fade" id="pills-trade-history" role="tabpanel" aria-labelledby="pills-trade-history-tab" tabindex="0">
+                            <div class="text-center p-4">
+                                <img alt="" src="{{ asset('assets1/images/icon/empty-list.svg') }}" width="60" class="mb-3">
+                                <p class="text-muted">No trade history available</p>
                             </div>
                         </div>
                     </div>
@@ -667,8 +999,166 @@
         </div>
     </section>
 
-    <!-- Bootstrap JS -->
-    <script src="{{ asset('new-theme/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Create Futures Grid (Modal) -->
+    <div class="modal fade" id="createFuturesGrid" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createFuturesGridLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="createFuturesGridLabel">Create Futures Grid</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-4">
+                    <p class="text-muted">Futures grid functionality coming soon...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buy/Sell Modal -->
+    <div class="modal fade" id="buyCrypto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="buyCryptoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="buyCryptoLabel">Quick Buy</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('trade.buy') }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="quickBuyAmount" class="form-label">Amount (USDT)</label>
+                            <input type="number" class="form-control" id="quickBuyAmount" name="amount" placeholder="Enter amount" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="quickBuyCurrency" class="form-label">Currency</label>
+                            <select class="form-select" id="quickBuyCurrency" name="currency" required>
+                                <option value="BTC" selected>Bitcoin (BTC)</option>
+                                <option value="ETH">Ethereum (ETH)</option>
+                                <option value="BNB">Binance Coin (BNB)</option>
+                            </select>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Buy Crypto</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offcanvas Notifications -->
+    <div class="offcanvas offcanvas-end" tabindex="0" id="offcanvasNotify" aria-labelledby="offcanvasNotifyLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNotifyLabel">Notifications</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="text-center p-4">
+                <img alt="" src="{{ asset('assets1/images/icon/empty-list.svg') }}" width="60" class="mb-3">
+                <p class="text-muted">No new notifications</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transfer Modal -->
+    <div class="modal fade" id="transferCrypto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="transferCryptoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="transferCryptoLabel">Transfer Crypto</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-4">
+                    <p class="text-muted">Transfer functionality coming soon...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Convert Modal -->
+    <div class="modal fade" id="convertCrypto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="convertCryptoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="convertCryptoLabel">Convert Crypto</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-4">
+                    <p class="text-muted">Convert functionality coming soon...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offcanvas Convert -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Quick Convert</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="text-center p-4">
+                <p class="text-muted">Quick convert functionality coming soon...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stake Modal -->
+    <div class="modal fade" id="stakeCrypto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="stakeCryptoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="stakeCryptoLabel">Stake Crypto</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-4">
+                    <p class="text-muted">Staking functionality coming soon...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TradingView Ticker -->
+    <div class="container-fluid tradingview-widget-container__widget mb-2 mt-2 card-bs">
+        <script src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+                "symbols": [
+                    {
+                        "proName": "FOREXCOM:SPXUSD",
+                        "title": "S&P 500 Index"
+                    },
+                    {
+                        "proName": "FOREXCOM:NSXUSD",
+                        "title": "US 100 Cash CFD"
+                    },
+                    {
+                        "proName": "FX_IDC:EURUSD",
+                        "title": "EUR to USD"
+                    },
+                    {
+                        "proName": "BITSTAMP:BTCUSD",
+                        "title": "Bitcoin"
+                    },
+                    {
+                        "proName": "BITSTAMP:ETHUSD",
+                        "title": "Ethereum"
+                    }
+                ],
+                "showSymbolLogo": true,
+                "isTransparent": false,
+                "displayMode": "adaptive",
+                "colorTheme": "dark",
+                "locale": "en"
+            }
+        </script>
+    </div>
+    <!-- Main Content End -->
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+    <script src="{{ asset('assets1/bootstrap/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('assets1/js/main.js') }}"></script>
     
     <!-- Original Theme JavaScript -->
     <script>
@@ -699,23 +1189,36 @@
                 });
             }
             
-            // Trading functionality
+            // Enhanced Trading functionality - Order book clicks
             const orderBookRows = document.querySelectorAll('#book-tab-pane tbody tr:not(.table-active)');
             orderBookRows.forEach(row => {
                 row.addEventListener('click', function() {
                     const priceCell = this.querySelector('td:first-child');
                     if (priceCell) {
-                        const price = priceCell.textContent.trim().replace(/,/g, '');
+                        const priceText = priceCell.textContent.trim().replace(/,/g, '');
+                        const price = priceText.split('.')[0] + '.' + priceText.split('.')[1];
                         console.log('Selected price:', price);
                         // Update trading forms with selected price
-                        const priceInputs = document.querySelectorAll('input[name="spend_amount"]');
-                        priceInputs.forEach(input => {
-                            if (input) {
-                                input.value = price;
-                                input.dispatchEvent(new Event('input', { bubbles: true }));
-                            }
-                        });
+                        const buyPriceInput = document.querySelector('input[name="buy_price"]');
+                        const sellPriceInput = document.querySelector('input[name="sell_price"]');
+                        
+                        if (buyPriceInput) {
+                            buyPriceInput.value = price;
+                            buyPriceInput.dispatchEvent(new Event('input', { bubbles: true }));
+                        }
+                        if (sellPriceInput) {
+                            sellPriceInput.value = price;
+                            sellPriceInput.dispatchEvent(new Event('input', { bubbles: true }));
+                        }
                     }
+                });
+            });
+            
+            // Watchlist switching functionality
+            const watchlistTabs = document.querySelectorAll('[id^="v-pills-"]');
+            watchlistTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    console.log('Switched to pair:', this.textContent.trim());
                 });
             });
             
@@ -728,28 +1231,95 @@
                 });
             });
             
-            // Form calculations
+            // Enhanced Form calculations for new structure
             function calculateTradeTotal() {
-                const spendInputs = document.querySelectorAll('input[name="spend_amount"]');
-                const receiveInputs = document.querySelectorAll('input[name="receive_amount"]');
+                const priceInputs = document.querySelectorAll('input[name="buy_price"], input[name="sell_price"]');
+                const sizeInputs = document.querySelectorAll('input[name="buy_size"], input[name="sell_size"]');
+                const totalInputs = document.querySelectorAll('input[name="buy_total"], input[name="sell_total"]');
                 
-                spendInputs.forEach((spendInput, index) => {
-                    const receiveInput = receiveInputs[index];
-                    if (spendInput && receiveInput) {
-                        spendInput.addEventListener('input', function() {
-                            const spendAmount = parseFloat(this.value) || 0;
-                            const rate = 76294.82; // BTC/USDT rate
-                            const receiveAmount = spendAmount / rate;
-                            receiveInput.value = receiveAmount.toFixed(8);
-                        });
-                        
-                        receiveInput.addEventListener('input', function() {
-                            const receiveAmount = parseFloat(this.value) || 0;
-                            const rate = 76294.82; // BTC/USDT rate
-                            const spendAmount = receiveAmount * rate;
-                            spendInput.value = spendAmount.toFixed(2);
-                        });
+                // Buy form calculations
+                const buyPrice = document.querySelector('input[name="buy_price"]');
+                const buySize = document.querySelector('input[name="buy_size"]');
+                const buyTotal = document.querySelector('input[name="buy_total"]');
+                
+                if (buyPrice && buySize && buyTotal) {
+                    buyPrice.addEventListener('input', calculateBuyTotal);
+                    buySize.addEventListener('input', calculateBuyTotal);
+                    buyTotal.addEventListener('input', calculateBuyFromTotal);
+                    
+                    function calculateBuyTotal() {
+                        const price = parseFloat(buyPrice.value) || 0;
+                        const size = parseFloat(buySize.value) || 0;
+                        buyTotal.value = (price * size).toFixed(2);
                     }
+                    
+                    function calculateBuyFromTotal() {
+                        const price = parseFloat(buyPrice.value) || 0;
+                        const total = parseFloat(buyTotal.value) || 0;
+                        if (price > 0) {
+                            buySize.value = (total / price).toFixed(8);
+                        }
+                    }
+                }
+                
+                // Sell form calculations
+                const sellPrice = document.querySelector('input[name="sell_price"]');
+                const sellSize = document.querySelector('input[name="sell_size"]');
+                const sellTotal = document.querySelector('input[name="sell_total"]');
+                
+                if (sellPrice && sellSize && sellTotal) {
+                    sellPrice.addEventListener('input', calculateSellTotal);
+                    sellSize.addEventListener('input', calculateSellTotal);
+                    sellTotal.addEventListener('input', calculateSellFromTotal);
+                    
+                    function calculateSellTotal() {
+                        const price = parseFloat(sellPrice.value) || 0;
+                        const size = parseFloat(sellSize.value) || 0;
+                        sellTotal.value = (price * size).toFixed(2);
+                    }
+                    
+                    function calculateSellFromTotal() {
+                        const price = parseFloat(sellPrice.value) || 0;
+                        const total = parseFloat(sellTotal.value) || 0;
+                        if (price > 0) {
+                            sellSize.value = (total / price).toFixed(8);
+                        }
+                    }
+                }
+                
+                // Percentage button functionality
+                const percentageButtons = document.querySelectorAll('.percentage-buttons button');
+                percentageButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const percentage = parseFloat(this.getAttribute('data-percentage'));
+                        const form = this.closest('form');
+                        const isRuyForm = form.querySelector('input[name="buy_total"]');
+                        const availableBalance = isRuyForm ? 10000.25 : 0.12345678; // Mock balances
+                        
+                        if (isRuyForm) {
+                            const totalInput = form.querySelector('input[name="buy_total"]');
+                            const priceInput = form.querySelector('input[name="buy_price"]');
+                            const sizeInput = form.querySelector('input[name="buy_size"]');
+                            
+                            const amount = (availableBalance * percentage / 100);
+                            totalInput.value = amount.toFixed(2);
+                            
+                            const price = parseFloat(priceInput.value) || 0;
+                            if (price > 0) {
+                                sizeInput.value = (amount / price).toFixed(8);
+                            }
+                        } else {
+                            const sizeInput = form.querySelector('input[name="sell_size"]');
+                            const priceInput = form.querySelector('input[name="sell_price"]');
+                            const totalInput = form.querySelector('input[name="sell_total"]');
+                            
+                            const amount = (availableBalance * percentage / 100);
+                            sizeInput.value = amount.toFixed(8);
+                            
+                            const price = parseFloat(priceInput.value) || 0;
+                            totalInput.value = (amount * price).toFixed(2);
+                        }
+                    });
                 });
             }
             
@@ -762,6 +1332,11 @@
             });
             
             console.log('🚀 TopHive Crypt Exchange Interface Initialized!');
+            console.log('📊 Enhanced Trading Features Loaded!');
+            console.log('💹 Order Book Interactive!');
+            console.log('🎯 Percentage Buttons Active!');
+            console.log('📈 TradingView Chart Embedded!');
+            console.log('🔄 Real-time Calculations Ready!');
         });
     </script>
 </body>
