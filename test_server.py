@@ -17,7 +17,7 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         super().end_headers()
 
 if __name__ == "__main__":
-    PORT = 8000
+    PORT = 8070
     
     # Change to the webapp directory
     os.chdir('/home/user/webapp')
@@ -25,6 +25,6 @@ if __name__ == "__main__":
     with socketserver.TCPServer(("0.0.0.0", PORT), MyHandler) as httpd:
         print(f"Server running at http://0.0.0.0:{PORT}/")
         print(f"Serving files from: {os.getcwd()}")
-        print(f"Test the theme at: http://0.0.0.0:{PORT}/theme_test.html")
+        print(f"Test the theme at: http://0.0.0.0:{PORT}/updated-theme-demo.html")
         sys.stdout.flush()
         httpd.serve_forever()
