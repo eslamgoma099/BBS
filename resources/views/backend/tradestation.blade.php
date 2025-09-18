@@ -2,10 +2,9 @@
 
 @section('content')
 <div class="container-fluid">
-    <!-- Assets Section Header -->
-    <div class="assets-header-section">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="assets-title">Assets</h2>
+    <!-- Orders & Add Funds Header - Matching New Theme -->
+    <div class="trading-header-section">
+        <div class="d-flex justify-content-end align-items-center mb-4">
             <div class="d-flex gap-3">
                 <button class="btn-orders-reference {{ \App\Models\Trade::whereUserId(auth()->id())->whereStatus(0)->count() > 0 ? 'active' : '' }}">
                     Orders
@@ -18,19 +17,6 @@
                 </button>
                 <button class="btn-add-funds-main" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">Add Funds</button>
             </div>
-        </div>
-        
-        <!-- Asset Tabs -->
-        <div class="asset-tabs-horizontal">
-            <button class="asset-tab-btn active" data-asset="BTC">BTC</button>
-            <button class="asset-tab-btn" data-asset="ETH">ETH</button>
-            <button class="asset-tab-btn" data-asset="USDT">USDT</button>
-            <button class="asset-tab-btn" data-asset="XRP">XRP</button>
-        </div>
-        
-        <!-- Search Coin -->
-        <div class="search-coin-container">
-            <input type="text" class="search-coin-input" placeholder="Search coin">
         </div>
     </div>
 
@@ -243,17 +229,10 @@
 
 @section('styles')
 <style>
-/* Reference Design Exact Match Styles */
+/* Trading Interface Styles - Matching New Theme Layout */
 
-.assets-header-section {
+.trading-header-section {
     margin-bottom: 20px;
-}
-
-.assets-title {
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin: 0;
 }
 
 .btn-orders-reference {
@@ -309,59 +288,7 @@
     transform: translateY(-1px);
 }
 
-.asset-tabs-horizontal {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 16px;
-}
-
-.asset-tab-btn {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    padding: 8px 20px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.asset-tab-btn:hover {
-    background-color: var(--hover-bg);
-    color: var(--text-primary);
-}
-
-.asset-tab-btn.active {
-    background-color: var(--accent-yellow);
-    color: #000000;
-    border-color: var(--accent-yellow);
-    font-weight: 600;
-}
-
-.search-coin-container {
-    margin-bottom: 20px;
-}
-
-.search-coin-input {
-    width: 100%;
-    padding: 12px 16px;
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    color: var(--text-primary);
-    font-size: 14px;
-    outline: none;
-}
-
-.search-coin-input:focus {
-    border-color: var(--accent-yellow);
-    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.1);
-}
-
-.search-coin-input::placeholder {
-    color: var(--text-muted);
-}
+/* CSS for asset tabs and search removed - now in sidebar */
 
 /* Trading Interface Grid */
 .trading-interface-grid {
@@ -863,16 +790,7 @@
         gap: 12px;
     }
     
-    .asset-tabs-horizontal {
-        flex-wrap: wrap;
-        gap: 6px;
-    }
-    
-    .assets-header-section .d-flex {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
+    /* Asset tabs CSS removed - now in sidebar */
     
     .chart-area {
         height: 250px;
@@ -919,10 +837,7 @@
         padding: 6px 12px;
     }
     
-    .asset-tab-btn {
-        padding: 6px 14px;
-        font-size: 13px;
-    }
+    /* Asset tab buttons CSS removed - now in sidebar */
 }
 
 /* Dark/Light theme specific overrides */
@@ -943,7 +858,6 @@ body.crypt-dark .order-row:hover {
 }
 
 /* Enhanced focus states */
-.asset-tab-btn:focus,
 .timeframe-btn:focus,
 .trading-btn:focus {
     outline: 2px solid var(--accent-yellow);
@@ -951,7 +865,6 @@ body.crypt-dark .order-row:hover {
 }
 
 /* Smooth transitions for all interactive elements */
-.asset-tab-btn,
 .timeframe-btn,
 .trading-btn,
 .market-row,
@@ -993,15 +906,7 @@ body.crypt-dark .order-row:hover {
 @section('js')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Asset tabs functionality
-    const assetTabs = document.querySelectorAll('.asset-tab-btn');
-    assetTabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            assetTabs.forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-            console.log(`Selected asset: ${this.dataset.asset}`);
-        });
-    });
+    // Asset tabs functionality moved to sidebar
 
     // Timeframe buttons functionality
     const timeframeBtns = document.querySelectorAll('.timeframe-btn');
