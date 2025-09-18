@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>{{ setting('site_name', 'Crypt') }} | Register</title>
-  <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/button.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+  <!-- TopHive Crypt Theme CSS -->
+  <link rel="stylesheet" href="{{ asset('assets1/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets1/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets1/css/button.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets1/css/responsive.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="icon" type="image/svg" href="{{ asset('images/favicon.svg') }}">
+  <link rel="icon" type="image/svg" href="{{ asset('assets1/images/favicon.svg') }}">
 
 </head>
 
@@ -28,7 +29,7 @@
                         @if(setting('logo_dark'))
                             <img src="{{ setting('logo_dark') }}" alt="logo-dark">
                         @else
-                            <img src="{{ asset('images/logo-dark.svg') }}" alt="logo-dark">
+                            <img src="{{ asset('assets1/images/logo-dark.svg') }}" alt="logo-dark">
                         @endif
                     </a>
                 </div>
@@ -37,7 +38,7 @@
                         @if(setting('logo'))
                             <img src="{{ setting('logo') }}" alt="logo-light">
                         @else
-                            <img src="{{ asset('images/logo.svg') }}" alt="logo-light">
+                            <img src="{{ asset('assets1/images/logo.svg') }}" alt="logo-light">
                         @endif
                     </a>
                 </div>
@@ -71,7 +72,7 @@
             <div class="signup-card">
                 <!-- Left column: Welcome / Illustration -->
                 <aside class="signup-card__visual">
-                    <img class="signup-icon" src="{{ asset('images/features/security.svg') }}" alt="Security illustration">
+                    <img class="signup-icon" src="{{ asset('assets1/images/features/qr.svg') }}" alt="QR Code illustration">
                     <h3 class="visual__title">Join the Future</h3>
                     <p class="visual__desc">Create your account and start trading cryptocurrencies with confidence. Join thousands of traders worldwide.</p>
 
@@ -217,12 +218,12 @@
 
                     <div class="social-buttons">
                         <a class="btn btn--social btn--google" href="#!" aria-label="Sign up with Google">
-                            <img class="btn-icon" src="{{ asset('images/icon/google.svg') }}" alt="">
+                            <img class="btn-icon" src="{{ asset('assets1/images/icon/google.svg') }}" alt="">
                             <span>Sign up with Google</span>
                         </a>
 
                         <a class="btn btn--social btn--apple" href="#!" aria-label="Sign up with Apple">
-                            <img class="btn-icon" src="{{ asset('images/icon/apple.svg') }}" alt="">
+                            <img class="btn-icon" src="{{ asset('assets1/images/icon/apple.svg') }}" alt="">
                             <span>Sign up with Apple</span>
                         </a>
                     </div>

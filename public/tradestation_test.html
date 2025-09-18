@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head class="crypt-dark">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Exchange - TopHive Crypt</title>
+    
+    <!-- Original Theme CSS Files -->
+    <link rel="stylesheet" href="assets1/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets1/css/style.css">
+    <link rel="stylesheet" href="assets1/css/responsive.css">
+    <link rel="stylesheet" href="assets1/css/button.css">
+    <link rel="icon" type="image/svg" href="assets1/images/favicon.svg">
+    
+    <!-- Additional Theme CSS to ensure proper loading -->
+    <style>
+        /* Ensure dark theme is applied correctly */
+        body.crypt-dark {
+            background-color: #0a0e1a;
+            color: #fff;
+        }
+        
+        .sidebar {
+            background-color: #141929;
+            min-height: 100vh;
+        }
+        
+        .card-bs {
+            background-color: #1a202c;
+            border: 1px solid #2d3748;
+            border-radius: 8px;
+        }
+        
+        /* Ensure sidebar is visible */
+        .fixed-sidebar .sidebar {
+            width: 280px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 1000;
+        }
+        
+        .fixed-sidebar .wrapper {
+            margin-left: 280px;
+            width: calc(100% - 280px);
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .fixed-sidebar .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .fixed-sidebar .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+            
+            .fixed-sidebar .wrapper {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="crypt-dark">
+    <section class="container-fluid d-sm-flex flex-row fixed-sidebar">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Brand Logo -->
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="justify-content-between disable-sm-screen mt-3">
+                    <!-- Logo -->
+                    <div class="crypt-logo dark">
+                        <a href="#">
+                            <img src="assets1/images/logo-dark.svg" alt="logo-dark">
+                        </a>
+                    </div>
+                    <div class="crypt-logo light">
+                        <a href="#">
+                            <img src="assets1/images/logo.svg" alt="logo">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Menu -->
+            <div class="side-wrapper">
+                <div class="side-title">Assets</div>
+                <div class="side-menu">
+                    <a class="sidebar-link" href="#" tabindex="0">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path opacity="0.4" d="M18.6699 2H16.7699C14.5899 2 13.4399 3.15 13.4399 5.33V7.23C13.4399 9.41 14.5899 10.56 16.7699 10.56H18.6699C20.8499 10.56 21.9999 9.41 21.9999 7.23V5.33C21.9999 3.15 20.8499 2 18.6699 2Z" fill="currentColor"/>
+                            <path d="M6.29 10.58C8.6593 10.58 10.58 8.6593 10.58 6.29C10.58 3.9207 8.6593 2 6.29 2C3.9207 2 2 3.9207 2 6.29C2 8.6593 3.9207 10.58 6.29 10.58Z" fill="currentColor"/>
+                        </svg>
+                        <span> Dashboard </span>
+                    </a>
+                    <a class="sidebar-link is-active" href="#" tabindex="0">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15 15.5C15 19.09 12.09 22 8.5 22C4.91 22 2 19.09 2 15.5C2 11.91 4.91 9 8.5 9C8.67 9 8.84999 9.01 9.01999 9.02C12.19 9.27 14.73 11.81 14.98 14.98C14.99 15.15 15 15.33 15 15.5Z" fill="currentColor"/>
+                        </svg>
+                        <span> Exchange </span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="wrapper pb-2">
+            <!-- Header -->
+            <div class="header d-flex align-items-center">
+                <!-- Mobile Toggle Button -->
+                <span id="sidebar-mobile-toggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M21.25 7.81V16.19C21.25 17.8608 20.7549 19.1045 19.9297 19.9297C19.1045 20.7549 17.8608 21.25 16.19 21.25H9.75V2.75H16.19C17.8608 2.75 19.1045 3.24514 19.9297 4.07033C20.7549 4.89552 21.25 6.13915 21.25 7.81Z" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </span>
+
+                <!-- Search -->
+                <div class="col-md-3">
+                    <input type="text" class="search search-input form-control form-control-lg text-sm hidesmscreen circle" placeholder="Search">
+                </div>
+
+                <div class="user-settings gap-2 gap-sm-3">
+                    <!-- Call to Action -->
+                    <div class="flex disable-sm-screen">
+                        <a class="btn btn-editor btn-primary" href="#!" data-bs-toggle="modal" data-bs-target="#buyCrypto">Add Funds</a>
+                    </div>
+
+                    <!-- Profile Modal -->
+                    <div class="profile_menu d-flex align-items-center">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle no-active d-flex align-items-center" type="button" data-bs-toggle="dropdown">
+                                <img alt="" src="assets1/images/social/user.png">
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- dark/light mode -->
+                    <div class="mode">
+                        <button class="controller m-auto" id="darkMode">
+                            <span class="dark-logo">
+                                <svg viewBox="0 0 512 512" width="100" fill="currentColor">
+                                    <path d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard/Trading Interface -->
+            <div class="row g-2 pb-2 animation-element">
+                <!-- Order Book | Market Trades -->
+                <div class="col-12 col-xxl-2 col-xl-3 col-lg-6">
+                    <div class="tab-content card-bs table-temp3 p-2">
+                        <!-- Tab -->
+                        <div class="nav nav-pills nav-justified card-bs-tabs gap-2 p-1">
+                            <button class="nav-link active">Order Book</button>
+                            <button class="nav-link">Market Trades</button>
+                        </div>
+                        <!-- Order Book -->
+                        <div class="table-responsive">
+                            <table class="table table-dark table-hover crypt-tab">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Price(USDT)</th>
+                                        <th scope="col">Amount(BTC)</th>
+                                        <th scope="col">Total(USDT)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-down">76,494.88<span class="text-down text-opacity-75">.87</span></td>
+                                        <td>0.536</td>
+                                        <td>6.345</td>
+                                    </tr>
+                                    <tr class="table-active mb-0">
+                                        <th scope="row" class="text-danger fs-6 fw-bold">76,494.88 <img alt="" src="assets1/images/icon/down.svg" width="10"></th>
+                                        <td colspan="2" class="text-primary">≈ 76.706,32 USD</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-up">76,494.88<span class="text-up text-opacity-50">.77</span></td>
+                                        <td>0.536</td>
+                                        <td>6.345</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trading Chart -->
+                <div class="col-12 col-xxl-7 col-xl-6 col-lg-12">
+                    <!-- Watchlist -->
+                    <div class="card-bs p-2">
+                        <div class="nav nav-pills nav-justified card-bs-tabs gap-2 p-1">
+                            <button class="nav-link active text-sm">
+                                <div class="d-flex flex-row justify-content-between gap-3 align-items-center">
+                                    <div class="d-flex flex-row align-items-center gap-2">
+                                        <img alt="" src="assets1/images/coin/btc.svg" width="20">
+                                        <div class="d-flex flex-column justify-content-start align-items-start text-start">
+                                            <p class="fw-medium mb-0">BTC/USDT <span class="verified text-sm">24h</span></p>
+                                            <p class="fw-medium mb-0 text-success">76,494.88 <span class="text-success text-opacity-75">+1.24%</span></p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img class="up-candle" alt="" src="assets1/images/icon/up.svg" width="30">
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                        <!-- Chart Area -->
+                        <div class="tradingview-widget-container" style="height: 400px; background: #1a202c; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-top: 1rem;">
+                            <p style="color: #666;">TradingView Chart Will Load Here</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Buy/Sell Forms -->
+                    <div class="tab-content table-responsive card-bs p-2 mt-2">
+                        <div class="d-sm-flex flex-row justify-content-between gap-3 p-1">
+                            <!-- Buy Form -->
+                            <div class="w-100 active mt-3">
+                                <p class="text-sm crypt-grayscale-500">Avbl 10,000.25 USDT</p>
+                                <div class="input-group mb-3 p-1">
+                                    <div class="input-group-prepend input-group-text">Price</div>
+                                    <input class="form-control placeholder-text" type="text" placeholder="76494.88" value="76494.88">
+                                    <div class="input-group-append input-group-text p-1">USDT</div>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-up" role="button">Buy BTC</button>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex"><div class="vr"></div></div>
+                            
+                            <!-- Sell Form -->
+                            <div class="w-100 active mt-3">
+                                <p class="text-sm crypt-grayscale-500">Avbl 0.12345678 BTC</p>
+                                <div class="input-group mb-3 p-1">
+                                    <div class="input-group-prepend input-group-text">Price</div>
+                                    <input class="form-control placeholder-text" type="text" placeholder="76494.88" value="76494.88">
+                                    <div class="input-group-append input-group-text p-1">USDT</div>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-down" role="button">Sell BTC</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pairs List -->
+                <div class="col-12 col-xxl-3 col-xl-3 col-lg-6">
+                    <div class="tab-content card-bs table-temp3 p-2">
+                        <!-- Tab -->
+                        <div class="nav nav-pills nav-justified gap-1 card-bs-tabs p-1">
+                            <button class="nav-link active">BTC</button>
+                            <button class="nav-link">ETH</button>
+                            <button class="nav-link">USDT</button>
+                        </div>
+                        
+                        <!-- Pairs Table -->
+                        <div class="table-responsive">
+                            <table class="table table-dark table-hover crypt-tab">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Pairs</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Change</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex flex-row align-items-center gap-2">
+                                                <p class="fw-medium mb-0">USDT/BTC</p>
+                                            </div>
+                                        </td>
+                                        <td>$30.03</td>
+                                        <td class="text-down">2.96% <img alt="" src="assets1/images/icon/down.svg" width="16"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex flex-row align-items-center gap-2">
+                                                <p class="fw-medium mb-0">ETH/BTC</p>
+                                            </div>
+                                        </td>
+                                        <td>$21.12</td>
+                                        <td class="text-up">12.45% <img alt="" src="assets1/images/icon/up.svg" width="16"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="assets1/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets1/js/main.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark/Light mode toggle
+            const darkModeBtn = document.getElementById('darkMode');
+            if (darkModeBtn) {
+                darkModeBtn.addEventListener('click', function() {
+                    document.body.classList.toggle('crypt-dark');
+                    document.body.classList.toggle('crypt-light');
+                });
+            }
+            
+            console.log('🚀 TopHive Crypt Exchange Interface Initialized!');
+        });
+    </script>
+</body>
+</html>
