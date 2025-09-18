@@ -2230,3 +2230,15 @@ Test the theme at: http://0.0.0.0:8070/updated-theme-demo.html
 18/Sep/2025 09:56:59 - "GET /theme_test_full.html HTTP/1.1" 200 -
 18/Sep/2025 09:57:00 - code 404, message File not found
 18/Sep/2025 09:57:00 - "GET /favicon.ico HTTP/1.1" 404 -
+18/Sep/2025 10:03:48 - "GET /exchange_reference_design.html HTTP/1.1" 200 -
+18/Sep/2025 10:03:48 - code 404, message File not found
+18/Sep/2025 10:03:48 - "GET /favicon.ico HTTP/1.1" 404 -
+18/Sep/2025 10:06:03 - "GET /exchange_new_theme.html HTTP/1.1" 200 -
+18/Sep/2025 10:06:03 - code 404, message File not found
+18/Sep/2025 10:06:03 - "GET /images/logo-dark.svg HTTP/1.1" 404 -
+18/Sep/2025 10:06:03 - code 404, message File not found
+18/Sep/2025 10:06:03 - "GET /images/social/user.png HTTP/1.1" 404 -
+18/Sep/2025 10:06:03 - code 404, message File not found
+18/Sep/2025 10:06:03 - "GET /images/coin/btc.svg HTTP/1.1" 404 -
+18/Sep/2025 10:06:03 - code 404, message File not found
+18/Sep/2025 10:06:03 - "GET /images/favicon.svg HTTP/1.1" 404 -
