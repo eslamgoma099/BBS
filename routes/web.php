@@ -30,6 +30,7 @@ use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\ToolsController;
 // use App\Http\Controllers\UserController;
 use App\Models\Country;
 
@@ -409,4 +410,40 @@ Route::group(['middleware' => ['auth','UserActivity','role:admin|superadmin|mana
     Route::get('/2365/update/lead/pass', [Controller::class, 'updateLeadPass']);
 
 
+});
+
+// Class Point System Routes
+Route::group(['middleware' => ['auth']], function () {
+    
+    // Main Class Point Routes
+    Route::get('/tools/class-point', [ToolsController::class, 'classPoint'])->name('classPoint');
+    Route::get('/tools/class-point/{classroom}', [ToolsController::class, 'selectClassPoint'])->name('selectClassPoint');
+    
+    // Student Point Management
+    Route::post('/tools/plus-point', [ToolsController::class, 'plusPoint'])->name('plusPoint');
+    Route::post('/tools/minus-point', [ToolsController::class, 'minusPoint'])->name('minusPoint');
+    Route::post('/tools/plus-point-class', [ToolsController::class, 'plusPointClass'])->name('plusPointClass');
+    Route::post('/tools/minus-point-class', [ToolsController::class, 'minusPointClass'])->name('minusPointClass');
+    
+    // Skill/Behavior Management
+    Route::get('/tools/skill-point/{classroom}', [ToolsController::class, 'skillPoint'])->name('skillPoint');
+    Route::post('/tools/add-positive-skill', [ToolsController::class, 'addPositiveSkill'])->name('addPositiveSkill');
+    Route::post('/tools/add-negative-skill', [ToolsController::class, 'addNegativeSkill'])->name('addNegativeSkill');
+    Route::put('/tools/edit-positive-skill/{id}', [ToolsController::class, 'editPositiveSkill'])->name('editPositiveSkill');
+    Route::put('/tools/edit-negative-skill/{id}', [ToolsController::class, 'editNegativeSkill'])->name('editNegativeSkill');
+    Route::get('/tools/delete-skill/{id}', [ToolsController::class, 'deleteSkill'])->name('deleteSkill');
+    
+    // Reports
+    Route::get('/tools/report-point/{classroom}', [ToolsController::class, 'reportPoint'])->name('reportPoint');
+    Route::get('/tools/delete-point/{id}', [ToolsController::class, 'deletePoint'])->name('deletePoint');
+    
+    // Other Tools (if needed)
+    Route::get('/tools/categories', [ToolsController::class, 'tool_cat'])->name('toolCategories');
+    Route::get('/tools/stopwatch', [ToolsController::class, 'stopWatch'])->name('stopWatch');
+    Route::get('/tools/countdown', [ToolsController::class, 'countdownTimer'])->name('countdownTimer');
+    Route::get('/tools/class-wheel', [ToolsController::class, 'classWheel'])->name('classWheel');
+    Route::get('/tools/spinning-wheel/{classroom}', [ToolsController::class, 'spinningWheel'])->name('spinningWheel');
+    Route::get('/tools/class-maker', [ToolsController::class, 'classMaker'])->name('classMaker');
+    Route::get('/tools/group-maker/{classroom}', [ToolsController::class, 'groupMaker'])->name('groupMaker');
+    Route::post('/tools/get-student-group', [ToolsController::class, 'getStudentInGroup'])->name('getStudentInGroup');
 });
