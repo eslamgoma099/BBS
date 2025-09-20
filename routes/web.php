@@ -202,6 +202,19 @@ Route::get('/instantlogin/{id}', [UserController::class, 'instantLogin'])->name(
 Route::post('getresponse/webhook/store/lead', [UserController::class, 'webhook'])->name('getresponse.webhook');
 Route::group(['middleware' => ['auth','UserActivity','role:admin|superadmin|manager|retention|autotrader'], 'prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::get('dashboard', [AdminDashboardController::class,'index'])->name('dashboard');
+    Route::get('tradestation', function() {
+        return view('backend.tradestation');
+    })->name('tradestation');
+    
+    // Trading Routes
+    Route::post('trade/buy', function() {
+        return response()->json(['status' => 'success', 'message' => 'Buy order placed successfully']);
+    })->name('trade.buy');
+    
+    Route::post('trade/sell', function() {
+        return response()->json(['status' => 'success', 'message' => 'Sell order placed successfully']);
+    })->name('trade.sell');
+});
     Route::get('overnights', [AdminDashboardController::class,'overnights'])->name('overnights');
 
     Route::get('user/{id}/login/logs', [UsersController::class,'loginLogs'])->name('user.logins');
@@ -410,3 +423,11 @@ Route::group(['middleware' => ['auth','UserActivity','role:admin|superadmin|mana
 
 
 });
+
+// Auth routes
+Route::post('logout', function() {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/');
+})->name('logout');
