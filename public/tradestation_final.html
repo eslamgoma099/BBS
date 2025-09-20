@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>BBS - Trade Station</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="demo-token">
     
     <!-- TopHive Crypt Theme CSS Files - 100% Exact Match -->
-    <link rel="stylesheet" href="{{ asset('assets1/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets1/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets1/css/responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets1/css/button.css') }}">
-    <link rel="icon" type="image/svg" href="{{ asset('assets1/images/favicon.svg') }}">
+    <link rel="stylesheet" href="assets1/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets1/css/style.css">
+    <link rel="stylesheet" href="assets1/css/responsive.css">
+    <link rel="stylesheet" href="assets1/css/button.css">
+    <link rel="icon" type="image/svg" href="assets1/images/favicon.svg">
 </head>
 
 <body class="crypt-dark">
@@ -25,24 +25,24 @@
                 <div class="justify-content-between disable-sm-screen mt-3">
                     <!-- Logo -->
                     <div class="crypt-logo dark">
-                        <a href="{{ route('dashboard') }}">
-                            <img src="{{ asset('assets1/images/logo-dark.svg') }}" alt="">
+                        <a href="#dashboard">
+                            <img src="assets1/images/logo-dark.svg" alt="">
                         </a>
                     </div>
                     <div class="crypt-logo light">
-                        <a href="{{ route('dashboard') }}">
-                            <img src="{{ asset('assets1/images/logo.svg') }}" alt="">
+                        <a href="#dashboard">
+                            <img src="assets1/images/logo.svg" alt="">
                         </a>
                     </div>
                     <!-- Logo sm -->
                     <div class="crypt-logo logo-sm dark">
-                        <a href="{{ route('dashboard') }}">
-                            <img src="{{ asset('assets1/images/logo-m-dark.svg') }}" alt="">
+                        <a href="#dashboard">
+                            <img src="assets1/images/logo-m-dark.svg" alt="">
                         </a>
                     </div>
                     <div class="crypt-logo logo-sm light">
-                        <a href="{{ route('dashboard') }}">
-                            <img src="{{ asset('assets1/images/logo-m.svg') }}" alt="">
+                        <a href="#dashboard">
+                            <img src="assets1/images/logo-m.svg" alt="">
                         </a>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
             <div class="side-wrapper">
                 <div class="side-title">Assets</div>
                 <div class="side-menu">
-                    <a class="sidebar-link" href="{{ route('dashboard') }}" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Dashboard">
+                    <a class="sidebar-link" href="#dashboard" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Dashboard">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path opacity="0.4" d="M18.6699 2H16.7699C14.5899 2 13.4399 3.15 13.4399 5.33V7.23C13.4399 9.41 14.5899 10.56 16.7699 10.56H18.6699C20.8499 10.56 21.9999 9.41 21.9999 7.23V5.33C21.9999 3.15 20.8499 2 18.6699 2Z" fill="currentColor"/>
                             <path opacity="0.4" d="M7.24 13.4301H5.34C3.15 13.4301 2 14.5801 2 16.7601V18.6601C2 20.8501 3.15 22.0001 5.33 22.0001H7.23C9.41 22.0001 10.56 20.8501 10.56 18.6701V16.7701C10.57 14.5801 9.42 13.4301 7.24 13.4301Z" fill="currentColor"/>
@@ -68,7 +68,7 @@
                         </svg>
                         <span> Marketplace </span>
                     </a>
-                    <a class="sidebar-link is-active" href="{{ route('tradestation') }}" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Exchange">
+                    <a class="sidebar-link is-active" href="#tradestation" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Exchange">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 15.5C15 19.09 12.09 22 8.5 22C4.91 22 2 19.09 2 15.5C2 11.91 4.91 9 8.5 9C8.67 9 8.84999 9.01 9.01999 9.02C12.19 9.27 14.73 11.81 14.98 14.98C14.99 15.15 15 15.33 15 15.5Z" fill="currentColor"></path>
                             <path opacity="0.4" d="M22 8.5C22 12.09 19.09 15 15.5 15C15.33 15 15.15 14.99 14.98 14.98C14.73 11.81 12.19 9.27 9.01999 9.02C9.00999 8.85 9 8.67 9 8.5C9 4.91 11.91 2 15.5 2C19.09 2 22 4.91 22 8.5Z" fill="currentColor"></path>
@@ -137,13 +137,13 @@
 
                 <!-- Logo -->
                 <div class="crypt-logo logo-m dark">
-                    <a href="{{ route('dashboard') }}">
-                        <img src="{{ asset('assets1/images/logo-dark.svg') }}" alt="logo-dark">
+                    <a href="#dashboard">
+                        <img src="assets1/images/logo-dark.svg" alt="logo-dark">
                     </a>
                 </div>
                 <div class="crypt-logo logo-m light">
-                    <a href="{{ route('dashboard') }}">
-                        <img src="{{ asset('assets1/images/logo.svg') }}" alt="logo">
+                    <a href="#dashboard">
+                        <img src="assets1/images/logo.svg" alt="logo">
                     </a>
                 </div>
 
@@ -177,7 +177,7 @@
                                 <p class="text-sm fw-bold crypt-grayscale-600 mb-0">Overview</p>
                                 <div class="d-flex col-auto gap-1 p-0">
                                     <div>
-                                        <h4 class="fw-bold crypt-grayscale-400 mb-0 encrypted">{{ number_format(auth()->user()->balance ?? 0.001245, 6) }}</h4>
+                                        <h4 class="fw-bold crypt-grayscale-400 mb-0 encrypted">0.001245</h4>
                                     </div>
                                     <div>
                                         <select class="form-select text-bg-bs2 crypt-grayscale-600">
@@ -188,7 +188,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <h6 class="text-sm crypt-grayscale-600 encrypted">≈ ${{ number_format((auth()->user()->balance ?? 0.001245) * 76294.82, 2) }} USDT</h6>
+                                <h6 class="text-sm crypt-grayscale-600 encrypted">≈ $94.98 USDT</h6>
                             </div>
                             <div>
                                 <a class="dropdown-item text-left" href="#">
@@ -226,16 +226,16 @@
                     <div class="profile_menu d-flex align-items-center">
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle no-active d-flex align-items-center" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                <img alt="" src="{{ asset('assets1/images/social/user.png') }}">
+                                <img alt="" src="assets1/images/social/user.png">
                             </button>
                             <ul class="dropdown-menu">
                                 <li class="wallet align-items-center">
-                                    <img alt="" src="{{ asset('assets1/images/social/user.png') }}">
+                                    <img alt="" src="assets1/images/social/user.png">
                                     <div class="d-grid">
-                                        <h6 class="fw-bold crypt-grayscale-100 mb-0">{{ auth()->user()->email }}</h6>
+                                        <h6 class="fw-bold crypt-grayscale-100 mb-0">user@example.com</h6>
                                         <a class="d-flex gap-2 mb-2 verified mt-2" href="#!">
                                             <p class="crypt-grayscale-600 mb-0">UID:</p>
-                                            <p class="crypt-grayscale-100 mb-0">{{ auth()->user()->id ?? '35403204' }}</p>
+                                            <p class="crypt-grayscale-100 mb-0">35403204</p>
                                             <div class="crypt-grayscale-500" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M9.15556 5C6.8605 5 5 6.8605 5 9.15556V12.48C5 14.5149 6.46269 16.2083 8.39406 16.566C8.75174 18.4974 10.4451 19.96 12.48 19.96H15.8044C18.0995 19.96 19.96 18.0995 19.96 15.8044V12.48C19.96 10.4451 18.4974 8.75174 16.566 8.39406C16.2083 6.46269 14.5149 5 12.48 5H9.15556ZM14.8315 8.32444C14.4892 7.35604 13.5657 6.66222 12.48 6.66222H9.15556C7.77853 6.66222 6.66222 7.77853 6.66222 9.15556V12.48C6.66222 13.5657 7.35603 14.4892 8.32444 14.8315V12.48C8.32444 10.1849 10.1849 8.32444 12.48 8.32444H14.8315ZM9.98667 12.48C9.98667 11.103 11.103 9.98667 12.48 9.98667H15.8044C17.1814 9.98667 18.2978 11.103 18.2978 12.48V15.8044C18.2978 17.1814 17.1814 18.2978 15.8044 18.2978H12.48C11.103 18.2978 9.98667 17.1814 9.98667 15.8044V12.48Z" fill="currentColor" />
@@ -245,7 +245,7 @@
                                     </div>
                                 </li>
                                 <li class="mt-2">
-                                    <a class="dropdown-item" href="{{ route('dashboard') }}">
+                                    <a class="dropdown-item" href="#dashboard">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path opacity="0.4" d="M18.6699 2H16.7699C14.5899 2 13.4399 3.15 13.4399 5.33V7.23C13.4399 9.41 14.5899 10.56 16.7699 10.56H18.6699C20.8499 10.56 21.9999 9.41 21.9999 7.23V5.33C21.9999 3.15 20.8499 2 18.6699 2Z" fill="currentColor"/>
                                             <path opacity="0.4" d="M7.24 13.4301H5.34C3.15 13.4301 2 14.5801 2 16.7601V18.6601C2 20.8501 3.15 22.0001 5.33 22.0001H7.23C9.41 22.0001 10.56 20.8501 10.56 18.6701V16.7701C10.57 14.5801 9.42 13.4301 7.24 13.4301Z" fill="currentColor"/>
@@ -261,8 +261,8 @@
                                         </svg>
                                         My Asset
                                     </a>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
+                                    <form method="POST" action="{{ route('logout">
+                                        <!-- CSRF Token -->
                                         <button type="submit" class="dropdown-item">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path opacity="0.4" d="M16.19 2H7.82002C4.18002 2 2.01001 4.17 2.01001 7.81V16.18C2.01001 19.82 4.18002 21.99 7.82002 21.99H16.19C19.83 21.99 22 19.82 22 16.18V7.81C22 4.17 19.83 2 16.19 2Z" fill="currentColor"/>
@@ -381,7 +381,7 @@
                                             <td>6.345</td>
                                         </tr>
                                         <tr class="table-active mb-0">
-                                            <th scope="row" class="text-danger fs-6 fw-bold">76,248.96 <img alt="" src="{{ asset('assets1/images/icon/down.svg') }}" width="10"></th>
+                                            <th scope="row" class="text-danger fs-6 fw-bold">76,248.96 <img alt="" src="assets1/images/icon/down.svg" width="10"></th>
                                             <td colspan="2" class="text-primary">≈ 76.706,32 USD</td>
                                         </tr>
                                         <tr>
@@ -1172,7 +1172,7 @@
     <div class="offcanvas offcanvas-start sidebar-nav bg-dark" tabindex="-1" id="sidebar" aria-labelledby="sidebar">
         <div class="offcanvas-header">
             <div class="offcanvas-title" id="sidebar">
-                <img src="{{ asset('assets1/images/logo.png') }}" alt="Logo" width="120">
+                <img src="assets1/images/logo.png" alt="Logo" width="120">
             </div>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
@@ -1183,13 +1183,13 @@
                         <div class="text-muted small fw-bold text-uppercase px-3 py-2">Main</div>
                     </li>
                     <li>
-                        <a href="{{ route('dashboard') }}" class="nav-link px-3 sidebar-link">
+                        <a href="#dashboard" class="nav-link px-3 sidebar-link">
                             <span class="me-2"><i class="fas fa-tachometer-alt"></i></span>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('tradestation') }}" class="nav-link px-3 sidebar-link active">
+                        <a href="#tradestation" class="nav-link px-3 sidebar-link active">
                             <span class="me-2"><i class="fas fa-chart-line"></i></span>
                             <span>Trade Station</span>
                         </a>
@@ -1235,8 +1235,8 @@
     <!-- JavaScript Includes -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
-    <script src="{{ asset('assets1/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets1/js/main.js') }}"></script>
+    <script src="assets1/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets1/js/main.js"></script>
 
     <!-- TradingView Widget Script -->
     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
